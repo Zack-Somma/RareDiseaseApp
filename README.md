@@ -15,7 +15,7 @@ How to use for the backend side:
 Need to authorize your user in order to check data by following these steps:
 3. In a new browser copy and paste this link 
 ```
-https://unabolished-superenergetic-nelle.ngrok-free.dev/garmin/oauth'
+https://unabolished-superenergetic-nelle.ngrok-free.dev/garmin/oauth
 ```
 4. Sign in with your Garmin account, and agree with Garmin access. If everything works perfectly fine, you will receive a final print that says 'OAuth completed!'
 
