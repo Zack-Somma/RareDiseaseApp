@@ -35,3 +35,8 @@ Current status for backend:
 Backend created locally, have not done through a cloud based server
 Real-time data can only be populated after the server is running, and able to collect the data back (worked with activities). Data demonstrated before wont be seen. 
 So far need authorization is needed for every user each time
+
+Frontend side:
+- Labeled under 'app_design'
+- Make sure to have your editor open to one of the '.mc' files
+- To run: Run > Run without debugging
