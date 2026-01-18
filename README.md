@@ -37,6 +37,6 @@ Real-time data can only be populated after the server is running, and able to co
 So far need authorization is needed for every user each time
 
 Frontend side:
-- Labeled under 'app_design'
+- Labeled under 'app_design' (also be sure to open your folder specific under this!!)
 - Make sure to have your editor open to one of the '.mc' files
 - To run: Run > Run without debugging
