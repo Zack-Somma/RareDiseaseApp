@@ -3,46 +3,134 @@
     <manifest filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/manifest.xml"/>
     <pcToLineNum>
         <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="1" lineNum="5" parent="globals/app_designApp" pc="268435460" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="2" lineNum="26" parent="globals" pc="268435472" symbol="getApp"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="2" lineNum="27" parent="globals" pc="268435482" symbol="getApp"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="2" lineNum="25" parent="globals" pc="268435472" symbol="getApp"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="2" lineNum="26" parent="globals" pc="268435482" symbol="getApp"/>
         <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="3" lineNum="6" parent="globals/app_designView" pc="268435493" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="4" lineNum="7" parent="globals/Rez" pc="268435505" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="5" lineNum="12" parent="globals/app_designApp" pc="268435525" symbol="onStart"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="6" lineNum="20" parent="globals/app_designApp" pc="268435528" symbol="getInitialView"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="6" lineNum="21" parent="globals/app_designApp" pc="268435530" symbol="getInitialView"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="7" lineNum="7" parent="globals/app_designApp" pc="268435556" symbol="initialize"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="7" lineNum="8" parent="globals/app_designApp" pc="268435558" symbol="initialize"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="8" lineNum="16" parent="globals/app_designApp" pc="268435571" symbol="onStop"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="11" lineNum="13" parent="globals/app_designView" pc="268435574" symbol="onLayout"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="11" lineNum="14" parent="globals/app_designView" pc="268435576" symbol="onLayout"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="13" lineNum="8" parent="globals/app_designView" pc="268435610" symbol="initialize"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="13" lineNum="9" parent="globals/app_designView" pc="268435612" symbol="initialize"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="24" parent="globals/app_designView" pc="268435625" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="26" parent="globals/app_designView" pc="268435628" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="30" parent="globals/app_designView" pc="268435640" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="31" parent="globals/app_designView" pc="268435652" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="32" parent="globals/app_designView" pc="268435662" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="33" parent="globals/app_designView" pc="268435674" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="35" parent="globals/app_designView" pc="268435684" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="39" parent="globals/app_designView" pc="268435691" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="42" parent="globals/app_designView" pc="268435698" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="45" parent="globals/app_designView" pc="268435752" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="48" parent="globals/app_designView" pc="268435790" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="49" parent="globals/app_designView" pc="268435814" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="50" parent="globals/app_designView" pc="268435820" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="54" parent="globals/app_designView" pc="268435836" symbol="onUpdate"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="16" lineNum="13" parent="globals/Rez/Layouts" pc="268435857" symbol="WatchFace"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="16" lineNum="14" parent="globals/Rez/Layouts" pc="268435868" symbol="WatchFace"/>
-        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="16" lineNum="16" parent="globals/Rez/Layouts" pc="268435984" symbol="WatchFace"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="4" lineNum="5" parent="globals/YesPageView" pc="268435505" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="5" lineNum="7" parent="globals/Rez" pc="268435517" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="6" lineNum="25" parent="globals/YesPageDelegate" pc="268435537" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="7" lineNum="4" parent="globals/app_designDelegate" pc="268435549" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="8" lineNum="5" parent="globals/DashboardView" pc="268435561" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="9" lineNum="25" parent="globals/DashboardDelegate" pc="268435573" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="10" lineNum="11" parent="globals/app_designApp" pc="268435585" symbol="onStart"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="11" lineNum="17" parent="globals/app_designApp" pc="268435588" symbol="getInitialView"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="11" lineNum="18" parent="globals/app_designApp" pc="268435591" symbol="getInitialView"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="11" lineNum="19" parent="globals/app_designApp" pc="268435611" symbol="getInitialView"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="11" lineNum="20" parent="globals/app_designApp" pc="268435631" symbol="getInitialView"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="12" lineNum="7" parent="globals/app_designApp" pc="268435646" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="12" lineNum="8" parent="globals/app_designApp" pc="268435648" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" id="13" lineNum="14" parent="globals/app_designApp" pc="268435661" symbol="onStop"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="12" parent="globals/app_designView" pc="268435664" symbol="onLayout"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="15" lineNum="13" parent="globals/app_designView" pc="268435666" symbol="onLayout"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="16" lineNum="70" parent="globals/app_designView" pc="268435700" symbol="getYesBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="16" lineNum="71" parent="globals/app_designView" pc="268435703" symbol="getYesBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="16" lineNum="72" parent="globals/app_designView" pc="268435712" symbol="getYesBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="16" lineNum="75" parent="globals/app_designView" pc="268435721" symbol="getYesBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="16" lineNum="76" parent="globals/app_designView" pc="268435731" symbol="getYesBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="16" lineNum="79" parent="globals/app_designView" pc="268435741" symbol="getYesBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="16" lineNum="80" parent="globals/app_designView" pc="268435759" symbol="getYesBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="16" lineNum="81" parent="globals/app_designView" pc="268435765" symbol="getYesBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="16" lineNum="84" parent="globals/app_designView" pc="268435772" symbol="getYesBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="16" lineNum="87" parent="globals/app_designView" pc="268435776" symbol="getYesBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="17" lineNum="8" parent="globals/app_designView" pc="268435831" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="17" lineNum="9" parent="globals/app_designView" pc="268435833" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="18" lineNum="95" parent="globals/app_designView" pc="268435846" symbol="getSkipBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="18" lineNum="96" parent="globals/app_designView" pc="268435849" symbol="getSkipBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="18" lineNum="97" parent="globals/app_designView" pc="268435858" symbol="getSkipBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="18" lineNum="100" parent="globals/app_designView" pc="268435867" symbol="getSkipBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="18" lineNum="101" parent="globals/app_designView" pc="268435877" symbol="getSkipBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="18" lineNum="104" parent="globals/app_designView" pc="268435887" symbol="getSkipBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="18" lineNum="105" parent="globals/app_designView" pc="268435905" symbol="getSkipBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="18" lineNum="106" parent="globals/app_designView" pc="268435911" symbol="getSkipBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="18" lineNum="109" parent="globals/app_designView" pc="268435918" symbol="getSkipBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="18" lineNum="112" parent="globals/app_designView" pc="268435922" symbol="getSkipBounds"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="19" parent="globals/app_designView" pc="268435977" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="21" parent="globals/app_designView" pc="268435980" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="25" parent="globals/app_designView" pc="268435992" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="26" parent="globals/app_designView" pc="268436004" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="27" parent="globals/app_designView" pc="268436014" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="28" parent="globals/app_designView" pc="268436026" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="30" parent="globals/app_designView" pc="268436036" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="34" parent="globals/app_designView" pc="268436043" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="35" parent="globals/app_designView" pc="268436050" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="36" parent="globals/app_designView" pc="268436083" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="40" parent="globals/app_designView" pc="268436137" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="42" parent="globals/app_designView" pc="268436144" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="43" parent="globals/app_designView" pc="268436164" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="44" parent="globals/app_designView" pc="268436170" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="47" parent="globals/app_designView" pc="268436186" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="48" parent="globals/app_designView" pc="268436206" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="49" parent="globals/app_designView" pc="268436212" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="52" parent="globals/app_designView" pc="268436228" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="53" parent="globals/app_designView" pc="268436248" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="54" parent="globals/app_designView" pc="268436254" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="57" parent="globals/app_designView" pc="268436270" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="58" parent="globals/app_designView" pc="268436290" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="59" parent="globals/app_designView" pc="268436296" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="62" parent="globals/app_designView" pc="268436315" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="63" parent="globals/app_designView" pc="268436335" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="64" parent="globals/app_designView" pc="268436341" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" id="20" lineNum="67" parent="globals/app_designView" pc="268436360" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="21" lineNum="7" parent="globals/YesPageView" pc="268436377" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="21" lineNum="8" parent="globals/YesPageView" pc="268436379" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="22" lineNum="11" parent="globals/YesPageView" pc="268436392" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="22" lineNum="12" parent="globals/YesPageView" pc="268436394" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="22" lineNum="13" parent="globals/YesPageView" pc="268436406" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="22" lineNum="14" parent="globals/YesPageView" pc="268436414" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="22" lineNum="15" parent="globals/YesPageView" pc="268436430" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="23" lineNum="31" parent="globals/YesPageDelegate" pc="268436470" symbol="onBack"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="23" lineNum="32" parent="globals/YesPageDelegate" pc="268436472" symbol="onBack"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="23" lineNum="33" parent="globals/YesPageDelegate" pc="268436487" symbol="onBack"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="24" lineNum="27" parent="globals/YesPageDelegate" pc="268436489" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" id="24" lineNum="28" parent="globals/YesPageDelegate" pc="268436491" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="25" lineNum="6" parent="globals/app_designDelegate" pc="268436504" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="25" lineNum="7" parent="globals/app_designDelegate" pc="268436506" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="26" lineNum="10" parent="globals/app_designDelegate" pc="268436519" symbol="onTap"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="26" lineNum="11" parent="globals/app_designDelegate" pc="268436522" symbol="onTap"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="26" lineNum="12" parent="globals/app_designDelegate" pc="268436531" symbol="onTap"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="26" lineNum="13" parent="globals/app_designDelegate" pc="268436537" symbol="onTap"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="26" lineNum="16" parent="globals/app_designDelegate" pc="268436544" symbol="onTap"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="26" lineNum="18" parent="globals/app_designDelegate" pc="268436553" symbol="onTap"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="26" lineNum="19" parent="globals/app_designDelegate" pc="268436562" symbol="onTap"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="26" lineNum="20" parent="globals/app_designDelegate" pc="268436613" symbol="onTap"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="26" lineNum="24" parent="globals/app_designDelegate" pc="268436618" symbol="onTap"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="26" lineNum="25" parent="globals/app_designDelegate" pc="268436669" symbol="onTap"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designDelegate.mc" id="26" lineNum="29" parent="globals/app_designDelegate" pc="268436674" symbol="onTap"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="27" lineNum="7" parent="globals/DashboardView" pc="268436676" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="27" lineNum="8" parent="globals/DashboardView" pc="268436678" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="28" lineNum="11" parent="globals/DashboardView" pc="268436691" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="28" lineNum="12" parent="globals/DashboardView" pc="268436693" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="28" lineNum="13" parent="globals/DashboardView" pc="268436705" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="28" lineNum="14" parent="globals/DashboardView" pc="268436713" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="28" lineNum="15" parent="globals/DashboardView" pc="268436730" symbol="onUpdate"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="29" lineNum="31" parent="globals/DashboardDelegate" pc="268436770" symbol="onBack"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="29" lineNum="32" parent="globals/DashboardDelegate" pc="268436772" symbol="onBack"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="29" lineNum="33" parent="globals/DashboardDelegate" pc="268436787" symbol="onBack"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="30" lineNum="27" parent="globals/DashboardDelegate" pc="268436789" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/dashboard_pageView.mc" id="30" lineNum="28" parent="globals/DashboardDelegate" pc="268436791" symbol="initialize"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="31" lineNum="13" parent="globals/Rez/Layouts" pc="268436804" symbol="WatchFace"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="31" lineNum="14" parent="globals/Rez/Layouts" pc="268436815" symbol="WatchFace"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="31" lineNum="16" parent="globals/Rez/Layouts" pc="268436824" symbol="WatchFace"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="31" lineNum="18" parent="globals/Rez/Layouts" pc="268436833" symbol="WatchFace"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="31" lineNum="20" parent="globals/Rez/Layouts" pc="268436928" symbol="WatchFace"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="31" lineNum="22" parent="globals/Rez/Layouts" pc="268437022" symbol="WatchFace"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="31" lineNum="24" parent="globals/Rez/Layouts" pc="268437116" symbol="WatchFace"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="31" lineNum="26" parent="globals/Rez/Layouts" pc="268437210" symbol="WatchFace"/>
+        <entry filename="/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" id="31" lineNum="28" parent="globals/Rez/Layouts" pc="268437305" symbol="WatchFace"/>
     </pcToLineNum>
     <symbolTable>
         <entry id="8388639" module="true" symbol="Graphics"/>
+        <entry id="7" object="true" symbol="DashboardView"/>
+        <entry id="13" method="true" symbol="getSkipBounds"/>
         <entry id="8388632" method="true" symbol="&lt;init&gt;"/>
-        <entry id="7" object="true" symbol="app_designView"/>
+        <entry id="12" object="true" symbol="app_designView"/>
+        <entry id="14" method="true" symbol="getYesBounds"/>
         <entry field="true" id="8388611" module="true" symbol="Toybox"/>
-        <entry field="true" id="10" symbol="AppName"/>
+        <entry id="8" object="true" symbol="YesPageDelegate"/>
+        <entry field="true" id="17" symbol="AppName"/>
         <entry id="5" module="true" symbol="globals/Rez/Strings"/>
         <entry id="8388648" module="true" symbol="WatchUi"/>
+        <entry id="8389081" method="true" symbol="onBack"/>
         <entry id="2" module="true" symbol="globals/Rez"/>
         <entry id="8389124" method="true" symbol="onUpdate"/>
         <entry id="8389375" method="true" object="true" symbol="WatchFace"/>
@@ -53,40 +141,79 @@
         <entry id="8389275" method="true" symbol="getApp"/>
         <entry id="4" module="true" symbol="globals/Rez/Layouts"/>
         <entry id="8389122" method="true" symbol="onLayout"/>
-        <entry id="8389376" method="true" symbol="onEnterSleep"/>
         <entry field="true" id="8389063" symbol="identifier"/>
         <entry id="8389349" symbol="justification"/>
+        <entry id="8389098" method="true" symbol="onTap"/>
+        <entry id="6" object="true" symbol="DashboardDelegate"/>
         <entry id="3" module="true" symbol="globals/Rez/Drawables"/>
-        <entry id="8389377" method="true" symbol="onExitSleep"/>
         <entry id="8388644" module="true" symbol="System"/>
         <entry id="8388769" module="true" object="true" symbol="Rez"/>
+        <entry id="9" object="true" symbol="YesPageView"/>
         <entry id="8388640" module="true" symbol="Lang"/>
-        <entry field="true" id="9" symbol="LauncherIcon"/>
+        <entry field="true" id="16" symbol="LauncherIcon"/>
         <entry id="8388610" symbol="statics"/>
         <entry id="8389123" method="true" symbol="onShow"/>
         <entry id="8389350" module="true" symbol="globals"/>
         <entry id="8388770" module="true" object="true" symbol="Strings"/>
         <entry id="8388702" method="true" symbol="initialize"/>
         <entry id="8389279" method="true" symbol="onStart"/>
-        <entry id="6" object="true" symbol="app_designApp"/>
+        <entry id="11" object="true" symbol="app_designDelegate"/>
+        <entry id="10" object="true" symbol="app_designApp"/>
         <entry id="8389280" method="true" symbol="getInitialView"/>
         <entry id="8389281" method="true" symbol="onStop"/>
         <entry field="true" id="8389347" symbol="color"/>
-        <entry id="8" module="true" symbol="Layouts"/>
+        <entry id="15" module="true" symbol="Layouts"/>
         <entry id="8389125" method="true" symbol="onHide"/>
         <entry id="8388635" module="true" symbol="Application"/>
     </symbolTable>
     <localVars>
-        <entry arg="true" endPc="268435609" name="dc" stackId="1" startPc="268435574"/>
-        <entry arg="true" endPc="268435856" name="dc" stackId="1" startPc="268435625"/>
-        <entry endPc="268435855" name="clockTime" stackId="2" startPc="268435628"/>
-        <entry endPc="268435855" name="greeting" stackId="3" startPc="268435628"/>
-        <entry endPc="268435855" name="userName" stackId="4" startPc="268435628"/>
-        <entry endPc="268435855" name="timeString" stackId="5" startPc="268435628"/>
-        <entry endPc="268435855" name="displayText" stackId="6" startPc="268435628"/>
-        <entry endPc="268435855" name="view" stackId="7" startPc="268435628"/>
-        <entry arg="true" endPc="268435993" name="dc" stackId="1" startPc="268435857"/>
-        <entry endPc="268435993" name="rez_cmp_local_text_TimeLabel" stackId="2" startPc="268435868"/>
+        <entry endPc="268435645" name="view" stackId="1" startPc="268435591"/>
+        <entry endPc="268435645" name="delegate" stackId="2" startPc="268435591"/>
+        <entry arg="true" endPc="268435699" name="dc" stackId="1" startPc="268435664"/>
+        <entry arg="true" endPc="268435830" name="dc" stackId="1" startPc="268435700"/>
+        <entry endPc="268435830" name="screenWidth" stackId="2" startPc="268435703"/>
+        <entry endPc="268435830" name="screenHeight" stackId="3" startPc="268435703"/>
+        <entry endPc="268435830" name="centerX" stackId="4" startPc="268435703"/>
+        <entry endPc="268435830" name="centerY" stackId="5" startPc="268435703"/>
+        <entry endPc="268435830" name="dimensions" stackId="6" startPc="268435703"/>
+        <entry endPc="268435830" name="width" stackId="7" startPc="268435703"/>
+        <entry endPc="268435830" name="height" stackId="8" startPc="268435703"/>
+        <entry endPc="268435830" name="padding" stackId="9" startPc="268435703"/>
+        <entry arg="true" endPc="268435976" name="dc" stackId="1" startPc="268435846"/>
+        <entry endPc="268435976" name="screenWidth" stackId="2" startPc="268435849"/>
+        <entry endPc="268435976" name="screenHeight" stackId="3" startPc="268435849"/>
+        <entry endPc="268435976" name="centerX" stackId="4" startPc="268435849"/>
+        <entry endPc="268435976" name="centerY" stackId="5" startPc="268435849"/>
+        <entry endPc="268435976" name="dimensions" stackId="6" startPc="268435849"/>
+        <entry endPc="268435976" name="width" stackId="7" startPc="268435849"/>
+        <entry endPc="268435976" name="height" stackId="8" startPc="268435849"/>
+        <entry endPc="268435976" name="padding" stackId="9" startPc="268435849"/>
+        <entry arg="true" endPc="268436376" name="dc" stackId="1" startPc="268435977"/>
+        <entry endPc="268436375" name="clockTime" stackId="2" startPc="268435980"/>
+        <entry endPc="268436375" name="greeting" stackId="3" startPc="268435980"/>
+        <entry endPc="268436375" name="userName" stackId="4" startPc="268435980"/>
+        <entry endPc="268436375" name="greetingText" stackId="5" startPc="268435980"/>
+        <entry endPc="268436375" name="timeText" stackId="6" startPc="268435980"/>
+        <entry endPc="268436375" name="questionText" stackId="7" startPc="268435980"/>
+        <entry endPc="268436375" name="greetingView" stackId="8" startPc="268435980"/>
+        <entry endPc="268436375" name="timeView" stackId="9" startPc="268435980"/>
+        <entry endPc="268436375" name="questionView" stackId="10" startPc="268435980"/>
+        <entry endPc="268436375" name="yesView" stackId="11" startPc="268435980"/>
+        <entry endPc="268436375" name="skipView" stackId="12" startPc="268435980"/>
+        <entry arg="true" endPc="268436469" name="dc" stackId="1" startPc="268436392"/>
+        <entry arg="true" endPc="268436675" name="clickEvent" stackId="1" startPc="268436519"/>
+        <entry endPc="268436675" name="coords" stackId="2" startPc="268436522"/>
+        <entry endPc="268436675" name="x" stackId="3" startPc="268436522"/>
+        <entry endPc="268436675" name="y" stackId="4" startPc="268436522"/>
+        <entry arg="true" endPc="268436769" name="dc" stackId="1" startPc="268436691"/>
+        <entry arg="true" endPc="268437334" name="dc" stackId="1" startPc="268436804"/>
+        <entry endPc="268437334" name="rez_cmp_local_var_dc_getHeight" stackId="2" startPc="268436815"/>
+        <entry endPc="268437334" name="rez_cmp_local_var_dc_getWidth" stackId="3" startPc="268436815"/>
+        <entry endPc="268437334" name="rez_cmp_local_text_GreetingLabel" stackId="4" startPc="268436815"/>
+        <entry endPc="268437334" name="rez_cmp_local_text_TimeLabel" stackId="5" startPc="268436815"/>
+        <entry endPc="268437334" name="rez_cmp_local_text_QuestionLabel" stackId="6" startPc="268436815"/>
+        <entry endPc="268437334" name="rez_cmp_local_text_YesLabel" stackId="7" startPc="268436815"/>
+        <entry endPc="268437334" name="rez_cmp_local_text_SkipLabel" stackId="8" startPc="268436815"/>
     </localVars>
     <deviceInfo deviceVersion="5c7ae9cf907f88c116a91dc4ffd75be9b5b7d2e9" partNumber="006-B4426-00"/>
     <annotations>
@@ -95,12 +222,17 @@
     </annotations>
     <dataEntryOffsetMappings>
         <dataEntry label="globals" offset="58" parentId="" symbolId="globals" type="module"/>
-        <dataEntry label="globals/app_designApp" offset="125" parentId="globals" symbolId="app_designApp" type="class"/>
-        <dataEntry label="globals/app_designView" offset="196" parentId="globals" symbolId="app_designView" type="class"/>
-        <dataEntry label="globals/Rez" offset="294" parentId="globals" symbolId="Rez" type="module"/>
-        <dataEntry label="globals/Rez/Drawables" offset="347" parentId="Rez" symbolId="Drawables" type="module"/>
-        <dataEntry label="globals/Rez/Layouts" offset="382" parentId="Rez" symbolId="Layouts" type="module"/>
-        <dataEntry label="globals/Rez/Strings" offset="417" parentId="Rez" symbolId="Strings" type="module"/>
+        <dataEntry label="globals/app_designApp" offset="170" parentId="globals" symbolId="app_designApp" type="class"/>
+        <dataEntry label="globals/app_designView" offset="241" parentId="globals" symbolId="app_designView" type="class"/>
+        <dataEntry label="globals/YesPageView" offset="339" parentId="globals" symbolId="YesPageView" type="class"/>
+        <dataEntry label="globals/Rez" offset="392" parentId="globals" symbolId="Rez" type="module"/>
+        <dataEntry label="globals/YesPageDelegate" offset="445" parentId="globals" symbolId="YesPageDelegate" type="class"/>
+        <dataEntry label="globals/app_designDelegate" offset="498" parentId="globals" symbolId="app_designDelegate" type="class"/>
+        <dataEntry label="globals/DashboardView" offset="551" parentId="globals" symbolId="DashboardView" type="class"/>
+        <dataEntry label="globals/DashboardDelegate" offset="604" parentId="globals" symbolId="DashboardDelegate" type="class"/>
+        <dataEntry label="globals/Rez/Drawables" offset="657" parentId="Rez" symbolId="Drawables" type="module"/>
+        <dataEntry label="globals/Rez/Layouts" offset="692" parentId="Rez" symbolId="Layouts" type="module"/>
+        <dataEntry label="globals/Rez/Strings" offset="727" parentId="Rez" symbolId="Strings" type="module"/>
     </dataEntryOffsetMappings>
     <functions>
         <functionEntry accessMode="public" endPc="268435471" name="&lt;init&gt;" parent="app_designApp" startPc="268435460">
@@ -112,43 +244,67 @@
         <functionEntry accessMode="public" endPc="268435504" name="&lt;init&gt;" parent="app_designView" startPc="268435493">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435524" name="&lt;init&gt;" parent="Rez" startPc="268435505">
+        <functionEntry accessMode="public" endPc="268435516" name="&lt;init&gt;" parent="YesPageView" startPc="268435505">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435527" name="onStart" parent="app_designApp" startPc="268435525">
+        <functionEntry accessMode="public" endPc="268435536" name="&lt;init&gt;" parent="Rez" startPc="268435517">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435548" name="&lt;init&gt;" parent="YesPageDelegate" startPc="268435537">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435560" name="&lt;init&gt;" parent="app_designDelegate" startPc="268435549">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435572" name="&lt;init&gt;" parent="DashboardView" startPc="268435561">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435584" name="&lt;init&gt;" parent="DashboardDelegate" startPc="268435573">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435587" name="onStart" parent="app_designApp" startPc="268435585">
             <param id="state"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435555" name="getInitialView" parent="app_designApp" startPc="268435528">
+        <functionEntry accessMode="public" endPc="268435645" name="getInitialView" parent="app_designApp" startPc="268435588">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435570" name="initialize" parent="app_designApp" startPc="268435556">
+        <functionEntry accessMode="public" endPc="268435660" name="initialize" parent="app_designApp" startPc="268435646">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435573" name="onStop" parent="app_designApp" startPc="268435571">
+        <functionEntry accessMode="public" endPc="268435663" name="onStop" parent="app_designApp" startPc="268435661">
             <param id="state"/>
-            <documentation/>
-        </functionEntry>
-        <functionEntry accessMode="public" name="onExitSleep" parent="app_designView">
             <documentation/>
         </functionEntry>
         <functionEntry accessMode="public" name="onShow" parent="app_designView">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435609" name="onLayout" parent="app_designView" startPc="268435574">
+        <functionEntry accessMode="public" endPc="268435699" name="onLayout" parent="app_designView" startPc="268435664">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" name="onEnterSleep" parent="app_designView">
+        <functionEntry accessMode="public" endPc="268435830" name="getYesBounds" parent="app_designView" startPc="268435700">
+            <param id="dc"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435624" name="initialize" parent="app_designView" startPc="268435610">
+        <functionEntry accessMode="public" endPc="268435845" name="initialize" parent="app_designView" startPc="268435831">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435976" name="getSkipBounds" parent="app_designView" startPc="268435846">
+            <param id="dc"/>
             <documentation/>
         </functionEntry>
         <functionEntry accessMode="public" name="onHide" parent="app_designView">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435856" name="onUpdate" parent="app_designView" startPc="268435625">
+        <functionEntry accessMode="public" endPc="268436376" name="onUpdate" parent="app_designView" startPc="268435977">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436391" name="initialize" parent="YesPageView" startPc="268436377">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436469" name="onUpdate" parent="YesPageView" startPc="268436392">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
@@ -161,7 +317,33 @@
         <functionEntry accessMode="public" name="&lt;init&gt;" parent="Strings">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268435993" name="WatchFace" parent="Layouts" startPc="268435857">
+        <functionEntry accessMode="public" endPc="268436488" name="onBack" parent="YesPageDelegate" startPc="268436470">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436503" name="initialize" parent="YesPageDelegate" startPc="268436489">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436518" name="initialize" parent="app_designDelegate" startPc="268436504">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436675" name="onTap" parent="app_designDelegate" startPc="268436519">
+            <param id="clickEvent"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436690" name="initialize" parent="DashboardView" startPc="268436676">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436769" name="onUpdate" parent="DashboardView" startPc="268436691">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436788" name="onBack" parent="DashboardDelegate" startPc="268436770">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268436803" name="initialize" parent="DashboardDelegate" startPc="268436789">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268437334" name="WatchFace" parent="Layouts" startPc="268436804">
             <param id="dc"/>
             <documentation/>
         </functionEntry>

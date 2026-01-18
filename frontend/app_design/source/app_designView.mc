@@ -3,69 +3,116 @@ import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
 
-class app_designView extends WatchUi.WatchFace {
-
+class app_designView extends WatchUi.View {
+    
     function initialize() {
-        WatchFace.initialize();
+        View.initialize();
     }
-
-    // Load your resources here
+    
     function onLayout(dc as Dc) as Void {
         setLayout(Rez.Layouts.WatchFace(dc));
     }
-
-    // Called when this View is brought to the foreground. Restore
-    // the state of this View and prepare it to be shown. This includes
-    // loading resources into memory.
+    
     function onShow() as Void {
     }
-
-    // Update the view
+    
     function onUpdate(dc) {
-    // --- 1. Get current time ---
-    var clockTime = System.getClockTime(); // hour, min, sec
-
-    // --- 2. Determine greeting based on hour ---
-    var greeting;
-    if (clockTime.hour < 12) {
-        greeting = "Good morning";
-    } else if (clockTime.hour < 18) {
-        greeting = "Good afternoon";
-    } else {
-        greeting = "Good evening";
+        // --- 1. Get current time ---
+        var clockTime = System.getClockTime();
+        
+        // --- 2. Determine greeting based on hour ---
+        var greeting;
+        if (clockTime.hour < 12) {
+            greeting = "Good morning";
+        } else if (clockTime.hour < 18) {
+            greeting = "Good afternoon";
+        } else {
+            greeting = "Good evening";
+        }
+        
+        // --- 3. User name ---
+        var userName = "Claire!";
+        var greetingText = Lang.format("$1$, $2$", [greeting, userName]);
+        var timeText = Lang.format(
+            "$1$:$2$",
+            [clockTime.hour, clockTime.min.format("%02d")]
+        );
+        var questionText = "Ready to track?";
+        
+        var greetingView = View.findDrawableById("GreetingLabel") as Text;
+        if (greetingView != null) {
+            greetingView.setText(greetingText);
+        }
+        
+        var timeView = View.findDrawableById("TimeLabel") as Text;
+        if (timeView != null) {
+            timeView.setText(timeText);
+        }
+        
+        var questionView = View.findDrawableById("QuestionLabel") as Text;
+        if (questionView != null) {
+            questionView.setText(questionText);
+        }
+        
+        var yesView = View.findDrawableById("YesLabel") as Text;
+        if (yesView != null) {
+            yesView.setText("YES");
+        }
+        
+        var skipView = View.findDrawableById("SkipLabel") as Text;
+        if (skipView != null) {
+            skipView.setText("SKIP");
+        }
+        
+        View.onUpdate(dc);
     }
-
-    // --- 3. User name ---
-    var userName = "Claire";
-
-    // --- 4. Format time ---
-    var timeString = Lang.format("$1$:$2$", [clockTime.hour, clockTime.min.format("%02d")]);
-
-    // --- 5. Combine greeting, name, and time ---
-    var displayText = Lang.format("$1$, $2$ - $3$", [greeting, userName, timeString]);
-
-    // --- 6. Update text field ---
-    var view = View.findDrawableById("TimeLabel") as Text;
-    if (view != null) {
-        view.setText(displayText);
+    
+    function getYesBounds(dc as Dc) as Array<Number> {
+        var screenWidth = dc.getWidth();
+        var screenHeight = dc.getHeight();
+        
+        // Calculate center position
+        var centerX = (screenWidth * 25) / 100;
+        var centerY = (screenHeight * 75) / 100;
+        
+        var dimensions = dc.getTextDimensions("YES", Graphics.FONT_MEDIUM);
+        var width = dimensions[0];
+        var height = dimensions[1];
+        
+        var padding = 30;
+        
+        // Return [x, y, width, height] - top-left corner based
+        return [
+            centerX - width/2 - padding,
+            centerY - height/2 - padding,
+            width + 2 * padding,
+            height + 2 * padding
+        ];
     }
-
-    // --- 7. Call parent to redraw layout ---
-    View.onUpdate(dc);
-}
-
-    // Called when this View is removed from the screen. Save the
-    // state of this View here. This includes freeing resources from
-    // memory.
+    
+    function getSkipBounds(dc as Dc) as Array<Number> {
+        var screenWidth = dc.getWidth();
+        var screenHeight = dc.getHeight();
+        
+        // Calculate center position
+        var centerX = (screenWidth * 75) / 100;
+        var centerY = (screenHeight * 75) / 100;
+        
+        var dimensions = dc.getTextDimensions("SKIP", Graphics.FONT_MEDIUM);
+        var width = dimensions[0];
+        var height = dimensions[1];
+        
+        var padding = 30;
+        
+        // Return [x, y, width, height] - top-left corner based
+        return [
+            centerX - width/2 - padding,
+            centerY - height/2 - padding,
+            width + 2 * padding,
+            height + 2 * padding
+        ];
+    }
+    
     function onHide() as Void {
     }
-
-    // The user has just looked at their watch. Timers and animations may be started here.
-    function onExitSleep() as Void {
-    }
-
-    // Terminate any active timers and prepare for slow updates.
-    function onEnterSleep() as Void {
-    }
-
 }
