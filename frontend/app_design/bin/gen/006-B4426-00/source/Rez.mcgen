@@ -15,17 +15,13 @@ module Rez {
 
             var rez_cmp_local_var_dc_getWidth = dc.getWidth();
 
-            var rez_cmp_local_text_GreetingLabel = new WatchUi.Text({:identifier=>"GreetingLabel", :color=>Graphics.COLOR_WHITE, :locX=>(rez_cmp_local_var_dc_getWidth * 0.5), :locY=>(rez_cmp_local_var_dc_getHeight * (30 / 100.0)), :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_SMALL});
+            var rez_cmp_local_text_GreetingLabel = new WatchUi.Text({:identifier=>"GreetingLabel", :color=>Graphics.COLOR_WHITE, :locX=>(rez_cmp_local_var_dc_getWidth * 0.5), :locY=>(rez_cmp_local_var_dc_getHeight * (20 / 100.0)), :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_SMALL});
 
-            var rez_cmp_local_text_TimeLabel = new WatchUi.Text({:identifier=>"TimeLabel", :color=>Graphics.COLOR_WHITE, :locX=>(rez_cmp_local_var_dc_getWidth * 0.5), :locY=>(rez_cmp_local_var_dc_getHeight * (45 / 100.0)), :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_XTINY});
+            var rez_cmp_local_text_TimeLabel = new WatchUi.Text({:identifier=>"TimeLabel", :color=>Graphics.COLOR_WHITE, :locX=>(rez_cmp_local_var_dc_getWidth * 0.5), :locY=>(rez_cmp_local_var_dc_getHeight * (48 / 100.0)), :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_XTINY});
 
-            var rez_cmp_local_text_QuestionLabel = new WatchUi.Text({:identifier=>"QuestionLabel", :color=>Graphics.COLOR_WHITE, :locX=>(rez_cmp_local_var_dc_getWidth * (30 / 100.0)), :locY=>(rez_cmp_local_var_dc_getHeight * (65 / 100.0)), :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_XTINY});
+            var rez_cmp_local_text_QuestionLabel = new WatchUi.Text({:identifier=>"QuestionLabel", :color=>Graphics.COLOR_WHITE, :locX=>(rez_cmp_local_var_dc_getWidth * (30 / 100.0)), :locY=>(rez_cmp_local_var_dc_getHeight * (58 / 100.0)), :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_XTINY});
 
-            var rez_cmp_local_text_YesLabel = new WatchUi.Text({:identifier=>"YesLabel", :color=>Graphics.COLOR_GREEN, :locX=>(rez_cmp_local_var_dc_getWidth * (25 / 100.0)), :locY=>(rez_cmp_local_var_dc_getHeight * (75 / 100.0)), :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_MEDIUM});
-
-            var rez_cmp_local_text_SkipLabel = new WatchUi.Text({:identifier=>"SkipLabel", :color=>Graphics.COLOR_RED, :locX=>(rez_cmp_local_var_dc_getWidth * (75 / 100.0)), :locY=>(rez_cmp_local_var_dc_getHeight * (75 / 100.0)), :justification=>Graphics.TEXT_JUSTIFY_CENTER, :font=>Graphics.FONT_MEDIUM});
-
-            return [rez_cmp_local_text_GreetingLabel, rez_cmp_local_text_TimeLabel, rez_cmp_local_text_QuestionLabel, rez_cmp_local_text_YesLabel, rez_cmp_local_text_SkipLabel] as Array<WatchUi.Drawable>;
+            return [rez_cmp_local_text_GreetingLabel, rez_cmp_local_text_TimeLabel, rez_cmp_local_text_QuestionLabel] as Array<WatchUi.Drawable>;
         }
     } // Layouts
 
