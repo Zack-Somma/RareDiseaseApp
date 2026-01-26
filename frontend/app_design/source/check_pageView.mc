@@ -1,6 +1,7 @@
 import Toybox.WatchUi;
 import Toybox.Graphics;
 import Toybox.Lang;
+import Toybox.Time;
 
 class checkPageView extends WatchUi.View {
     var checklistItems as Array<String>;
@@ -179,6 +180,14 @@ class checkPageView extends WatchUi.View {
         }
         return checked;
     }
+    
+    function getCheckedStates() as Array<Boolean> {
+        return checkedStates;
+    }
+    
+    function getChecklistItems() as Array<String> {
+        return checklistItems;
+    }
 }
 
 class checkPageDelegate extends WatchUi.BehaviorDelegate {
@@ -197,8 +206,13 @@ class checkPageDelegate extends WatchUi.BehaviorDelegate {
         // Check if tap is on DONE button
         if (view.isDoneTapped(x, y)) {
             var checkedItems = view.getCheckedItems();
+            var checkedStates = view.getCheckedStates();
+            var checklistItems = view.getChecklistItems();
+            // Capture the date when symptoms are recorded
+            var dateRecorded = Time.now();
             System.println("Checked items: " + checkedItems);
-            WatchUi.pushView(new questionPageView(), new QuestionPageDelegate(), WatchUi.SLIDE_UP);
+            var spiderView = new questionPageView(checklistItems, checkedStates, dateRecorded);
+            WatchUi.pushView(spiderView, new QuestionPageDelegate(), WatchUi.SLIDE_UP);
             return true;
         }
         
