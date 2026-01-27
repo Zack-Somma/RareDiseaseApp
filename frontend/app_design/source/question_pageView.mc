@@ -8,9 +8,9 @@ class questionPageView extends WatchUi.View {
     private var symptomLabels as Array<String>;
     private var symptomValues as Array<Number>;
     private var numSymptoms as Number;
-    private var centerX as Number;
-    private var centerY as Number;
-    private var radius as Number;
+    private var centerX as Float;
+    private var centerY as Float;
+    private var radius as Float;
     private var recordedDate as Time.Moment;
     
     function initialize(labels as Array<String>, checkedStates as Array<Boolean>, dateRecorded as Time.Moment) {
@@ -18,6 +18,11 @@ class questionPageView extends WatchUi.View {
         symptomLabels = labels;
         numSymptoms = labels.size();
         recordedDate = dateRecorded;
+        
+        // Initialize drawing variables with default values
+        centerX = 0.0;
+        centerY = 0.0;
+        radius = 0.0;
         
         // Convert boolean states to values (0-100)
         // For now, checked = 100, unchecked = 0
@@ -102,7 +107,7 @@ class questionPageView extends WatchUi.View {
         }
         
         var angleStep = (2 * Math.PI) / numSymptoms;
-        var points = new Array<Array<Number>>[numSymptoms];
+        var points = new [numSymptoms];
         
         // Calculate points for the polygon
         for (var i = 0; i < numSymptoms; i++) {
@@ -110,7 +115,8 @@ class questionPageView extends WatchUi.View {
             var valueRadius = (radius * symptomValues[i]) / 100;
             var x = centerX + (valueRadius * Math.cos(angle));
             var y = centerY + (valueRadius * Math.sin(angle));
-            points[i] = [x, y];
+            var point = [x, y];
+            points[i] = point;
         }
         
         // Draw filled polygon
