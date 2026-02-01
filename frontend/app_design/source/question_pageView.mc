@@ -182,7 +182,9 @@ class questionPageView extends WatchUi.View {
             saveResponses();
             
             // Navigate to completion screen
-            WatchUi.switchToView(new CompletionView(responses), new CompletionDelegate(), WatchUi.SLIDE_LEFT);
+            var completionView = new CompletionView(responses);
+            WatchUi.switchToView(completionView, new CompletionDelegate(completionView), WatchUi.SLIDE_LEFT);
+            
         }
     }
 
@@ -199,11 +201,9 @@ class questionPageView extends WatchUi.View {
 
         // White circle card
         var r = (screenW < screenH ? screenW : screenH) / 2 - 12;
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.fillCircle(cx, cy, r);
 
         // Title with question counter
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         var titleText = "Question " + (currentQuestionIndex + 1) + "/31";
         dc.drawText(
             cx,
@@ -223,7 +223,7 @@ class questionPageView extends WatchUi.View {
             questionY = cy - r + 42;
         }
         
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         
         // Word wrapping
         var words = splitString(currentQuestion, " ");
@@ -289,7 +289,7 @@ class questionPageView extends WatchUi.View {
         drawPlus(dc, rightX, controlsY, arrowSize);
 
         // Center display - always show the number (0-4)
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             cx,
             controlsY,
@@ -301,7 +301,7 @@ class questionPageView extends WatchUi.View {
         // Impact label
         dc.drawText(
             cx,
-            cy + r - 88,
+            cy + r - 150,
             Graphics.FONT_XTINY,
             getLabelForValue(value),
             Graphics.TEXT_JUSTIFY_CENTER
@@ -311,15 +311,15 @@ class questionPageView extends WatchUi.View {
         
         // --- BACK button ---
         var backBtnW = 75;
-        var backBtnH = 30;
-        var backBtnX = cx - 44;
-        var backBtnY = cy + r - 42;
+        var backBtnH = 40;
+        var backBtnX = cx - 50;
+        var backBtnY = cy + r - 80;
         
         backBox = [backBtnX - backBtnW/2, backBtnY - backBtnH/2, backBtnW, backBtnH];
         
         // Gray out BACK on first question
         if (currentQuestionIndex > 0) {
-            dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         } else {
             dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
         }
@@ -337,13 +337,13 @@ class questionPageView extends WatchUi.View {
         
         // --- NEXT/DONE button ---
         var btnW = 75;
-        var btnH = 30;
-        var btnX = cx + 44;
-        var btnY = cy + r - 42;
+        var btnH = 40;
+        var btnX = cx + 50;
+        var btnY = cy + r - 80;
 
         continueBox = [btnX - btnW/2, btnY - btnH/2, btnW, btnH];
 
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.setPenWidth(2);
         dc.drawRoundedRectangle(btnX - btnW/2, btnY - btnH/2, btnW, btnH, 6);
         dc.setPenWidth(1);
@@ -482,7 +482,6 @@ class QuestionPageDelegate extends WatchUi.BehaviorDelegate {
         return true;
     }
 }
-
 // -------------------------
 // COMPLETION SCREEN - "Nice Job!"
 // -------------------------
@@ -531,6 +530,14 @@ class CompletionView extends WatchUi.View {
             "Nice Job!",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
+        // Instruction text
+        dc.drawText(
+            cx,
+            cy + 70,
+            Graphics.FONT_XTINY,
+            "Swipe up for results",
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+        );
     }
     
     // Draw a checkmark inside a circle
@@ -557,19 +564,58 @@ class CompletionView extends WatchUi.View {
         );
         dc.setPenWidth(1);
     }
+    
+    public function getResponses() as Array<Number> {
+        return responses;
+    }
 }
 
 // Delegate for the completion screen
 class CompletionDelegate extends WatchUi.BehaviorDelegate {
+    private var view as CompletionView;
     
-    function initialize() {
+    function initialize(v as CompletionView) {
         BehaviorDelegate.initialize();
+        view = v;
     }
     
     function onTap(e as ClickEvent) as Lang.Boolean {
         // Tap anywhere to dismiss
         WatchUi.popView(WatchUi.SLIDE_DOWN);
         return true;
+    }
+    
+    function onSwipe(evt as SwipeEvent) as Lang.Boolean {
+        var direction = evt.getDirection();
+        
+        // Swipe up to show spider diagram
+        if (direction == WatchUi.SWIPE_UP) {
+            var responses = view.getResponses();
+            
+            var symptomLabels = [
+            "NMSK",
+            "Pain",
+            "Urogential",
+            "Anxiety",
+            "Depression",
+            "Cardiac dysautonomia",
+            "Gastrointestinal",
+            "Fatigue"
+            ];
+            
+            // Convert responses to checked states
+            var checkedStates = new [responses.size()];
+            for (var i = 0; i < responses.size(); i++) {
+                checkedStates[i] = (responses[i] > 0);
+            }
+            
+            var dateRecorded = Time.now();
+            var spiderView = new SpiderDiagramView(symptomLabels, checkedStates, dateRecorded);
+            WatchUi.pushView(spiderView, new SpiderDiagramDelegate(spiderView), WatchUi.SLIDE_UP);
+            return true;
+        }
+        
+        return false;
     }
     
     function onBack() as Lang.Boolean {

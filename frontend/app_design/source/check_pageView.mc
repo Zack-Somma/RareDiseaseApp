@@ -32,7 +32,7 @@ class checkPageView extends WatchUi.View {
         }
         
         scrollOffset = 0;
-        itemsPerScreen = 5;
+        itemsPerScreen = 4;
         screenWidth = 360;
         screenHeight = 360;
     }
@@ -84,15 +84,26 @@ class checkPageView extends WatchUi.View {
             dc.drawText(
                 checkboxX + checkboxSize + 15,
                 yPos + checkboxSize/2,
-                Graphics.FONT_XTINY,
+                Graphics.FONT_SMALL,
                 checklistItems[i],
                 Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER
             );
         }
+
+        var arrowX = screenWidth / 2;
+        var arrowY = (screenHeight * 70) / 100;
+
+        dc.drawText(
+            arrowX,
+            arrowY,
+            Graphics.FONT_MEDIUM,
+            "v",
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+        );
         
         // DONE button
-        var buttonWidth = 140;
-        var buttonHeight = 50;
+        var buttonWidth = 160;
+        var buttonHeight = 70;
         var buttonX = screenWidth / 2;
         var buttonY = (screenHeight * 88) / 100;
         
@@ -181,13 +192,6 @@ class checkPageView extends WatchUi.View {
         return checked;
     }
     
-    function getCheckedStates() as Array<Boolean> {
-        return checkedStates;
-    }
-    
-    function getChecklistItems() as Array<String> {
-        return checklistItems;
-    }
 }
 
 class checkPageDelegate extends WatchUi.BehaviorDelegate {
@@ -206,13 +210,11 @@ class checkPageDelegate extends WatchUi.BehaviorDelegate {
         // Check if tap is on DONE button
         if (view.isDoneTapped(x, y)) {
             var checkedItems = view.getCheckedItems();
-            var checkedStates = view.getCheckedStates();
-            var checklistItems = view.getChecklistItems();
-            // Capture the date when symptoms are recorded
-            var dateRecorded = Time.now();
             System.println("Checked items: " + checkedItems);
-            var spiderView = new questionPageView(checklistItems, checkedStates, dateRecorded);
-            WatchUi.pushView(spiderView, new QuestionPageDelegate(), WatchUi.SLIDE_UP);
+
+            var questionView = new questionPageView();
+            WatchUi.pushView(questionView, new QuestionPageDelegate(questionView), WatchUi.SLIDE_UP);
+
             return true;
         }
         
