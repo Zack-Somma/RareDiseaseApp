@@ -591,22 +591,38 @@ class CompletionDelegate extends WatchUi.BehaviorDelegate {
     if (direction == WatchUi.SWIPE_UP) {
         var responses = view.getResponses();
         
+        // Spider diagram domain order and labels per "Spider and scoring" (THE SPIDER: impact scale for multisystemic symptoms).
+        // Each domain shows the average score of its questions (0-100 scale from 0-4 responses).
         var symptomLabels = [
-            "NMSK",
-            "Pain",
-            "Urogential",
-            "Anxiety",
-            "Depression",
-            "Cardiac dysautonomia",
-            "Gastrointestinal",
-            "Fatigue"
+            "NMSK",              // NEUROMUSCULOSKELETAL Q1-5
+            "Pain",              // PAIN Q6-9
+            "Fatigue",           // FATIGUE Q10-12
+            "Gastrointestinal",  // GASTROINTESTINAL Q13-16
+            "Cardiac dysautonomia", // CARDIAC DYSAUTONOMIA Q17-20
+            "Urogential",        // UROGENTIAL Q21-25
+            "Anxiety",           // ANXIETY Q26-28
+            "Depression"         // DEPRESSION Q29-31
             ];
         
-        // Convert responses (0-4) to percentage values (0-100) for spider diagram
-        var percentageValues = new [responses.size()];
-        for (var i = 0; i < responses.size(); i++) {
-            // Convert 0-4 scale to 0-100 scale
-            percentageValues[i] = (responses[i].toFloat() / 4.0 * 100.0).toNumber();
+        // Question indices (0-30) per domain, in same order as symptomLabels.
+        var categoryStart = [0, 5, 9, 16, 12, 20, 25, 28] as Array<Number>;
+        var categoryCount = [5, 4, 3, 4, 4, 5, 3, 3] as Array<Number>;
+        
+        // Average score per domain (0-100): average of (response/4*100) for each question in that domain
+        var percentageValues = new [8];
+        for (var c = 0; c < 8; c++) {
+            var start = categoryStart[c];
+            var count = categoryCount[c];
+            var sum = 0.0;
+            var n = 0;
+            for (var i = 0; i < count; i++) {
+                var qIdx = start + i;
+                if (qIdx < responses.size()) {
+                    sum += (responses[qIdx].toFloat() / 4.0 * 100.0);
+                    n++;
+                }
+            }
+            percentageValues[c] = (n > 0) ? (sum / n).toNumber() : 0;
         }
         
         var dateRecorded = Time.now();
