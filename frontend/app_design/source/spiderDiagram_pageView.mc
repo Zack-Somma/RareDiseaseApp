@@ -13,7 +13,7 @@ class SpiderDiagramView extends WatchUi.View {
     private var radius as Float;
     private var recordedDate as Time.Moment;
     
-    function initialize(labels as Array<String>, checkedStates as Array<Boolean>, dateRecorded as Time.Moment) {
+    function initialize(labels as Array<String>, symptomData as Array<Number>, dateRecorded as Time.Moment) {
         View.initialize();
         symptomLabels = labels;
         numSymptoms = labels.size();
@@ -24,11 +24,8 @@ class SpiderDiagramView extends WatchUi.View {
         centerY = 0.0;
         radius = 0.0;
         
-        // Convert boolean states to values (0-100)
-        symptomValues = new Array<Number>[numSymptoms];
-        for (var i = 0; i < numSymptoms; i++) {
-            symptomValues[i] = checkedStates[i] ? 100 : 0;
-        }
+        // Symptom data is already in 0-100 scale
+        symptomValues = symptomData;
     }
     
     function onUpdate(dc as Dc) as Void {
@@ -304,5 +301,17 @@ class ChartDelegate extends WatchUi.BehaviorDelegate {
     function onBack() as Lang.Boolean {
         WatchUi.popView(WatchUi.SLIDE_DOWN);
         return true;
+    }
+
+    function onSwipe(evt as SwipeEvent) as Lang.Boolean {
+        var direction = evt.getDirection();
+        
+        // Swipe up to show chart view
+        if (direction == WatchUi.SWIPE_UP) {
+            var calendarView = new CalendarPageView();
+            WatchUi.pushView(calendarView, new CalendarPageDelegate(calendarView), WatchUi.SLIDE_UP);
+            return true;
+        }
+        return false;
     }
 }

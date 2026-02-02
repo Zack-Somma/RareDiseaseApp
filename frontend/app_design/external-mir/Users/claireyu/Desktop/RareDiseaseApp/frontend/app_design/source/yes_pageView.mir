@@ -470,57 +470,32 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_m
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_107_12_if_else_false:
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_107_12_start:
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 105 16 ]
-        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_107_12_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_107_12_stop" ]
-        %chartView.6 = local;
-        symbol [ chartView %chartView.6 105 20 29 ];
-        symbol [ ChartView %tmp.35 105 36 45 ];
-        %tmp.35 = getv ? :ChartView;
-        %tmp.36 = newa 5;
-        %tmp.37 = 0;
-        %tmp.38 = dup %tmp.36;
-        %tmp.39 = aputv %tmp.38 0 %tmp.37;
-        %tmp.40 = 3;
-        %tmp.41 = dup %tmp.39;
-        %tmp.42 = aputv %tmp.41 1 %tmp.40;
-        %tmp.43 = 4;
-        %tmp.44 = dup %tmp.42;
-        %tmp.45 = aputv %tmp.44 2 %tmp.43;
-        %tmp.46 = 1;
-        %tmp.47 = dup %tmp.45;
-        %tmp.48 = aputv %tmp.47 3 %tmp.46;
-        %tmp.49 = 2;
-        %tmp.50 = dup %tmp.48;
-        %tmp.51 = aputv %tmp.50 4 %tmp.49;
-        %tmp.52 = newa 1;
-        %tmp.53 = "Placeholder values";
-        %tmp.54 = dup %tmp.52;
-        %tmp.55 = aputv %tmp.54 0 %tmp.53;
-        %tmp.32 = newc %tmp.35 (%tmp.51, %tmp.55);
-        lputv %chartView.6 %tmp.32;
-        symbol [ chartView %chartView.6 105 20 29 ];
+        symbol [ WatchUi %tmp.32 105 16 23 ];
+        %tmp.32 = getm $.Toybox.WatchUi;
+        symbol [ pushView %tmp.33 105 24 32 ];
+        %tmp.33 = getv function %tmp.32 :pushView;
+        symbol [ DashboardView %tmp.37 105 37 50 ];
+        %tmp.37 = getv ? :DashboardView;
+        %tmp.34 = newc %tmp.37 ();
+        symbol [ DashboardDelegate %tmp.41 105 58 75 ];
+        %tmp.41 = getv ? :DashboardDelegate;
+        %tmp.38 = newc %tmp.41 ();
+        symbol [ WatchUi %tmp.42 105 79 86 ];
+        %tmp.42 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_DOWN %tmp.43 105 87 97 ];
+        %tmp.43 = getv %tmp.42 :SLIDE_DOWN;
+        invoke %tmp.32 %tmp.33(%tmp.34, %tmp.38, %tmp.43);
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 106 16 ]
-        symbol [ WatchUi %tmp.56 106 16 23 ];
-        %tmp.56 = getm $.Toybox.WatchUi;
-        symbol [ pushView %tmp.57 106 24 32 ];
-        %tmp.57 = getv function %tmp.56 :pushView;
-        %tmp.58 = lgetv %chartView.6;
-        symbol [ chartView %tmp.58 106 33 42 ];
-        symbol [ ChartDelegate %tmp.62 106 48 61 ];
-        %tmp.62 = getv ? :ChartDelegate;
-        %tmp.59 = newc %tmp.62 ();
-        symbol [ WatchUi %tmp.63 106 65 72 ];
-        %tmp.63 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.64 106 73 83 ];
-        %tmp.64 = getv %tmp.63 :SLIDE_DOWN;
-        invoke %tmp.56 %tmp.57(%tmp.58, %tmp.59, %tmp.64);
+        %tmp.44 = true;
+        ret %tmp.44;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_107_12_stop:
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_107_12_if_end:
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_21_108_8_stop:
         goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_108_8_if_end;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_108_8_if_end:
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 110 8 ]
-        %tmp.65 = false;
-        ret %tmp.65;
+        %tmp.45 = false;
+        ret %tmp.45;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_111_4_stop:
     }
 }

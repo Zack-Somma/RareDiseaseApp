@@ -586,13 +586,12 @@ class CompletionDelegate extends WatchUi.BehaviorDelegate {
     }
     
     function onSwipe(evt as SwipeEvent) as Lang.Boolean {
-        var direction = evt.getDirection();
+    var direction = evt.getDirection();
+    
+    if (direction == WatchUi.SWIPE_UP) {
+        var responses = view.getResponses();
         
-        // Swipe up to show spider diagram
-        if (direction == WatchUi.SWIPE_UP) {
-            var responses = view.getResponses();
-            
-            var symptomLabels = [
+        var symptomLabels = [
             "NMSK",
             "Pain",
             "Urogential",
@@ -602,21 +601,22 @@ class CompletionDelegate extends WatchUi.BehaviorDelegate {
             "Gastrointestinal",
             "Fatigue"
             ];
-            
-            // Convert responses to checked states
-            var checkedStates = new [responses.size()];
-            for (var i = 0; i < responses.size(); i++) {
-                checkedStates[i] = (responses[i] > 0);
-            }
-            
-            var dateRecorded = Time.now();
-            var spiderView = new SpiderDiagramView(symptomLabels, checkedStates, dateRecorded);
-            WatchUi.pushView(spiderView, new SpiderDiagramDelegate(spiderView), WatchUi.SLIDE_UP);
-            return true;
+        
+        // Convert responses (0-4) to percentage values (0-100) for spider diagram
+        var percentageValues = new [responses.size()];
+        for (var i = 0; i < responses.size(); i++) {
+            // Convert 0-4 scale to 0-100 scale
+            percentageValues[i] = (responses[i].toFloat() / 4.0 * 100.0).toNumber();
         }
         
-        return false;
+        var dateRecorded = Time.now();
+        var spiderView = new SpiderDiagramView(symptomLabels, percentageValues, dateRecorded);
+        WatchUi.pushView(spiderView, new SpiderDiagramDelegate(spiderView), WatchUi.SLIDE_UP);
+        return true;
     }
+    
+    return false;
+}
     
     function onBack() as Lang.Boolean {
         WatchUi.popView(WatchUi.SLIDE_DOWN);

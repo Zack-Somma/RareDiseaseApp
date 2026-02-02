@@ -24,7 +24,7 @@ class app_designView extends WatchUi.View {
     var greeting;
     if (clockTime.hour < 12) {
         greeting = "Good morning";
-    } else if (clockTime.hour < 18) {
+    } else if (clockTime.hour < 17) {
         greeting = "Good afternoon";
     } else {
         greeting = "Good evening";
@@ -106,4 +106,37 @@ class app_designView extends WatchUi.View {
     );
 }
 
+}
+
+import Toybox.WatchUi;
+import Toybox.Lang;
+
+class app_designDelegate extends WatchUi.BehaviorDelegate {
+    
+    function initialize() {
+        BehaviorDelegate.initialize();
+    }
+
+    function onTap(clickEvent as ClickEvent) as Lang.Boolean {
+        var coords = clickEvent.getCoordinates();
+        var x = coords[0];
+        var y = coords[1];
+        
+        // Bottom half of screen (y > 180)
+        if (y > 180) {
+            // Left side - YES
+            if (x < 180) {
+                WatchUi.pushView(new YesPageView(), new YesPageDelegate(), WatchUi.SLIDE_UP);
+                return true;
+            }
+            // Right side - SKIP
+            else {
+                var chartView = new ChartView([0, 3, 4, 1, 2], ["Placeholder values"]);
+                WatchUi.pushView(chartView, new ChartDelegate(), WatchUi.SLIDE_DOWN);
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }
