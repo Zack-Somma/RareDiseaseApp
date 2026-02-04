@@ -1,4 +1,3 @@
-
 import Toybox.Graphics;
 import Toybox.WatchUi;
 import Toybox.Lang;
@@ -6,7 +5,6 @@ import Toybox.Time;
 import Toybox.Time.Gregorian;
 
 class CalendarPageView extends WatchUi.View {
-
     // Current displayed month/year
     var currentYear as Number = 2025;
     var currentMonth as Number = 9;
@@ -22,29 +20,39 @@ class CalendarPageView extends WatchUi.View {
     // Store which dates have survey data
     var datesWithData as Array<Number> = [5, 12, 18, 25];
     
- // Arrow button positions for touch detection
-    var leftArrowX as Number = 105;
-    var rightArrowX as Number = 285;
-
     function initialize() {
-        View.initialize();
-        
-        // Get current date
-        var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
-        currentYear = today.year;
-        currentMonth = today.month;
-        selectedDay = today.day;
-        
-        buildCalendarGrid();
-        findSelectedPosition();
+    View.initialize();
+    
+    var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
+    currentYear = today.year;
+    currentMonth = today.month;
+    selectedDay = today.day;
+    
+    // Load actual survey dates
+    var allDates = SurveyStorage.getAllSurveyDates();
+    datesWithData = [];
+    
+    for (var i = 0; i < allDates.size(); i++) {
+        var dateStr = allDates[i] as String;
+        // Parse date string (YYYY-MM-DD)
+        var parts = splitDateString(dateStr);
+        if (parts[0] == currentYear && parts[1] == currentMonth) {
+            datesWithData.add(parts[2]); // Add day number
+        }
     }
+    
+    buildCalendarGrid();
+    findSelectedPosition();
+}
 
-    function onLayout(dc as Dc) as Void {
-    }
-
-    function onShow() as Void {
-    }
-
+function splitDateString(dateStr as String) as Array<Number> {
+    // Parse "YYYY-MM-DD" to [year, month, day]
+    var year = dateStr.substring(0, 4).toNumber();
+    var month = dateStr.substring(5, 7).toNumber();
+    var day = dateStr.substring(8, 10).toNumber();
+    return [year, month, day];
+}
+    
     function onUpdate(dc as Dc) as Void {
         var width = dc.getWidth();
         var height = dc.getHeight();
@@ -62,7 +70,6 @@ class CalendarPageView extends WatchUi.View {
     }
     
     function drawTitle(dc as Dc, centerX as Number) as Void {
-        // "Select a Date" in BLUE
         dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(centerX, 50, Graphics.FONT_TINY, "Select a Date", 
                     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
@@ -72,18 +79,15 @@ class CalendarPageView extends WatchUi.View {
         var headerY = 83;
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
         
-        // Month and Year in center
         var monthName = getMonthName(currentMonth);
         var monthYearText = monthName + " " + currentYear;
         dc.drawText(centerX, headerY, Graphics.FONT_TINY, monthYearText, 
                     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
         
-        // Left arrow 
         dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(centerX - 100, headerY, Graphics.FONT_SMALL, "<", 
                     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
         
-        // Right arrow 
         dc.drawText(centerX + 100, headerY, Graphics.FONT_SMALL, ">", 
                     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
     }
@@ -109,11 +113,10 @@ class CalendarPageView extends WatchUi.View {
         }
         
         var cellWidth = (width - 40) / 7;
-        var cellHeight = 32;  // Slightly smaller to fit 5 weeks
+        var cellHeight = 32;
         var startX = 25;
         var startY = 145;
         
-        // Draw 5 weeks (rows 0-4)
         for (var row = 0; row < 5; row++) {
             if (row >= 6) {
                 continue;
@@ -124,18 +127,13 @@ class CalendarPageView extends WatchUi.View {
                 var x = startX + (col * cellWidth) + (cellWidth / 2);
                 var y = startY + (row * cellHeight);
                 
-                // Only show current month days (skip negative and 100+ values)
                 if (dayValue <= 0 || dayValue > 100) {
-                    // Don't draw previous/next month days
                     continue;
                 }
                 
                 var displayDay = dayValue;
-                
-                // Check if this cell is currently selected
                 var isSelected = (row == selectedRow && col == selectedCol);
                 
-                // Draw selection box
                 if (isSelected) {
                     dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLACK);
                     dc.fillRoundedRectangle(x - 20, y - 14, 40, 30, 8);
@@ -144,14 +142,12 @@ class CalendarPageView extends WatchUi.View {
                     dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
                 }
                 
-                // Draw day number
                 dc.drawText(x, y, Graphics.FONT_TINY, displayDay.toString(), 
                             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
             }
         }
     }
     
-    // Build the calendar grid for current month
     function buildCalendarGrid() as Void {
         calendarGrid = new Array<Array<Number> >[6];
         
@@ -170,14 +166,11 @@ class CalendarPageView extends WatchUi.View {
                 var cellIndex = row * 7 + col;
                 
                 if (cellIndex < firstDay) {
-                    // Previous month - mark as negative (won't be displayed)
                     calendarGrid[row][col] = -(prevMonthDays - firstDay + cellIndex + 1);
                 } else if (day <= daysInMonth) {
-                    // Current month
                     calendarGrid[row][col] = day;
                     day++;
                 } else {
-                    // Next month - mark as 100+ (won't be displayed)
                     calendarGrid[row][col] = 100 + nextDay;
                     nextDay++;
                 }
@@ -185,7 +178,6 @@ class CalendarPageView extends WatchUi.View {
         }
     }
     
-    // Find the row/col position of selected day
     function findSelectedPosition() as Void {
         if (calendarGrid == null) {
             return;
@@ -199,12 +191,10 @@ class CalendarPageView extends WatchUi.View {
                 }
             }
         }
-        // Default to day 1 if not found
         selectedDay = 1;
         findSelectedPosition();
     }
     
-    // Check if a date has survey data
     function dateHasData(day as Number) as Boolean {
         for (var i = 0; i < datesWithData.size(); i++) {
             if (datesWithData[i] == day) {
@@ -214,14 +204,12 @@ class CalendarPageView extends WatchUi.View {
         return false;
     }
     
-    // Get month name
     function getMonthName(month as Number) as String {
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         return months[month - 1];
     }
     
-    // Get days in month
     function getDaysInMonth(year as Number, month as Number) as Number {
         var days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
         if (month == 2 && ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)) {
@@ -230,7 +218,6 @@ class CalendarPageView extends WatchUi.View {
         return days[month - 1];
     }
     
-    // Get first day of week (0 = Sunday)
     function getFirstDayOfWeek(year as Number, month as Number) as Number {
         var y = year;
         var m = month;
@@ -245,42 +232,60 @@ class CalendarPageView extends WatchUi.View {
     }
     
     function nextMonth() as Void {
-        System.print("NEXT MONTH BE RUNNIN");
-        currentMonth++;
-        if (currentMonth > 12) {
-            currentMonth = 1;
-            currentYear++;
-        }
-        buildCalendarGrid();
-        selectedDay = 1;
-        findSelectedPosition();
-        WatchUi.requestUpdate();
+    currentMonth++;
+    if (currentMonth > 12) {
+        currentMonth = 1;
+        currentYear++;
     }
     
-    function previousMonth() as Void {
-        currentMonth--;
-        if (currentMonth < 1) {
-            currentMonth = 12;
-            currentYear--;
-        }
-        buildCalendarGrid();
-        selectedDay = 1;
-        findSelectedPosition();
-        WatchUi.requestUpdate();
-    }
+    // Reload dates with data for this month
+    updateDatesWithData();
     
-    // Cycle to next day (UP button)
-function nextDay() as Void {
-    var daysInMonth = getDaysInMonth(currentYear, currentMonth);
-    selectedDay++;
-    if (selectedDay > daysInMonth) {
-        selectedDay = 1;
-    }
+    buildCalendarGrid();
+    selectedDay = 1;
     findSelectedPosition();
     WatchUi.requestUpdate();
 }
+
+function previousMonth() as Void {
+    currentMonth--;
+    if (currentMonth < 1) {
+        currentMonth = 12;
+        currentYear--;
+    }
     
-    // Get currently selected date info
+    // Reload dates with data for this month
+    updateDatesWithData();
+    
+    buildCalendarGrid();
+    selectedDay = 1;
+    findSelectedPosition();
+    WatchUi.requestUpdate();
+}
+
+function updateDatesWithData() as Void {
+    var allDates = SurveyStorage.getAllSurveyDates();
+    datesWithData = [];
+    
+    for (var i = 0; i < allDates.size(); i++) {
+        var dateStr = allDates[i] as String;
+        var parts = splitDateString(dateStr);
+        if (parts[0] == currentYear && parts[1] == currentMonth) {
+            datesWithData.add(parts[2]);
+        }
+    }
+}
+    
+    function nextDay() as Void {
+        var daysInMonth = getDaysInMonth(currentYear, currentMonth);
+        selectedDay++;
+        if (selectedDay > daysInMonth) {
+            selectedDay = 1;
+        }
+        findSelectedPosition();
+        WatchUi.requestUpdate();
+    }
+    
     function getSelectedDate() as Dictionary {
         return {
             "day" => selectedDay,
@@ -290,52 +295,157 @@ function nextDay() as Void {
         };
     }
     
-    // Format date as string
     function getSelectedDateString() as String {
         var monthName = getMonthName(currentMonth);
         return monthName + " " + selectedDay + ", " + currentYear;
     }
-
-    function onHide() as Void {
+    
+    function getDayAtPosition(x as Number, y as Number) as Number {
+        if (calendarGrid == null) {
+            return -1;
+        }
+        
+        var width = 360;
+        var cellWidth = (width - 40) / 7;
+        var cellHeight = 32;
+        var startX = 25;
+        var startY = 145;
+        
+        if (y < startY || y > startY + (5 * cellHeight)) {
+            return -1;
+        }
+        
+        var col = (x - startX) / cellWidth;
+        var row = (y - startY) / cellHeight;
+        
+        if (col < 0 || col >= 7 || row < 0 || row >= 5) {
+            return -1;
+        }
+        
+        var dayValue = calendarGrid[row][col];
+        
+        if (dayValue <= 0 || dayValue > 100) {
+            return -1;
+        }
+        
+        return dayValue;
     }
 }
 
-class CalendarPageDelegate extends WatchUi.BehaviorDelegate {
-
+class CalendarPageDelegate extends WatchUi.InputDelegate {
     var calendarView as CalendarPageView;
-
+    
     function initialize(view as CalendarPageView) {
-        BehaviorDelegate.initialize();
+        InputDelegate.initialize();
         calendarView = view;
     }
-
-    // UP button - cycle to next day
-    function onPreviousPage() as Boolean {
-        calendarView.nextDay();
-        return true;
-    }
-
-    // DOWN button - select the date
-    function onNextPage() as Boolean {
-        return onSelect();
-    }
-
-    // SELECT/ENTER button - select the date
-    function onSelect() as Boolean {
-        var dateInfo = calendarView.getSelectedDate();
-        var dateString = calendarView.getSelectedDateString();
-        var hasData = dateInfo["hasData"] as Boolean;
+    
+    function onTap(clickEvent as ClickEvent) as Boolean {
+        var coords = clickEvent.getCoordinates();
+        var x = coords[0];
+        var y = coords[1];
         
-        WatchUi.pushView(
-            new DateResultView(dateString, hasData),
-            new DateResultDelegate(),
-            WatchUi.SLIDE_LEFT
-        );
+        // Check left arrow
+        if (x >= 50 && x <= 110 && y >= 53 && y <= 113) {
+            calendarView.previousMonth();
+            return true;
+        }
         
-        return true;
+        // Check right arrow
+        if (x >= 250 && x <= 310 && y >= 53 && y <= 113) {
+            calendarView.nextMonth();
+            return true;
+        }
+        
+        // Check if date cell tapped
+        var tappedDay = calendarView.getDayAtPosition(x, y);
+        if (tappedDay > 0) {
+            calendarView.selectedDay = tappedDay;
+            calendarView.findSelectedPosition();
+            
+            var dateInfo = calendarView.getSelectedDate();
+            var dateString = calendarView.getSelectedDateString();
+            var hasData = dateInfo["hasData"] as Boolean;
+            
+            if (hasData) {
+                var today = SurveyStorage.getTodayString();
+                var surveyData = SurveyStorage.getSurveyData(today);
+                
+                if (surveyData != null) {
+                    
+                    var responses = surveyData["responses"] as Array<Number>;
+                    var categories = surveyData["categories"] as Array<String>;
+                    var questionCategories = surveyData["questionCategories"] as Array<String>;
+                    
+                    // Calculate percentages
+                    var percentageValues = new [categories.size()];
+                    for (var c = 0; c < categories.size(); c++) {
+                        var categoryName = categories[c] as String;
+                        var sum = 0.0;
+                        var count = 0;
+                        
+                        for (var i = 0; i < responses.size(); i++) {
+                            if (questionCategories[i].equals(categoryName)) {
+                                sum += (responses[i].toFloat() / 4.0 * 100.0);
+                                count++;
+                            }
+                        }
+                        
+                        percentageValues[c] = (count > 0) ? (sum / count).toNumber() : 0;
+                    }
+                    
+                    var timestamp = surveyData["timestamp"] as Number;
+                    var moment = new Time.Moment(timestamp);
+                    
+                    var spiderView = new SpiderDiagramView(categories, percentageValues, moment);
+                    WatchUi.pushView(spiderView, new SpiderDiagramDelegate(spiderView), WatchUi.SLIDE_LEFT);
+                    return true;
+                }
+            }
+            
+            // No data - show the "no data" view
+            System.println("Showing 'no data' view");
+            WatchUi.pushView(
+                new DateResultView(dateString, hasData),
+                new DateResultDelegate(),
+                WatchUi.SLIDE_LEFT
+            );
+            return true;
+        }
+        
+        return false;
     }
-
-    // BACK button
+    
+    function onSwipe(swipeEvent as SwipeEvent) as Boolean {
+        var direction = swipeEvent.getDirection();
+        
+        if (direction == WatchUi.SWIPE_UP) {
+            calendarView.nextDay();
+            return true;
+        }
+        
+        return false;
+    }
+    
+    function onKey(keyEvent as KeyEvent) as Boolean {
+        var key = keyEvent.getKey();
+        
+        if (key == WatchUi.KEY_ENTER) {
+            var dateInfo = calendarView.getSelectedDate();
+            var dateString = calendarView.getSelectedDateString();
+            var hasData = dateInfo["hasData"] as Boolean;
+            
+            WatchUi.pushView(
+                new DateResultView(dateString, hasData),
+                new DateResultDelegate(),
+                WatchUi.SLIDE_LEFT
+            );
+            return true;
+        }
+        
+        return false;
+    }
+    
     function onBack() as Boolean {
         WatchUi.popView(WatchUi.SLIDE_RIGHT);
         return true;

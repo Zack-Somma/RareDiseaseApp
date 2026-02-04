@@ -93,6 +93,8 @@ class checkPageView extends WatchUi.View {
         var arrowX = screenWidth / 2;
         var arrowY = (screenHeight * 70) / 100;
 
+        if (scrollOffset < checklistItems.size() - itemsPerScreen) {
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             arrowX,
             arrowY,
@@ -100,6 +102,7 @@ class checkPageView extends WatchUi.View {
             "v",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
+    }
         
         // DONE button
         var buttonWidth = 160;
@@ -211,10 +214,10 @@ class checkPageDelegate extends WatchUi.BehaviorDelegate {
         if (view.isDoneTapped(x, y)) {
             var checkedItems = view.getCheckedItems();
             System.println("Checked items: " + checkedItems);
-
-            var questionView = new questionPageView();
+            
+            // Pass the checked symptoms to questionPageView
+            var questionView = new questionPageView(checkedItems);
             WatchUi.pushView(questionView, new QuestionPageDelegate(questionView), WatchUi.SLIDE_UP);
-
             return true;
         }
         

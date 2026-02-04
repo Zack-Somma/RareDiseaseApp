@@ -7,23 +7,31 @@ import Toybox.Application.Storage;
 // -------------------------
 // SPIDER DIAGRAM RATING SCREEN WITH ALL 31 QUESTIONS
 // -------------------------
+import Toybox.WatchUi;
+import Toybox.Graphics;
+import Toybox.Lang;
+import Toybox.System;
+import Toybox.Application.Storage;
+
 class questionPageView extends WatchUi.View {
-
-    public var value as Number;           // 1..4
-    public var currentQuestionIndex as Number;  // 0..30 (for 31 questions)
+    public var value as Number;
+    public var currentQuestionIndex as Number;
     public var questions as Array<String>;
-    public var responses as Array<Number>;  // Store all responses
-
-    // cached sizes + hitboxes
+    public var responses as Array<Number>;
+    
+    private var activeCategories as Array<String>;
+    private var allQuestions as Array<String>;
+    private var questionCategories as Array<String>;
+    private var filteredQuestionCategories as Array<String>;
+    
     public var screenW as Number;
     public var screenH as Number;
-
     public var decBox as Array<Number>;
     public var incBox as Array<Number>;
     public var continueBox as Array<Number>;
-    public var backBox as Array<Number>;  // New: back button hitbox
-
-    function initialize() {
+    public var backBox as Array<Number>;
+    
+    function initialize(checkedSymptoms as Array<String>) {
         View.initialize();
         value = 0;
         currentQuestionIndex = 0;
@@ -34,69 +42,117 @@ class questionPageView extends WatchUi.View {
         continueBox = [0,0,0,0];
         backBox = [0,0,0,0];
         
-        // Initialize all 31 questions
-        questions = [
-            "Joint instability",  // 1
-            "Muscle weakness",    // 2
-            "Muscle spasms",      // 3
-            "Balance & proprioception problems",  // 4
-            "Tingling or loss of sensation",  // 5
-            "Joint pain",  // 6
-            "Widespread pain",  // 7
-            "Headaches or migraines",  // 8
-            "Pain from mild sensations",  // 9
-            "Physical tiredness",  // 10
-            "Mental tiredness",  // 11
-            "Difficulty with sleep",  // 12
-            "Faint when moving to standing",  // 13
-            "Faint when standing upright",  // 14
-            "Autonomic impact severity",  // 15 (changed from check-all to rating)
-            "Impact on daily life",  // 16
-            "Abdominal bloating/pain",  // 17
-            "Diarrhea or constipation",  // 18
-            "Nausea or vomiting",  // 19
-            "Reflux or difficulty swallowing",  // 20
-            "Full bladder sensation",  // 21
-            "Urine loss",  // 22
-            "Difficulty passing urine",  // 23
-            "Genital discomfort",  // 24
-            "Urinary infections",  // 25
-            "Fear of movement",  // 26
-            "Feeling worried or restless",  // 27
-            "Feeling afraid",  // 28
-            "Feeling down or hopeless",  // 29
-            "No solutions to problems",  // 30
-            "Little interest in things"  // 31
+        activeCategories = checkedSymptoms;
+        questions = [];  // Initialize here
+        filteredQuestionCategories = [];
+        
+        // Define ALL questions with their category mapping
+        allQuestions = [
+            "Joint instability",                    // NMSK
+            "Muscle weakness",                      // NMSK
+            "Muscle spasms",                        // NMSK
+            "Balance & proprioception problems",    // NMSK
+            "Tingling or loss of sensation",        // NMSK
+            "Joint pain",                           // Pain
+            "Widespread pain",                      // Pain
+            "Headaches or migraines",              // Pain
+            "Pain from mild sensations",           // Pain
+            "Physical tiredness",                   // Fatigue
+            "Mental tiredness",                     // Fatigue
+            "Difficulty with sleep",                // Fatigue
+            "Faint when moving to standing",        // Cardiac dysautonomia
+            "Faint when standing upright",          // Cardiac dysautonomia
+            "Autonomic impact severity",            // Cardiac dysautonomia
+            "Impact on daily life",                 // Cardiac dysautonomia
+            "Abdominal bloating/pain",              // Gastrointestinal
+            "Diarrhea or constipation",            // Gastrointestinal
+            "Nausea or vomiting",                  // Gastrointestinal
+            "Reflux or difficulty swallowing",     // Gastrointestinal
+            "Full bladder sensation",               // Urogential
+            "Urine loss",                           // Urogential
+            "Difficulty passing urine",             // Urogential
+            "Genital discomfort",                   // Urogential
+            "Urinary infections",                   // Urogential
+            "Fear of movement",                     // Anxiety
+            "Feeling worried or restless",          // Anxiety
+            "Feeling afraid",                       // Anxiety
+            "Feeling down or hopeless",             // Depression
+            "No solutions to problems",             // Depression
+            "Little interest in things"             // Depression 
         ];
         
-        // Initialize responses array - all start at 0 (Skip)
+        questionCategories = [
+            "NMSK", "NMSK", "NMSK", "NMSK", "NMSK",              // Q1-5
+            "Pain", "Pain", "Pain", "Pain",                      // Q6-9
+            "Fatigue", "Fatigue", "Fatigue",                     // Q10-12
+            "Cardiac dysautonomia", "Cardiac dysautonomia",      // Q13-14
+            "Cardiac dysautonomia", "Cardiac dysautonomia",      // Q15-16
+            "Gastrointestinal", "Gastrointestinal",              // Q17-18
+            "Gastrointestinal", "Gastrointestinal",              // Q19-20
+            "Urogential", "Urogential", "Urogential",            // Q21-23
+            "Urogential", "Urogential",                          // Q24-25
+            "Anxiety", "Anxiety", "Anxiety",                     // Q26-28
+            "Depression", "Depression", "Depression"             // Q29-31
+        ];
+        
+        filterQuestions();
+
         responses = new [questions.size()];
         for (var i = 0; i < responses.size(); i++) {
             responses[i] = 0;
         }
         
-        // Always start fresh at Question 1
-        // Clear any previously saved progress so we don't skip ahead
         clearResponses();
     }
-
+    
+    function filterQuestions() as Void {
+        questions = [];
+        filteredQuestionCategories = [];
+        
+        for (var i = 0; i < allQuestions.size(); i++) {
+            var category = questionCategories[i] as String;
+            
+            var isActive = false;
+            for (var j = 0; j < activeCategories.size(); j++) {
+                if (category.equals(activeCategories[j])) {
+                    isActive = true;
+                    break;
+                }
+            }
+            
+            if (isActive) {
+                questions.add(allQuestions[i]);
+                filteredQuestionCategories.add(category);
+            }
+        }
+        
+        if (questions.size() == 0) {
+            questions = allQuestions;
+            filteredQuestionCategories = questionCategories;
+        }
+    }
+    
+    public function getFilteredQuestionCategories() as Array<String> {
+        return filteredQuestionCategories;
+    }
+    
     function clamp() as Void {
         if (value < 0) { value = 0; }
         if (value > 4) { value = 4; }
     }
-
+    
     public function inc() as Void {
         value++;
         clamp();
         WatchUi.requestUpdate();
     }
-
+    
     public function dec() as Void {
         value--;
         clamp();
         WatchUi.requestUpdate();
     }
-
+    
     public function getLabelForValue(v as Number) as String {
         if (v == 0) { return "Skip"; }
         if (v == 1) { return "Mild Impact"; }
@@ -104,7 +160,7 @@ class questionPageView extends WatchUi.View {
         if (v == 3) { return "Marked Impact"; }
         return "Disabling";
     }
-
+    
     public function hit(box as Array<Number>, x as Number, y as Number) as Boolean {
         if (box == null || box.size() < 4) {
             return false;
@@ -116,7 +172,6 @@ class questionPageView extends WatchUi.View {
         return (x >= bx && x <= bx + bw && y >= by && y <= by + bh);
     }
     
-    // Save responses to persistent storage
     public function saveResponses() as Void {
         for (var i = 0; i < responses.size(); i++) {
             Storage.setValue("response_" + i, responses[i]);
@@ -124,7 +179,6 @@ class questionPageView extends WatchUi.View {
         Storage.setValue("lastQuestionIndex", currentQuestionIndex);
     }
     
-    // Load responses from persistent storage
     public function loadResponses() as Void {
         for (var i = 0; i < responses.size(); i++) {
             var saved = Storage.getValue("response_" + i);
@@ -139,7 +193,6 @@ class questionPageView extends WatchUi.View {
         }
     }
     
-    // Clear all saved data
     public function clearResponses() as Void {
         for (var i = 0; i < responses.size(); i++) {
             Storage.deleteValue("response_" + i);
@@ -151,7 +204,6 @@ class questionPageView extends WatchUi.View {
     }
     
     public function previousQuestion() as Void {
-        // Save current response
         responses[currentQuestionIndex] = value;
         
         if (currentQuestionIndex > 0) {
@@ -162,49 +214,40 @@ class questionPageView extends WatchUi.View {
     }
     
     public function nextQuestion() as Void {
-        // Save current response
-        responses[currentQuestionIndex] = value;
-        
-        // Move to next question
-        if (currentQuestionIndex < questions.size() - 1) {
-            currentQuestionIndex++;
-            // Load saved response for this question
-            value = responses[currentQuestionIndex] as Number;
-            WatchUi.requestUpdate();
-        } else {
-            // All questions completed - save and show results
-            System.println("Spider Diagram Complete!");
-            for (var i = 0; i < questions.size(); i++) {
-                System.println("Q" + (i+1) + ": " + responses[i]);
-            }
-            
-            // Save final responses
-            saveResponses();
-            
-            // Navigate to completion screen
-            var completionView = new CompletionView(responses);
-            WatchUi.switchToView(completionView, new CompletionDelegate(completionView), WatchUi.SLIDE_LEFT);
-            
+    responses[currentQuestionIndex] = value;
+    
+    if (currentQuestionIndex < questions.size() - 1) {
+        currentQuestionIndex++;
+        value = responses[currentQuestionIndex] as Number;
+        WatchUi.requestUpdate();
+    } else {
+        System.println("Spider Diagram Complete!");
+        for (var i = 0; i < questions.size(); i++) {
+            System.println("Q" + (i+1) + ": " + responses[i]);
         }
+        
+        SurveyStorage.saveSurveyData(responses, activeCategories, filteredQuestionCategories);
+        
+        saveResponses(); 
+        
+        var completionView = new CompletionView(responses, activeCategories, filteredQuestionCategories);
+        WatchUi.switchToView(completionView, new CompletionDelegate(completionView), WatchUi.SLIDE_LEFT);
     }
-
+}
+    
     function onUpdate(dc as Dc) as Void {
         screenW = dc.getWidth();
         screenH = dc.getHeight();
-
         var cx = screenW / 2;
         var cy = screenH / 2;
-
-        // Background
+        
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
-
-        // White circle card
+        
         var r = (screenW < screenH ? screenW : screenH) / 2 - 12;
-
-        // Title with question counter
+        
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        var titleText = "Question " + (currentQuestionIndex + 1) + "/31";
+        var titleText = "Question " + (currentQuestionIndex + 1) + "/" + questions.size();
         dc.drawText(
             cx,
             cy - r + 18,
@@ -212,20 +255,17 @@ class questionPageView extends WatchUi.View {
             titleText,
             Graphics.TEXT_JUSTIFY_CENTER
         );
-
-        // Question text - adjust font size for longer questions
+        
         var questionY = cy - r + 50;
         var currentQuestion = questions[currentQuestionIndex] as String;
         var fontSize = Graphics.FONT_XTINY;
         
-        // Adjust positioning for very long questions
         if (currentQuestion.length() > 30) {
             questionY = cy - r + 42;
         }
         
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         
-        // Word wrapping
         var words = splitString(currentQuestion, " ");
         var currentLine = "";
         var lineY = questionY;
@@ -256,7 +296,6 @@ class questionPageView extends WatchUi.View {
             }
         }
         
-        // Draw last line
         if (currentLine.length() > 0) {
             dc.drawText(
                 cx,
@@ -266,29 +305,21 @@ class questionPageView extends WatchUi.View {
                 Graphics.TEXT_JUSTIFY_CENTER
             );
         }
-
-        // Controls
+        
         var controlsY = cy + 8;
-
-        // Arrow positions (using minus/plus style)
         var leftX = cx - 70;
         var rightX = cx + 70;
         var arrowSize = 14;
-
-        // Hitboxes for controls
+        
         var boxW = 65;
         var boxH = 65;
         decBox = [leftX - boxW/2, controlsY - boxH/2, boxW, boxH];
         incBox = [rightX - boxW/2, controlsY - boxH/2, boxW, boxH];
-
-        // Draw minus (decrease) on left
+        
         dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
         drawMinus(dc, leftX, controlsY, arrowSize);
-        
-        // Draw plus (increase) on right
         drawPlus(dc, rightX, controlsY, arrowSize);
-
-        // Center display - always show the number (0-4)
+        
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             cx,
@@ -297,8 +328,7 @@ class questionPageView extends WatchUi.View {
             value.toString(),
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
-
-        // Impact label
+        
         dc.drawText(
             cx,
             cy + r - 150,
@@ -306,10 +336,7 @@ class questionPageView extends WatchUi.View {
             getLabelForValue(value),
             Graphics.TEXT_JUSTIFY_CENTER
         );
-
-        // Navigation buttons at bottom - always show both BACK and NEXT/DONE
         
-        // --- BACK button ---
         var backBtnW = 75;
         var backBtnH = 40;
         var backBtnX = cx - 50;
@@ -317,7 +344,6 @@ class questionPageView extends WatchUi.View {
         
         backBox = [backBtnX - backBtnW/2, backBtnY - backBtnH/2, backBtnW, backBtnH];
         
-        // Gray out BACK on first question
         if (currentQuestionIndex > 0) {
             dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         } else {
@@ -335,20 +361,16 @@ class questionPageView extends WatchUi.View {
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
         
-        // --- NEXT/DONE button ---
         var btnW = 75;
         var btnH = 40;
         var btnX = cx + 50;
         var btnY = cy + r - 80;
-
         continueBox = [btnX - btnW/2, btnY - btnH/2, btnW, btnH];
-
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.setPenWidth(2);
         dc.drawRoundedRectangle(btnX - btnW/2, btnY - btnH/2, btnW, btnH, 6);
         dc.setPenWidth(1);
-
-        // Show "DONE" on last question, "NEXT" otherwise
+        
         var btnText = (currentQuestionIndex == questions.size() - 1) ? "DONE" : "NEXT";
         dc.drawText(
             btnX,
@@ -359,7 +381,6 @@ class questionPageView extends WatchUi.View {
         );
     }
     
-    // Helper function to split string by delimiter
     function splitString(str as String, delimiter as String) as Array<String> {
         var result = [] as Array<String>;
         var current = "";
@@ -382,23 +403,20 @@ class questionPageView extends WatchUi.View {
         
         return result;
     }
-
-    // Draw a minus sign
+    
     function drawMinus(dc as Dc, x as Number, y as Number, size as Number) as Void {
         dc.setPenWidth(3);
         dc.drawLine(x - size, y, x + size, y);
         dc.setPenWidth(1);
     }
     
-    // Draw a plus sign
     function drawPlus(dc as Dc, x as Number, y as Number, size as Number) as Void {
         dc.setPenWidth(3);
-        dc.drawLine(x - size, y, x + size, y);  // Horizontal
-        dc.drawLine(x, y - size, x, y + size);  // Vertical
+        dc.drawLine(x - size, y, x + size, y);
+        dc.drawLine(x, y - size, x, y + size);
         dc.setPenWidth(1);
     }
-
-    // Keep triangle functions for reference or alternative use
+    
     function drawTriangleUp(dc as Dc, x as Number, y as Number, size as Number) as Void {
         var pts = [
             [x, y - size],
@@ -407,7 +425,7 @@ class questionPageView extends WatchUi.View {
         ];
         dc.fillPolygon(pts);
     }
-
+    
     function drawTriangleDown(dc as Dc, x as Number, y as Number, size as Number) as Void {
         var pts = [
             [x, y + size],
@@ -417,7 +435,6 @@ class questionPageView extends WatchUi.View {
         dc.fillPolygon(pts);
     }
     
-    // Draw left-pointing triangle (alternative to minus)
     function drawTriangleLeft(dc as Dc, x as Number, y as Number, size as Number) as Void {
         var pts = [
             [x - size, y],
@@ -427,7 +444,6 @@ class questionPageView extends WatchUi.View {
         dc.fillPolygon(pts);
     }
     
-    // Draw right-pointing triangle (alternative to plus)
     function drawTriangleRight(dc as Dc, x as Number, y as Number, size as Number) as Void {
         var pts = [
             [x + size, y],
@@ -437,7 +453,6 @@ class questionPageView extends WatchUi.View {
         dc.fillPolygon(pts);
     }
 }
-
 // Delegate for the rating screen
 class QuestionPageDelegate extends WatchUi.BehaviorDelegate {
     private var view as questionPageView;
@@ -488,10 +503,14 @@ class QuestionPageDelegate extends WatchUi.BehaviorDelegate {
 class CompletionView extends WatchUi.View {
     
     private var responses as Array<Number>;
+    private var activeCategories as Array<String>;
+    private var questionCategories as Array<String>;
     
-    function initialize(resp as Array<Number>) {
+    function initialize(resp as Array<Number>, categories as Array<String>, qCategories as Array<String>) {
         View.initialize();
         responses = resp;
+        activeCategories = categories;
+        questionCategories = qCategories;
     }
     
     function onUpdate(dc as Dc) as Void {
@@ -500,28 +519,22 @@ class CompletionView extends WatchUi.View {
         var cx = screenW / 2;
         var cy = screenH / 2;
         
-        // Background
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
         
-        // White circle card with purple border
         var r = (screenW < screenH ? screenW : screenH) / 2 - 12;
         
-        // Purple ring
         dc.setColor(0x7B2FBE, Graphics.COLOR_TRANSPARENT);
         dc.setPenWidth(6);
         dc.drawCircle(cx, cy, r);
         dc.setPenWidth(1);
         
-        // White fill inside the ring
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.fillCircle(cx, cy, r - 4);
         
-        // Checkmark icon
         dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
         drawCheckmark(dc, cx, cy - 30, 30);
         
-        // "Nice Job!" text
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             cx,
@@ -530,7 +543,7 @@ class CompletionView extends WatchUi.View {
             "Nice Job!",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
-        // Instruction text
+        
         dc.drawText(
             cx,
             cy + 70,
@@ -540,22 +553,17 @@ class CompletionView extends WatchUi.View {
         );
     }
     
-    // Draw a checkmark inside a circle
     function drawCheckmark(dc as Dc, x as Number, y as Number, size as Number) as Void {
-        // Circle outline
         dc.setPenWidth(3);
         dc.drawCircle(x, y, size);
         
-        // Checkmark lines
         dc.setPenWidth(3);
-        // Short stroke (down-right)
         dc.drawLine(
             x - size * 5 / 10, 
             y, 
             x - size * 1 / 10, 
             y + size * 4 / 10
         );
-        // Long stroke (up-right)
         dc.drawLine(
             x - size * 1 / 10, 
             y + size * 4 / 10, 
@@ -568,8 +576,15 @@ class CompletionView extends WatchUi.View {
     public function getResponses() as Array<Number> {
         return responses;
     }
+    
+    public function getActiveCategories() as Array<String> {
+        return activeCategories;
+    }
+    
+    public function getQuestionCategories() as Array<String> {
+        return questionCategories;
+    }
 }
-
 // Delegate for the completion screen
 class CompletionDelegate extends WatchUi.BehaviorDelegate {
     private var view as CompletionView;
@@ -580,59 +595,48 @@ class CompletionDelegate extends WatchUi.BehaviorDelegate {
     }
     
     function onTap(e as ClickEvent) as Lang.Boolean {
-        // Tap anywhere to dismiss
         WatchUi.popView(WatchUi.SLIDE_DOWN);
         return true;
     }
     
     function onSwipe(evt as SwipeEvent) as Lang.Boolean {
-    var direction = evt.getDirection();
-    
-    if (direction == WatchUi.SWIPE_UP) {
-        var responses = view.getResponses();
+        var direction = evt.getDirection();
         
-        // Spider diagram domain order and labels per "Spider and scoring" (THE SPIDER: impact scale for multisystemic symptoms).
-        // Each domain shows the average score of its questions (0-100 scale from 0-4 responses).
-        var symptomLabels = [
-            "NMSK",              // NEUROMUSCULOSKELETAL Q1-5
-            "Pain",              // PAIN Q6-9
-            "Fatigue",           // FATIGUE Q10-12
-            "Gastrointestinal",  // GASTROINTESTINAL Q13-16
-            "Cardiac dysautonomia", // CARDIAC DYSAUTONOMIA Q17-20
-            "Urogential",        // UROGENTIAL Q21-25
-            "Anxiety",           // ANXIETY Q26-28
-            "Depression"         // DEPRESSION Q29-31
-            ];
-        
-        // Question indices (0-30) per domain, in same order as symptomLabels.
-        var categoryStart = [0, 5, 9, 16, 12, 20, 25, 28] as Array<Number>;
-        var categoryCount = [5, 4, 3, 4, 4, 5, 3, 3] as Array<Number>;
-        
-        // Average score per domain (0-100): average of (response/4*100) for each question in that domain
-        var percentageValues = new [8];
-        for (var c = 0; c < 8; c++) {
-            var start = categoryStart[c];
-            var count = categoryCount[c];
-            var sum = 0.0;
-            var n = 0;
-            for (var i = 0; i < count; i++) {
-                var qIdx = start + i;
-                if (qIdx < responses.size()) {
-                    sum += (responses[qIdx].toFloat() / 4.0 * 100.0);
-                    n++;
+        if (direction == WatchUi.SWIPE_UP) {
+            var responses = view.getResponses();
+            var activeCategories = view.getActiveCategories();
+            var questionCategories = view.getQuestionCategories();
+            
+            // Calculate average for each active category
+            var symptomLabels = activeCategories;
+            var percentageValues = new [activeCategories.size()];
+            
+            for (var c = 0; c < activeCategories.size(); c++) {
+                var categoryName = activeCategories[c] as String;
+                var sum = 0.0;
+                var count = 0;
+                
+                // Find all responses that belong to this category
+                for (var i = 0; i < responses.size(); i++) {
+                    if (questionCategories[i].equals(categoryName)) {
+                        sum += (responses[i].toFloat() / 4.0 * 100.0);
+                        count++;
+                    }
                 }
+                
+                percentageValues[c] = (count > 0) ? (sum / count).toNumber() : 0;
+                
+                System.println("Category: " + categoryName + " = " + percentageValues[c] + "% (from " + count + " questions)");
             }
-            percentageValues[c] = (n > 0) ? (sum / n).toNumber() : 0;
+            
+            var dateRecorded = Time.now();
+            var spiderView = new SpiderDiagramView(symptomLabels, percentageValues, dateRecorded);
+            WatchUi.pushView(spiderView, new SpiderDiagramDelegate(spiderView), WatchUi.SLIDE_UP);
+            return true;
         }
         
-        var dateRecorded = Time.now();
-        var spiderView = new SpiderDiagramView(symptomLabels, percentageValues, dateRecorded);
-        WatchUi.pushView(spiderView, new SpiderDiagramDelegate(spiderView), WatchUi.SLIDE_UP);
-        return true;
+        return false;
     }
-    
-    return false;
-}
     
     function onBack() as Lang.Boolean {
         WatchUi.popView(WatchUi.SLIDE_DOWN);

@@ -32,21 +32,10 @@ class DateResultView extends WatchUi.View {
         
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
         
-        if (hasData) {
-            // Has data - show message (spider diagram will go here later)
-            dc.drawText(centerX, centerY - 30, Graphics.FONT_SMALL, dateString, 
-                        Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(centerX, centerY + 10, Graphics.FONT_TINY, "Survey data found!", 
-                        Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(centerX, centerY + 40, Graphics.FONT_XTINY, "(Spider diagram here)", 
-                        Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-        } else {
-            // No data
-            dc.drawText(centerX, centerY - 20, Graphics.FONT_SMALL, "No data reported", 
-                        Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(centerX, centerY + 20, Graphics.FONT_TINY, "on " + dateString, 
-                        Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-        }
+        dc.drawText(centerX, centerY - 20, Graphics.FONT_SMALL, "No data reported", 
+                    Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+        dc.drawText(centerX, centerY + 20, Graphics.FONT_TINY, "on " + dateString, 
+                    Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
     }
 
     function onHide() as Void {

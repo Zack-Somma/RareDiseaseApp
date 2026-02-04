@@ -1,0 +1,579 @@
+[ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 1; @symbol_importdef<0> = [Toybox,1,7,13]; @symbol_importdef<1> = [Application,1,14,25]; ]
+import Toybox.Application;
+[ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 2; @symbol_importdef<0> = [Toybox,2,7,13]; @symbol_importdef<1> = [Lang,2,14,18]; ]
+import Toybox.Lang;
+[ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 3; @symbol_importdef<0> = [Toybox,3,7,13]; @symbol_importdef<1> = [WatchUi,3,14,21]; ]
+import Toybox.WatchUi;
+[ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 6; @symbol_classdef = [HomeView,6,6,14]; @symbol_extends<0> = [WatchUi,6,23,30]; @symbol_extends<1> = [View,6,31,35]; ]
+class HomeView extends WatchUi.View {
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 6; ]
+    <init> {
+    }
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 6; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 7; @symbol_functiondef = [initialize,7,13,23]; ]
+    function initialize() as Void {
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_7_26_9_4_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 8 8 ]
+        symbol [ View %tmp.2 8 8 12 ];
+        %tmp.2 = getv ? :View;
+        symbol [ initialize %tmp.3 8 13 23 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_7_26_9_4_stop:
+    }
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 11; @symbol_functiondef = [onUpdate,11,13,21]; @symbol_param<0> = [dc,11,22,24]; ]
+    function onUpdate(dc) as Void {
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_11_34_31_4_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 12 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_11_34_31_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_11_34_31_4_stop" ]
+        %width.1 = local;
+        symbol [ width %width.1 12 12 17 ];
+        %tmp.1 = lgetv %dc;
+        symbol [ dc %tmp.1 12 20 22 ];
+        symbol [ getWidth %tmp.2 12 23 31 ];
+        %tmp.2 = getv function %tmp.1 :getWidth;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %width.1 %tmp.3;
+        symbol [ width %width.1 12 12 17 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 13 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_11_34_31_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_11_34_31_4_stop" ]
+        %height.2 = local;
+        symbol [ height %height.2 13 12 18 ];
+        %tmp.4 = lgetv %dc;
+        symbol [ dc %tmp.4 13 21 23 ];
+        symbol [ getHeight %tmp.5 13 24 33 ];
+        %tmp.5 = getv function %tmp.4 :getHeight;
+        %tmp.6 = invoke %tmp.4 %tmp.5();
+        lputv %height.2 %tmp.6;
+        symbol [ height %height.2 13 12 18 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 14 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_11_34_31_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_11_34_31_4_stop" ]
+        %cx.3 = local;
+        symbol [ cx %cx.3 14 12 14 ];
+        %tmp.7 = lgetv %width.1;
+        symbol [ width %tmp.7 14 17 22 ];
+        %tmp.8 = 2;
+        %tmp.9 = div %tmp.7 %tmp.8;
+        lputv %cx.3 %tmp.9;
+        symbol [ cx %cx.3 14 12 14 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 15 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_11_34_31_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_11_34_31_4_stop" ]
+        %cy.4 = local;
+        symbol [ cy %cy.4 15 12 14 ];
+        %tmp.10 = lgetv %height.2;
+        symbol [ height %tmp.10 15 17 23 ];
+        %tmp.11 = 2;
+        %tmp.12 = div %tmp.10 %tmp.11;
+        lputv %cy.4 %tmp.12;
+        symbol [ cy %cy.4 15 12 14 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 17 8 ]
+        %tmp.13 = lgetv %dc;
+        symbol [ dc %tmp.13 17 8 10 ];
+        symbol [ setColor %tmp.14 17 11 19 ];
+        %tmp.14 = getv function %tmp.13 :setColor;
+        symbol [ Graphics %tmp.16 17 20 28 ];
+        %tmp.16 = getv ? :Graphics;
+        symbol [ COLOR_BLACK %tmp.17 17 29 40 ];
+        %tmp.17 = getv %tmp.16 :COLOR_BLACK;
+        symbol [ Graphics %tmp.19 17 42 50 ];
+        %tmp.19 = getv ? :Graphics;
+        symbol [ COLOR_BLACK %tmp.20 17 51 62 ];
+        %tmp.20 = getv %tmp.19 :COLOR_BLACK;
+        invoke %tmp.13 %tmp.14(%tmp.17, %tmp.20);
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 18 8 ]
+        %tmp.21 = lgetv %dc;
+        symbol [ dc %tmp.21 18 8 10 ];
+        symbol [ clear %tmp.22 18 11 16 ];
+        %tmp.22 = getv function %tmp.21 :clear;
+        invoke %tmp.21 %tmp.22();
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 20 8 ]
+        %tmp.23 = lgetv %dc;
+        symbol [ dc %tmp.23 20 8 10 ];
+        symbol [ setColor %tmp.24 20 11 19 ];
+        %tmp.24 = getv function %tmp.23 :setColor;
+        symbol [ Graphics %tmp.26 20 20 28 ];
+        %tmp.26 = getv ? :Graphics;
+        symbol [ COLOR_WHITE %tmp.27 20 29 40 ];
+        %tmp.27 = getv %tmp.26 :COLOR_WHITE;
+        symbol [ Graphics %tmp.29 20 42 50 ];
+        %tmp.29 = getv ? :Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.30 20 51 68 ];
+        %tmp.30 = getv %tmp.29 :COLOR_TRANSPARENT;
+        invoke %tmp.23 %tmp.24(%tmp.27, %tmp.30);
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 21 8 ]
+        %tmp.31 = lgetv %dc;
+        symbol [ dc %tmp.31 21 8 10 ];
+        symbol [ drawText %tmp.32 21 11 19 ];
+        %tmp.32 = getv function %tmp.31 :drawText;
+        %tmp.33 = lgetv %cx.3;
+        symbol [ cx %tmp.33 21 20 22 ];
+        %tmp.34 = 60;
+        symbol [ Graphics %tmp.36 21 28 36 ];
+        %tmp.36 = getv ? :Graphics;
+        symbol [ FONT_MEDIUM %tmp.37 21 37 48 ];
+        %tmp.37 = getv %tmp.36 :FONT_MEDIUM;
+        %tmp.38 = "Today's Survey";
+        symbol [ Graphics %tmp.40 22 20 28 ];
+        %tmp.40 = getv ? :Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.41 22 29 48 ];
+        %tmp.41 = getv %tmp.40 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.31 %tmp.32(%tmp.33, %tmp.34, %tmp.37, %tmp.38, %tmp.41);
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 24 8 ]
+        %tmp.42 = lgetv %dc;
+        symbol [ dc %tmp.42 24 8 10 ];
+        symbol [ setColor %tmp.43 24 11 19 ];
+        %tmp.43 = getv function %tmp.42 :setColor;
+        symbol [ Graphics %tmp.45 24 20 28 ];
+        %tmp.45 = getv ? :Graphics;
+        symbol [ COLOR_GREEN %tmp.46 24 29 40 ];
+        %tmp.46 = getv %tmp.45 :COLOR_GREEN;
+        symbol [ Graphics %tmp.48 24 42 50 ];
+        %tmp.48 = getv ? :Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.49 24 51 68 ];
+        %tmp.49 = getv %tmp.48 :COLOR_TRANSPARENT;
+        invoke %tmp.42 %tmp.43(%tmp.46, %tmp.49);
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 25 8 ]
+        %tmp.50 = lgetv %dc;
+        symbol [ dc %tmp.50 25 8 10 ];
+        symbol [ drawText %tmp.51 25 11 19 ];
+        %tmp.51 = getv function %tmp.50 :drawText;
+        %tmp.52 = lgetv %cx.3;
+        symbol [ cx %tmp.52 25 20 22 ];
+        %tmp.53 = lgetv %cy.4;
+        symbol [ cy %tmp.53 25 24 26 ];
+        %tmp.54 = 20;
+        %tmp.55 = sub %tmp.53 %tmp.54;
+        symbol [ Graphics %tmp.57 25 33 41 ];
+        %tmp.57 = getv ? :Graphics;
+        symbol [ FONT_SMALL %tmp.58 25 42 52 ];
+        %tmp.58 = getv %tmp.57 :FONT_SMALL;
+        %tmp.59 = "Complete!";
+        symbol [ Graphics %tmp.61 26 20 28 ];
+        %tmp.61 = getv ? :Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.62 26 29 48 ];
+        %tmp.62 = getv %tmp.61 :TEXT_JUSTIFY_CENTER;
+        symbol [ Graphics %tmp.64 26 51 59 ];
+        %tmp.64 = getv ? :Graphics;
+        symbol [ TEXT_JUSTIFY_VCENTER %tmp.65 26 60 80 ];
+        %tmp.65 = getv %tmp.64 :TEXT_JUSTIFY_VCENTER;
+        %tmp.66 = bitor %tmp.62 %tmp.65;
+        invoke %tmp.50 %tmp.51(%tmp.52, %tmp.55, %tmp.58, %tmp.59, %tmp.66);
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 28 8 ]
+        %tmp.67 = lgetv %dc;
+        symbol [ dc %tmp.67 28 8 10 ];
+        symbol [ setColor %tmp.68 28 11 19 ];
+        %tmp.68 = getv function %tmp.67 :setColor;
+        symbol [ Graphics %tmp.70 28 20 28 ];
+        %tmp.70 = getv ? :Graphics;
+        symbol [ COLOR_WHITE %tmp.71 28 29 40 ];
+        %tmp.71 = getv %tmp.70 :COLOR_WHITE;
+        symbol [ Graphics %tmp.73 28 42 50 ];
+        %tmp.73 = getv ? :Graphics;
+        symbol [ COLOR_TRANSPARENT %tmp.74 28 51 68 ];
+        %tmp.74 = getv %tmp.73 :COLOR_TRANSPARENT;
+        invoke %tmp.67 %tmp.68(%tmp.71, %tmp.74);
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 29 8 ]
+        %tmp.75 = lgetv %dc;
+        symbol [ dc %tmp.75 29 8 10 ];
+        symbol [ drawText %tmp.76 29 11 19 ];
+        %tmp.76 = getv function %tmp.75 :drawText;
+        %tmp.77 = lgetv %cx.3;
+        symbol [ cx %tmp.77 29 20 22 ];
+        %tmp.78 = lgetv %cy.4;
+        symbol [ cy %tmp.78 29 24 26 ];
+        %tmp.79 = 40;
+        %tmp.80 = add %tmp.78 %tmp.79;
+        symbol [ Graphics %tmp.82 29 33 41 ];
+        %tmp.82 = getv ? :Graphics;
+        symbol [ FONT_XTINY %tmp.83 29 42 52 ];
+        %tmp.83 = getv %tmp.82 :FONT_XTINY;
+        %tmp.84 = "Tap to view results";
+        symbol [ Graphics %tmp.86 30 20 28 ];
+        %tmp.86 = getv ? :Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.87 30 29 48 ];
+        %tmp.87 = getv %tmp.86 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.75 %tmp.76(%tmp.77, %tmp.80, %tmp.83, %tmp.84, %tmp.87);
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_11_34_31_4_stop:
+    }
+}
+[ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 34; @symbol_classdef = [HomeDelegate,34,6,18]; @symbol_extends<0> = [WatchUi,34,27,34]; @symbol_extends<1> = [BehaviorDelegate,34,35,51]; ]
+class HomeDelegate extends WatchUi.BehaviorDelegate {
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 34; ]
+    <init> {
+    }
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 34; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 35; @symbol_functiondef = [initialize,35,13,23]; ]
+    function initialize() as Void {
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_35_26_37_4_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 36 8 ]
+        symbol [ BehaviorDelegate %tmp.2 36 8 24 ];
+        %tmp.2 = getv ? :BehaviorDelegate;
+        symbol [ initialize %tmp.3 36 25 35 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_35_26_37_4_stop:
+    }
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 39; @symbol_functiondef = [onTap,39,13,18]; @symbol_param<0> = [clickEvent,39,19,29]; @symbol_param<0>_type<0> = [ClickEvent,39,33,43]; @symbol_return<0> = [Boolean,39,48,55]; ]
+    function onTap(clickEvent as ClickEvent) as Boolean {
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_39_56_58_4_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 40 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_39_56_58_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_39_56_58_4_stop" ]
+        %today.1 = local;
+        symbol [ today %today.1 40 12 17 ];
+        symbol [ SurveyStorage %tmp.2 40 20 33 ];
+        %tmp.2 = getv ? :SurveyStorage;
+        symbol [ getTodayString %tmp.3 40 34 48 ];
+        %tmp.3 = getv function %tmp.2 :getTodayString;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        lputv %today.1 %tmp.4;
+        symbol [ today %today.1 40 12 17 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 41 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_39_56_58_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_39_56_58_4_stop" ]
+        %surveyData.2 = local;
+        symbol [ surveyData %surveyData.2 41 12 22 ];
+        symbol [ SurveyStorage %tmp.6 41 25 38 ];
+        %tmp.6 = getv ? :SurveyStorage;
+        symbol [ getSurveyData %tmp.7 41 39 52 ];
+        %tmp.7 = getv function %tmp.6 :getSurveyData;
+        %tmp.8 = lgetv %today.1;
+        symbol [ today %tmp.8 41 53 58 ];
+        %tmp.9 = invoke %tmp.6 %tmp.7(%tmp.8);
+        lputv %surveyData.2 %tmp.9;
+        symbol [ surveyData %surveyData.2 41 12 22 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 43 8 ]
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_8_55_8_if_stmt:
+        %tmp.10 = lgetv %surveyData.2;
+        symbol [ surveyData %tmp.10 43 12 22 ];
+        %tmp.11 = null;
+        %tmp.12 = ne %tmp.10 %tmp.11;
+        bf %tmp.12 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_8_55_8_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_8_55_8_if_true:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 44 12 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_stop" ]
+        %responses.3 = local;
+        symbol [ responses %responses.3 44 16 25 ];
+        %tmp.13 = lgetv %surveyData.2;
+        symbol [ surveyData %tmp.13 44 28 38 ];
+        %tmp.14 = as %tmp.13 { (!Null) };
+        %tmp.15 = "responses";
+        %tmp.16 = agetv %tmp.14 %tmp.15;
+        %tmp.17 = as %tmp.16 Array<Number>;
+        symbol [ Array %tmp.17 44 55 60 ];
+        symbol [ Number %tmp.17 44 61 67 ];
+        lputv %responses.3 %tmp.17;
+        symbol [ responses %responses.3 44 16 25 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 45 12 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_stop" ]
+        %categories.4 = local;
+        symbol [ categories %categories.4 45 16 26 ];
+        %tmp.18 = lgetv %surveyData.2;
+        symbol [ surveyData %tmp.18 45 29 39 ];
+        %tmp.19 = as %tmp.18 { (!Null) };
+        %tmp.20 = "categories";
+        %tmp.21 = agetv %tmp.19 %tmp.20;
+        %tmp.22 = as %tmp.21 Array<String>;
+        symbol [ Array %tmp.22 45 57 62 ];
+        symbol [ String %tmp.22 45 63 69 ];
+        lputv %categories.4 %tmp.22;
+        symbol [ categories %categories.4 45 16 26 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 46 12 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_stop" ]
+        %questionCategories.5 = local;
+        symbol [ questionCategories %questionCategories.5 46 16 34 ];
+        %tmp.23 = lgetv %surveyData.2;
+        symbol [ surveyData %tmp.23 46 37 47 ];
+        %tmp.24 = as %tmp.23 { (!Null) };
+        %tmp.25 = "questionCategories";
+        %tmp.26 = agetv %tmp.24 %tmp.25;
+        %tmp.27 = as %tmp.26 Array<String>;
+        symbol [ Array %tmp.27 46 73 78 ];
+        symbol [ String %tmp.27 46 79 85 ];
+        lputv %questionCategories.5 %tmp.27;
+        symbol [ questionCategories %questionCategories.5 46 16 34 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 48 12 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_stop" ]
+        %percentageValues.6 = local;
+        symbol [ percentageValues %percentageValues.6 48 16 32 ];
+        %tmp.28 = self;
+        symbol [ calculateCategoryAverages %tmp.29 48 35 60 ];
+        %tmp.29 = getv function %tmp.28 :calculateCategoryAverages;
+        %tmp.30 = lgetv %responses.3;
+        symbol [ responses %tmp.30 48 61 70 ];
+        %tmp.31 = lgetv %categories.4;
+        symbol [ categories %tmp.31 48 72 82 ];
+        %tmp.32 = lgetv %questionCategories.5;
+        symbol [ questionCategories %tmp.32 48 84 102 ];
+        %tmp.33 = invoke %tmp.28 %tmp.29(%tmp.30, %tmp.31, %tmp.32);
+        lputv %percentageValues.6 %tmp.33;
+        symbol [ percentageValues %percentageValues.6 48 16 32 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 49 12 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_stop" ]
+        %timestamp.7 = local;
+        symbol [ timestamp %timestamp.7 49 16 25 ];
+        %tmp.34 = lgetv %surveyData.2;
+        symbol [ surveyData %tmp.34 49 28 38 ];
+        %tmp.35 = as %tmp.34 { (!Null) };
+        %tmp.36 = "timestamp";
+        %tmp.37 = agetv %tmp.35 %tmp.36;
+        %tmp.38 = as %tmp.37 Number;
+        symbol [ Number %tmp.38 49 55 61 ];
+        lputv %timestamp.7 %tmp.38;
+        symbol [ timestamp %timestamp.7 49 16 25 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 50 12 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_stop" ]
+        %moment.8 = local;
+        symbol [ moment %moment.8 50 16 22 ];
+        symbol [ Time %tmp.42 50 29 33 ];
+        %tmp.42 = getv ? :Time;
+        symbol [ Moment %tmp.43 50 34 40 ];
+        %tmp.43 = getv function ? %tmp.42 :Moment;
+        %tmp.44 = lgetv %timestamp.7;
+        symbol [ timestamp %tmp.44 50 41 50 ];
+        %tmp.39 = newc %tmp.43 (%tmp.44);
+        lputv %moment.8 %tmp.39;
+        symbol [ moment %moment.8 50 16 22 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 52 12 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_stop" ]
+        %spiderView.9 = local;
+        symbol [ spiderView %spiderView.9 52 16 26 ];
+        symbol [ SpiderDiagramView %tmp.48 52 33 50 ];
+        %tmp.48 = getv ? :SpiderDiagramView;
+        %tmp.49 = lgetv %categories.4;
+        symbol [ categories %tmp.49 52 51 61 ];
+        %tmp.50 = lgetv %percentageValues.6;
+        symbol [ percentageValues %tmp.50 52 63 79 ];
+        %tmp.51 = lgetv %moment.8;
+        symbol [ moment %tmp.51 52 81 87 ];
+        %tmp.45 = newc %tmp.48 (%tmp.49, %tmp.50, %tmp.51);
+        lputv %spiderView.9 %tmp.45;
+        symbol [ spiderView %spiderView.9 52 16 26 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 53 12 ]
+        symbol [ WatchUi %tmp.52 53 12 19 ];
+        %tmp.52 = getm $.Toybox.WatchUi;
+        symbol [ pushView %tmp.53 53 20 28 ];
+        %tmp.53 = getv function %tmp.52 :pushView;
+        %tmp.54 = lgetv %spiderView.9;
+        symbol [ spiderView %tmp.54 53 29 39 ];
+        symbol [ SpiderDiagramDelegate %tmp.58 53 45 66 ];
+        %tmp.58 = getv ? :SpiderDiagramDelegate;
+        %tmp.59 = lgetv %spiderView.9;
+        symbol [ spiderView %tmp.59 53 67 77 ];
+        %tmp.55 = newc %tmp.58 (%tmp.59);
+        symbol [ WatchUi %tmp.60 53 80 87 ];
+        %tmp.60 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_LEFT %tmp.61 53 88 98 ];
+        %tmp.61 = getv %tmp.60 :SLIDE_LEFT;
+        invoke %tmp.52 %tmp.53(%tmp.54, %tmp.55, %tmp.61);
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 54 12 ]
+        %tmp.62 = true;
+        ret %tmp.62;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_32_55_8_stop:
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_8_55_8_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_43_8_55_8_if_end:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 57 8 ]
+        %tmp.63 = false;
+        ret %tmp.63;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_39_56_58_4_stop:
+    }
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 60; @symbol_functiondef = [onBack,60,13,19]; @symbol_return<0> = [Boolean,60,25,32]; ]
+    function onBack() as Boolean {
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_60_33_62_4_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 61 8 ]
+        symbol [ System %tmp.2 61 8 14 ];
+        %tmp.2 = getv ? :System;
+        symbol [ exit %tmp.3 61 15 19 ];
+        %tmp.3 = getv function %tmp.2 :exit;
+        invoke %tmp.2 %tmp.3();
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_60_33_62_4_stop:
+    }
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 64; @symbol_functiondef = [calculateCategoryAverages,64,13,38]; @symbol_param<0> = [responses,64,39,48]; @symbol_param<0>_type<0> = [Array,64,52,57]; @symbol_param<0>_type<1> = [Number,64,58,64]; @symbol_param<1> = [categories,64,67,77]; @symbol_param<1>_type<0> = [Array,64,81,86]; @symbol_param<1>_type<1> = [String,64,87,93]; @symbol_param<2> = [questionCategories,64,96,114]; @symbol_param<2>_type<0> = [Array,64,118,123]; @symbol_param<2>_type<1> = [String,64,124,130]; @symbol_return<0> = [Array,64,136,141]; @symbol_return<1> = [Number,64,142,148]; ]
+    function calculateCategoryAverages(responses as Array<Number>, categories as Array<String>, questionCategories as Array<String>) as Array<Number> {
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_64_150_83_0_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 65 4 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_64_150_83_0_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_64_150_83_0_stop" ]
+        %percentageValues.1 = local;
+        symbol [ percentageValues %percentageValues.1 65 8 24 ];
+        %tmp.2 = lgetv %categories;
+        symbol [ categories %tmp.2 65 32 42 ];
+        symbol [ size %tmp.3 65 43 47 ];
+        %tmp.3 = getv function %tmp.2 :size;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        %tmp.1 = newa %tmp.4;
+        lputv %percentageValues.1 %tmp.1;
+        symbol [ percentageValues %percentageValues.1 65 8 24 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 67 4 ]
+        for @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_test @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_incr @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_init:
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_begin" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_end" ]
+        %c.2 = local;
+        symbol [ c %c.2 67 13 14 ];
+        %tmp.5 = 0;
+        lputv %c.2 %tmp.5;
+        symbol [ c %c.2 67 13 14 ];
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_test:
+        %tmp.6 = lgetv %c.2;
+        symbol [ c %tmp.6 67 20 21 ];
+        %tmp.7 = lgetv %categories;
+        symbol [ categories %tmp.7 67 24 34 ];
+        symbol [ size %tmp.8 67 35 39 ];
+        %tmp.8 = getv function %tmp.7 :size;
+        %tmp.9 = invoke %tmp.7 %tmp.8();
+        %tmp.10 = lt %tmp.6 %tmp.9;
+        bf %tmp.10 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_begin:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_48_80_4_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 68 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_48_80_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_48_80_4_stop" ]
+        %categoryName.3 = local;
+        symbol [ categoryName %categoryName.3 68 12 24 ];
+        %tmp.11 = lgetv %categories;
+        symbol [ categories %tmp.11 68 27 37 ];
+        %tmp.12 = lgetv %c.2;
+        symbol [ c %tmp.12 68 38 39 ];
+        %tmp.13 = agetv %tmp.11 %tmp.12;
+        %tmp.14 = as %tmp.13 String;
+        symbol [ String %tmp.14 68 44 50 ];
+        lputv %categoryName.3 %tmp.14;
+        symbol [ categoryName %categoryName.3 68 12 24 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 69 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_48_80_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_48_80_4_stop" ]
+        %sum.4 = local;
+        symbol [ sum %sum.4 69 12 15 ];
+        %tmp.15 = 0.0;
+        lputv %sum.4 %tmp.15;
+        symbol [ sum %sum.4 69 12 15 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 70 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_48_80_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_48_80_4_stop" ]
+        %count.5 = local;
+        symbol [ count %count.5 70 12 17 ];
+        %tmp.16 = 0;
+        lputv %count.5 %tmp.16;
+        symbol [ count %count.5 70 12 17 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 72 8 ]
+        for @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_test @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_incr @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_init:
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_begin" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_end" ]
+        %i.6 = local;
+        symbol [ i %i.6 72 17 18 ];
+        %tmp.17 = 0;
+        lputv %i.6 %tmp.17;
+        symbol [ i %i.6 72 17 18 ];
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_test:
+        %tmp.18 = lgetv %i.6;
+        symbol [ i %tmp.18 72 24 25 ];
+        %tmp.19 = lgetv %responses;
+        symbol [ responses %tmp.19 72 28 37 ];
+        symbol [ size %tmp.20 72 38 42 ];
+        %tmp.20 = getv function %tmp.19 :size;
+        %tmp.21 = invoke %tmp.19 %tmp.20();
+        %tmp.22 = lt %tmp.18 %tmp.21;
+        bf %tmp.22 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_begin:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_51_77_8_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 73 12 ]
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_73_12_76_12_if_stmt:
+        %tmp.23 = lgetv %questionCategories;
+        symbol [ questionCategories %tmp.23 73 16 34 ];
+        %tmp.24 = lgetv %i.6;
+        symbol [ i %tmp.24 73 35 36 ];
+        %tmp.25 = agetv %tmp.23 %tmp.24;
+        symbol [ equals %tmp.26 73 38 44 ];
+        %tmp.26 = getv function %tmp.25 :equals;
+        %tmp.27 = lgetv %categoryName.3;
+        symbol [ categoryName %tmp.27 73 45 57 ];
+        %tmp.28 = invoke %tmp.25 %tmp.26(%tmp.27);
+        bf %tmp.28 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_73_12_76_12_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_73_12_76_12_if_true:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_73_60_76_12_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 74 16 ]
+        %tmp.29 = lgetv %sum.4;
+        symbol [ sum %tmp.29 74 16 19 ];
+        %tmp.30 = lgetv %responses;
+        symbol [ responses %tmp.30 74 24 33 ];
+        %tmp.31 = lgetv %i.6;
+        symbol [ i %tmp.31 74 34 35 ];
+        %tmp.32 = agetv %tmp.30 %tmp.31;
+        symbol [ toFloat %tmp.33 74 37 44 ];
+        %tmp.33 = getv function %tmp.32 :toFloat;
+        %tmp.34 = invoke %tmp.32 %tmp.33();
+        %tmp.35 = 4.0;
+        %tmp.36 = div %tmp.34 %tmp.35;
+        %tmp.37 = 100.0;
+        %tmp.38 = mul %tmp.36 %tmp.37;
+        %tmp.39 = add %tmp.29 %tmp.38;
+        lputv %sum.4 %tmp.39;
+        symbol [ sum %sum.4 74 16 19 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 75 16 ]
+        %tmp.42 = lgetv %count.5;
+        symbol [ count %tmp.42 75 16 21 ];
+        %tmp.43 = add %tmp.42 1;
+        lputv %count.5 %tmp.43;
+        symbol [ count %count.5 75 16 21 ];
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_73_60_76_12_stop:
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_73_12_76_12_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_73_12_76_12_if_end:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_51_77_8_stop:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_incr:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 72 ]
+        %tmp.46 = lgetv %i.6;
+        symbol [ i %tmp.46 72 46 47 ];
+        %tmp.47 = add %tmp.46 1;
+        lputv %i.6 %tmp.47;
+        symbol [ i %i.6 72 46 47 ];
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_test;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_72_8_77_8_for_end:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 79 8 ]
+        %tmp.48 = lgetv %percentageValues.1;
+        symbol [ percentageValues %tmp.48 79 8 24 ];
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_79_30_79_71_begin:
+        %tmp.49 = lgetv %count.5;
+        symbol [ count %tmp.49 79 31 36 ];
+        %tmp.50 = 0;
+        %tmp.51 = gt %tmp.49 %tmp.50;
+        bf %tmp.51 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_79_30_79_71_else_false;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_79_30_79_71_true:
+        %tmp.52 = lgetv %sum.4;
+        symbol [ sum %tmp.52 79 45 48 ];
+        %tmp.53 = lgetv %count.5;
+        symbol [ count %tmp.53 79 51 56 ];
+        %tmp.54 = div %tmp.52 %tmp.53;
+        symbol [ toNumber %tmp.55 79 58 66 ];
+        %tmp.55 = getv function %tmp.54 :toNumber;
+        %tmp.56 = invoke %tmp.54 %tmp.55();
+        push %tmp.56;
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_79_30_79_71_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_79_30_79_71_else_false:
+        %tmp.57 = 0;
+        push %tmp.57;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_79_30_79_71_end:
+        %tmp.58 = phi [%tmp.51 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_79_30_79_71_begin] [%tmp.56 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_79_30_79_71_true] [%tmp.57 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_79_30_79_71_else_false] [%tmp.58 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_79_30_79_71_end];
+        %tmp.59 = lgetv %c.2;
+        symbol [ c %tmp.59 79 25 26 ];
+        aputv %tmp.48 %tmp.59 %tmp.58;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_48_80_4_stop:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_incr:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 67 ]
+        %tmp.62 = lgetv %c.2;
+        symbol [ c %tmp.62 67 43 44 ];
+        %tmp.63 = add %tmp.62 1;
+        lputv %c.2 %tmp.63;
+        symbol [ c %c.2 67 43 44 ];
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_test;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_67_4_80_4_for_end:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc" 82 4 ]
+        %tmp.64 = lgetv %percentageValues.1;
+        symbol [ percentageValues %tmp.64 82 11 27 ];
+        ret %tmp.64;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_homeView_mc_64_150_83_0_stop:
+    }
+}
+[ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/homeView.mc"; @line = 1; ]
+<init> {
+}
