@@ -428,13 +428,52 @@ class CalendarPageDelegate extends WatchUi.InputDelegate {
     }
     
     function onKey(keyEvent as KeyEvent) as Boolean {
-        var key = keyEvent.getKey();
         
+        var key = keyEvent.getKey();
         if (key == WatchUi.KEY_ENTER) {
+            
             var dateInfo = calendarView.getSelectedDate();
             var dateString = calendarView.getSelectedDateString();
             var hasData = dateInfo["hasData"] as Boolean;
             
+            if (hasData) {
+                var today = SurveyStorage.getTodayString();
+                var surveyData = SurveyStorage.getSurveyData(today);
+                
+                if (surveyData != null) {
+                    
+                    var responses = surveyData["responses"] as Array<Number>;
+                    var categories = surveyData["categories"] as Array<String>;
+                    var questionCategories = surveyData["questionCategories"] as Array<String>;
+                    
+                    // Calculate percentages
+                    var percentageValues = new [categories.size()];
+                    for (var c = 0; c < categories.size(); c++) {
+                        var categoryName = categories[c] as String;
+                        var sum = 0.0;
+                        var count = 0;
+                        
+                        for (var i = 0; i < responses.size(); i++) {
+                            if (questionCategories[i].equals(categoryName)) {
+                                sum += (responses[i].toFloat() / 4.0 * 100.0);
+                                count++;
+                            }
+                        }
+                        
+                        percentageValues[c] = (count > 0) ? (sum / count).toNumber() : 0;
+                    }
+                    
+                    var timestamp = surveyData["timestamp"] as Number;
+                    var moment = new Time.Moment(timestamp);
+                    
+                    var spiderView = new SpiderDiagramView(categories, percentageValues, moment);
+                    WatchUi.pushView(spiderView, new SpiderDiagramDelegate(spiderView), WatchUi.SLIDE_LEFT);
+                    return true;
+                }
+            }
+            
+            // No data - show the "no data" view
+            System.println("Showing 'no data' view");
             WatchUi.pushView(
                 new DateResultView(dateString, hasData),
                 new DateResultDelegate(),

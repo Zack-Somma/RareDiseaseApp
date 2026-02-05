@@ -2954,20 +2954,20 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageV
     }
     [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc"; @line = 430; @symbol_functiondef = [onKey,430,13,18]; @symbol_param<0> = [keyEvent,430,19,27]; @symbol_param<0>_type<0> = [KeyEvent,430,31,39]; @symbol_return<0> = [Boolean,430,44,51]; ]
     function onKey(keyEvent as KeyEvent) as Boolean {
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_430_52_447_4_start:
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 431 8 ]
-        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_430_52_447_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_430_52_447_4_stop" ]
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_430_52_486_4_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 432 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_430_52_486_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_430_52_486_4_stop" ]
         %key.1 = local;
-        symbol [ key %key.1 431 12 15 ];
+        symbol [ key %key.1 432 12 15 ];
         %tmp.1 = lgetv %keyEvent;
-        symbol [ keyEvent %tmp.1 431 18 26 ];
-        symbol [ getKey %tmp.2 431 27 33 ];
+        symbol [ keyEvent %tmp.1 432 18 26 ];
+        symbol [ getKey %tmp.2 432 27 33 ];
         %tmp.2 = getv function %tmp.1 :getKey;
         %tmp.3 = invoke %tmp.1 %tmp.2();
         lputv %key.1 %tmp.3;
-        symbol [ key %key.1 431 12 15 ];
+        symbol [ key %key.1 432 12 15 ];
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 433 8 ]
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_8_444_8_if_stmt:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_8_483_8_if_stmt:
         %tmp.4 = lgetv %key.1;
         symbol [ key %tmp.4 433 12 15 ];
         symbol [ WatchUi %tmp.5 433 19 26 ];
@@ -2975,91 +2975,418 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageV
         symbol [ KEY_ENTER %tmp.6 433 27 36 ];
         %tmp.6 = getv %tmp.5 :KEY_ENTER;
         %tmp.7 = eq %tmp.4 %tmp.6;
-        bf %tmp.7 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_8_444_8_if_end;
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_8_444_8_if_true:
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_444_8_start:
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 434 12 ]
-        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_444_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_444_8_stop" ]
+        bf %tmp.7 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_8_483_8_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_8_483_8_if_true:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_483_8_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 435 12 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_483_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_483_8_stop" ]
         %dateInfo.2 = local;
-        symbol [ dateInfo %dateInfo.2 434 16 24 ];
-        symbol [ calendarView %tmp.9 434 27 39 ];
+        symbol [ dateInfo %dateInfo.2 435 16 24 ];
+        symbol [ calendarView %tmp.9 435 27 39 ];
         %tmp.9 = getv ? :calendarView;
-        symbol [ getSelectedDate %tmp.10 434 40 55 ];
+        symbol [ getSelectedDate %tmp.10 435 40 55 ];
         %tmp.10 = getv function %tmp.9 :getSelectedDate;
         %tmp.11 = invoke %tmp.9 %tmp.10();
         lputv %dateInfo.2 %tmp.11;
-        symbol [ dateInfo %dateInfo.2 434 16 24 ];
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 435 12 ]
-        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_444_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_444_8_stop" ]
+        symbol [ dateInfo %dateInfo.2 435 16 24 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 436 12 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_483_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_483_8_stop" ]
         %dateString.3 = local;
-        symbol [ dateString %dateString.3 435 16 26 ];
-        symbol [ calendarView %tmp.13 435 29 41 ];
+        symbol [ dateString %dateString.3 436 16 26 ];
+        symbol [ calendarView %tmp.13 436 29 41 ];
         %tmp.13 = getv ? :calendarView;
-        symbol [ getSelectedDateString %tmp.14 435 42 63 ];
+        symbol [ getSelectedDateString %tmp.14 436 42 63 ];
         %tmp.14 = getv function %tmp.13 :getSelectedDateString;
         %tmp.15 = invoke %tmp.13 %tmp.14();
         lputv %dateString.3 %tmp.15;
-        symbol [ dateString %dateString.3 435 16 26 ];
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 436 12 ]
-        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_444_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_444_8_stop" ]
+        symbol [ dateString %dateString.3 436 16 26 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 437 12 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_483_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_483_8_stop" ]
         %hasData.4 = local;
-        symbol [ hasData %hasData.4 436 16 23 ];
+        symbol [ hasData %hasData.4 437 16 23 ];
         %tmp.16 = lgetv %dateInfo.2;
-        symbol [ dateInfo %tmp.16 436 26 34 ];
+        symbol [ dateInfo %tmp.16 437 26 34 ];
         %tmp.17 = "hasData";
         %tmp.18 = agetv %tmp.16 %tmp.17;
         %tmp.19 = as %tmp.18 Boolean;
-        symbol [ Boolean %tmp.19 436 49 56 ];
+        symbol [ Boolean %tmp.19 437 49 56 ];
         lputv %hasData.4 %tmp.19;
-        symbol [ hasData %hasData.4 436 16 23 ];
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 438 12 ]
-        symbol [ WatchUi %tmp.20 438 12 19 ];
-        %tmp.20 = getm $.Toybox.WatchUi;
-        symbol [ pushView %tmp.21 438 20 28 ];
-        %tmp.21 = getv function %tmp.20 :pushView;
-        symbol [ DateResultView %tmp.25 439 20 34 ];
-        %tmp.25 = getv ? :DateResultView;
-        %tmp.26 = lgetv %dateString.3;
-        symbol [ dateString %tmp.26 439 35 45 ];
-        %tmp.27 = lgetv %hasData.4;
-        symbol [ hasData %tmp.27 439 47 54 ];
-        %tmp.22 = newc %tmp.25 (%tmp.26, %tmp.27);
-        symbol [ DateResultDelegate %tmp.31 440 20 38 ];
-        %tmp.31 = getv ? :DateResultDelegate;
-        %tmp.28 = newc %tmp.31 ();
-        symbol [ WatchUi %tmp.32 441 16 23 ];
-        %tmp.32 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_LEFT %tmp.33 441 24 34 ];
-        %tmp.33 = getv %tmp.32 :SLIDE_LEFT;
-        invoke %tmp.20 %tmp.21(%tmp.22, %tmp.28, %tmp.33);
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 443 12 ]
-        %tmp.34 = true;
-        ret %tmp.34;
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_444_8_stop:
-        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_8_444_8_if_end;
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_8_444_8_if_end:
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 446 8 ]
-        %tmp.35 = false;
-        ret %tmp.35;
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_430_52_447_4_stop:
+        symbol [ hasData %hasData.4 437 16 23 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 439 12 ]
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_439_12_473_12_if_stmt:
+        %tmp.20 = lgetv %hasData.4;
+        symbol [ hasData %tmp.20 439 16 23 ];
+        bf %tmp.20 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_439_12_473_12_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_439_12_473_12_if_true:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_439_25_473_12_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 440 16 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_439_25_473_12_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_439_25_473_12_stop" ]
+        %today.5 = local;
+        symbol [ today %today.5 440 20 25 ];
+        symbol [ SurveyStorage %tmp.22 440 28 41 ];
+        %tmp.22 = getv ? :SurveyStorage;
+        symbol [ getTodayString %tmp.23 440 42 56 ];
+        %tmp.23 = getv function %tmp.22 :getTodayString;
+        %tmp.24 = invoke %tmp.22 %tmp.23();
+        lputv %today.5 %tmp.24;
+        symbol [ today %today.5 440 20 25 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 441 16 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_439_25_473_12_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_439_25_473_12_stop" ]
+        %surveyData.6 = local;
+        symbol [ surveyData %surveyData.6 441 20 30 ];
+        symbol [ SurveyStorage %tmp.26 441 33 46 ];
+        %tmp.26 = getv ? :SurveyStorage;
+        symbol [ getSurveyData %tmp.27 441 47 60 ];
+        %tmp.27 = getv function %tmp.26 :getSurveyData;
+        %tmp.28 = lgetv %today.5;
+        symbol [ today %tmp.28 441 61 66 ];
+        %tmp.29 = invoke %tmp.26 %tmp.27(%tmp.28);
+        lputv %surveyData.6 %tmp.29;
+        symbol [ surveyData %surveyData.6 441 20 30 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 443 16 ]
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_16_472_16_if_stmt:
+        %tmp.30 = lgetv %surveyData.6;
+        symbol [ surveyData %tmp.30 443 20 30 ];
+        %tmp.31 = null;
+        %tmp.32 = ne %tmp.30 %tmp.31;
+        bf %tmp.32 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_16_472_16_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_16_472_16_if_true:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 445 20 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_stop" ]
+        %responses.7 = local;
+        symbol [ responses %responses.7 445 24 33 ];
+        %tmp.33 = lgetv %surveyData.6;
+        symbol [ surveyData %tmp.33 445 36 46 ];
+        %tmp.34 = as %tmp.33 { (!Null) };
+        %tmp.35 = "responses";
+        %tmp.36 = agetv %tmp.34 %tmp.35;
+        %tmp.37 = as %tmp.36 Array<Number>;
+        symbol [ Array %tmp.37 445 63 68 ];
+        symbol [ Number %tmp.37 445 69 75 ];
+        lputv %responses.7 %tmp.37;
+        symbol [ responses %responses.7 445 24 33 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 446 20 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_stop" ]
+        %categories.8 = local;
+        symbol [ categories %categories.8 446 24 34 ];
+        %tmp.38 = lgetv %surveyData.6;
+        symbol [ surveyData %tmp.38 446 37 47 ];
+        %tmp.39 = as %tmp.38 { (!Null) };
+        %tmp.40 = "categories";
+        %tmp.41 = agetv %tmp.39 %tmp.40;
+        %tmp.42 = as %tmp.41 Array<String>;
+        symbol [ Array %tmp.42 446 65 70 ];
+        symbol [ String %tmp.42 446 71 77 ];
+        lputv %categories.8 %tmp.42;
+        symbol [ categories %categories.8 446 24 34 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 447 20 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_stop" ]
+        %questionCategories.9 = local;
+        symbol [ questionCategories %questionCategories.9 447 24 42 ];
+        %tmp.43 = lgetv %surveyData.6;
+        symbol [ surveyData %tmp.43 447 45 55 ];
+        %tmp.44 = as %tmp.43 { (!Null) };
+        %tmp.45 = "questionCategories";
+        %tmp.46 = agetv %tmp.44 %tmp.45;
+        %tmp.47 = as %tmp.46 Array<String>;
+        symbol [ Array %tmp.47 447 81 86 ];
+        symbol [ String %tmp.47 447 87 93 ];
+        lputv %questionCategories.9 %tmp.47;
+        symbol [ questionCategories %questionCategories.9 447 24 42 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 450 20 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_stop" ]
+        %percentageValues.10 = local;
+        symbol [ percentageValues %percentageValues.10 450 24 40 ];
+        %tmp.49 = lgetv %categories.8;
+        symbol [ categories %tmp.49 450 48 58 ];
+        symbol [ size %tmp.50 450 59 63 ];
+        %tmp.50 = getv function %tmp.49 :size;
+        %tmp.51 = invoke %tmp.49 %tmp.50();
+        %tmp.48 = newa %tmp.51;
+        lputv %percentageValues.10 %tmp.48;
+        symbol [ percentageValues %percentageValues.10 450 24 40 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 451 20 ]
+        for @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_test @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_incr @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_init:
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_begin" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_end" ]
+        %c.11 = local;
+        symbol [ c %c.11 451 29 30 ];
+        %tmp.52 = 0;
+        lputv %c.11 %tmp.52;
+        symbol [ c %c.11 451 29 30 ];
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_test:
+        %tmp.53 = lgetv %c.11;
+        symbol [ c %tmp.53 451 36 37 ];
+        %tmp.54 = lgetv %categories.8;
+        symbol [ categories %tmp.54 451 40 50 ];
+        symbol [ size %tmp.55 451 51 55 ];
+        %tmp.55 = getv function %tmp.54 :size;
+        %tmp.56 = invoke %tmp.54 %tmp.55();
+        %tmp.57 = lt %tmp.53 %tmp.56;
+        bf %tmp.57 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_begin:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_64_464_20_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 452 24 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_64_464_20_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_64_464_20_stop" ]
+        %categoryName.12 = local;
+        symbol [ categoryName %categoryName.12 452 28 40 ];
+        %tmp.58 = lgetv %categories.8;
+        symbol [ categories %tmp.58 452 43 53 ];
+        %tmp.59 = lgetv %c.11;
+        symbol [ c %tmp.59 452 54 55 ];
+        %tmp.60 = agetv %tmp.58 %tmp.59;
+        %tmp.61 = as %tmp.60 String;
+        symbol [ String %tmp.61 452 60 66 ];
+        lputv %categoryName.12 %tmp.61;
+        symbol [ categoryName %categoryName.12 452 28 40 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 453 24 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_64_464_20_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_64_464_20_stop" ]
+        %sum.13 = local;
+        symbol [ sum %sum.13 453 28 31 ];
+        %tmp.62 = 0.0;
+        lputv %sum.13 %tmp.62;
+        symbol [ sum %sum.13 453 28 31 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 454 24 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_64_464_20_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_64_464_20_stop" ]
+        %count.14 = local;
+        symbol [ count %count.14 454 28 33 ];
+        %tmp.63 = 0;
+        lputv %count.14 %tmp.63;
+        symbol [ count %count.14 454 28 33 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 456 24 ]
+        for @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_test @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_incr @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_init:
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_begin" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_end" ]
+        %i.15 = local;
+        symbol [ i %i.15 456 33 34 ];
+        %tmp.64 = 0;
+        lputv %i.15 %tmp.64;
+        symbol [ i %i.15 456 33 34 ];
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_test:
+        %tmp.65 = lgetv %i.15;
+        symbol [ i %tmp.65 456 40 41 ];
+        %tmp.66 = lgetv %responses.7;
+        symbol [ responses %tmp.66 456 44 53 ];
+        symbol [ size %tmp.67 456 54 58 ];
+        %tmp.67 = getv function %tmp.66 :size;
+        %tmp.68 = invoke %tmp.66 %tmp.67();
+        %tmp.69 = lt %tmp.65 %tmp.68;
+        bf %tmp.69 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_begin:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_67_461_24_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 457 28 ]
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_457_28_460_28_if_stmt:
+        %tmp.70 = lgetv %questionCategories.9;
+        symbol [ questionCategories %tmp.70 457 32 50 ];
+        %tmp.71 = lgetv %i.15;
+        symbol [ i %tmp.71 457 51 52 ];
+        %tmp.72 = agetv %tmp.70 %tmp.71;
+        symbol [ equals %tmp.73 457 54 60 ];
+        %tmp.73 = getv function %tmp.72 :equals;
+        %tmp.74 = lgetv %categoryName.12;
+        symbol [ categoryName %tmp.74 457 61 73 ];
+        %tmp.75 = invoke %tmp.72 %tmp.73(%tmp.74);
+        bf %tmp.75 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_457_28_460_28_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_457_28_460_28_if_true:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_457_76_460_28_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 458 32 ]
+        %tmp.76 = lgetv %sum.13;
+        symbol [ sum %tmp.76 458 32 35 ];
+        %tmp.77 = lgetv %responses.7;
+        symbol [ responses %tmp.77 458 40 49 ];
+        %tmp.78 = lgetv %i.15;
+        symbol [ i %tmp.78 458 50 51 ];
+        %tmp.79 = agetv %tmp.77 %tmp.78;
+        symbol [ toFloat %tmp.80 458 53 60 ];
+        %tmp.80 = getv function %tmp.79 :toFloat;
+        %tmp.81 = invoke %tmp.79 %tmp.80();
+        %tmp.82 = 4.0;
+        %tmp.83 = div %tmp.81 %tmp.82;
+        %tmp.84 = 100.0;
+        %tmp.85 = mul %tmp.83 %tmp.84;
+        %tmp.86 = add %tmp.76 %tmp.85;
+        lputv %sum.13 %tmp.86;
+        symbol [ sum %sum.13 458 32 35 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 459 32 ]
+        %tmp.89 = lgetv %count.14;
+        symbol [ count %tmp.89 459 32 37 ];
+        %tmp.90 = add %tmp.89 1;
+        lputv %count.14 %tmp.90;
+        symbol [ count %count.14 459 32 37 ];
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_457_76_460_28_stop:
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_457_28_460_28_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_457_28_460_28_if_end:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_67_461_24_stop:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_incr:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 456 ]
+        %tmp.93 = lgetv %i.15;
+        symbol [ i %tmp.93 456 62 63 ];
+        %tmp.94 = add %tmp.93 1;
+        lputv %i.15 %tmp.94;
+        symbol [ i %i.15 456 62 63 ];
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_test;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_456_24_461_24_for_end:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 463 24 ]
+        %tmp.95 = lgetv %percentageValues.10;
+        symbol [ percentageValues %tmp.95 463 24 40 ];
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_463_46_463_87_begin:
+        %tmp.96 = lgetv %count.14;
+        symbol [ count %tmp.96 463 47 52 ];
+        %tmp.97 = 0;
+        %tmp.98 = gt %tmp.96 %tmp.97;
+        bf %tmp.98 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_463_46_463_87_else_false;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_463_46_463_87_true:
+        %tmp.99 = lgetv %sum.13;
+        symbol [ sum %tmp.99 463 61 64 ];
+        %tmp.100 = lgetv %count.14;
+        symbol [ count %tmp.100 463 67 72 ];
+        %tmp.101 = div %tmp.99 %tmp.100;
+        symbol [ toNumber %tmp.102 463 74 82 ];
+        %tmp.102 = getv function %tmp.101 :toNumber;
+        %tmp.103 = invoke %tmp.101 %tmp.102();
+        push %tmp.103;
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_463_46_463_87_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_463_46_463_87_else_false:
+        %tmp.104 = 0;
+        push %tmp.104;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_463_46_463_87_end:
+        %tmp.105 = phi [%tmp.98 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_463_46_463_87_begin] [%tmp.103 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_463_46_463_87_true] [%tmp.104 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_463_46_463_87_else_false] [%tmp.105 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_463_46_463_87_end];
+        %tmp.106 = lgetv %c.11;
+        symbol [ c %tmp.106 463 41 42 ];
+        aputv %tmp.95 %tmp.106 %tmp.105;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_64_464_20_stop:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_incr:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 451 ]
+        %tmp.109 = lgetv %c.11;
+        symbol [ c %tmp.109 451 59 60 ];
+        %tmp.110 = add %tmp.109 1;
+        lputv %c.11 %tmp.110;
+        symbol [ c %c.11 451 59 60 ];
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_test;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_451_20_464_20_for_end:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 466 20 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_stop" ]
+        %timestamp.16 = local;
+        symbol [ timestamp %timestamp.16 466 24 33 ];
+        %tmp.111 = lgetv %surveyData.6;
+        symbol [ surveyData %tmp.111 466 36 46 ];
+        %tmp.112 = as %tmp.111 { (!Null) };
+        %tmp.113 = "timestamp";
+        %tmp.114 = agetv %tmp.112 %tmp.113;
+        %tmp.115 = as %tmp.114 Number;
+        symbol [ Number %tmp.115 466 63 69 ];
+        lputv %timestamp.16 %tmp.115;
+        symbol [ timestamp %timestamp.16 466 24 33 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 467 20 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_stop" ]
+        %moment.17 = local;
+        symbol [ moment %moment.17 467 24 30 ];
+        symbol [ Time %tmp.118 467 37 41 ];
+        %tmp.118 = getm $.Toybox.Time;
+        symbol [ Moment %tmp.119 467 42 48 ];
+        %tmp.119 = getv function ? %tmp.118 :Moment;
+        %tmp.120 = lgetv %timestamp.16;
+        symbol [ timestamp %tmp.120 467 49 58 ];
+        %tmp.116 = newc %tmp.119 (%tmp.120);
+        lputv %moment.17 %tmp.116;
+        symbol [ moment %moment.17 467 24 30 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 469 20 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_stop" ]
+        %spiderView.18 = local;
+        symbol [ spiderView %spiderView.18 469 24 34 ];
+        symbol [ SpiderDiagramView %tmp.124 469 41 58 ];
+        %tmp.124 = getv ? :SpiderDiagramView;
+        %tmp.125 = lgetv %categories.8;
+        symbol [ categories %tmp.125 469 59 69 ];
+        %tmp.126 = lgetv %percentageValues.10;
+        symbol [ percentageValues %tmp.126 469 71 87 ];
+        %tmp.127 = lgetv %moment.17;
+        symbol [ moment %tmp.127 469 89 95 ];
+        %tmp.121 = newc %tmp.124 (%tmp.125, %tmp.126, %tmp.127);
+        lputv %spiderView.18 %tmp.121;
+        symbol [ spiderView %spiderView.18 469 24 34 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 470 20 ]
+        symbol [ WatchUi %tmp.128 470 20 27 ];
+        %tmp.128 = getm $.Toybox.WatchUi;
+        symbol [ pushView %tmp.129 470 28 36 ];
+        %tmp.129 = getv function %tmp.128 :pushView;
+        %tmp.130 = lgetv %spiderView.18;
+        symbol [ spiderView %tmp.130 470 37 47 ];
+        symbol [ SpiderDiagramDelegate %tmp.134 470 53 74 ];
+        %tmp.134 = getv ? :SpiderDiagramDelegate;
+        %tmp.135 = lgetv %spiderView.18;
+        symbol [ spiderView %tmp.135 470 75 85 ];
+        %tmp.131 = newc %tmp.134 (%tmp.135);
+        symbol [ WatchUi %tmp.136 470 88 95 ];
+        %tmp.136 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_LEFT %tmp.137 470 96 106 ];
+        %tmp.137 = getv %tmp.136 :SLIDE_LEFT;
+        invoke %tmp.128 %tmp.129(%tmp.130, %tmp.131, %tmp.137);
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 471 20 ]
+        %tmp.138 = true;
+        ret %tmp.138;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_40_472_16_stop:
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_16_472_16_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_443_16_472_16_if_end:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_439_25_473_12_stop:
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_439_12_473_12_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_439_12_473_12_if_end:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 476 12 ]
+        symbol [ System %tmp.140 476 12 18 ];
+        %tmp.140 = getv ? :System;
+        symbol [ println %tmp.141 476 19 26 ];
+        %tmp.141 = getv function %tmp.140 :println;
+        %tmp.142 = "Showing 'no data' view";
+        invoke %tmp.140 %tmp.141(%tmp.142);
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 477 12 ]
+        symbol [ WatchUi %tmp.143 477 12 19 ];
+        %tmp.143 = getm $.Toybox.WatchUi;
+        symbol [ pushView %tmp.144 477 20 28 ];
+        %tmp.144 = getv function %tmp.143 :pushView;
+        symbol [ DateResultView %tmp.148 478 20 34 ];
+        %tmp.148 = getv ? :DateResultView;
+        %tmp.149 = lgetv %dateString.3;
+        symbol [ dateString %tmp.149 478 35 45 ];
+        %tmp.150 = lgetv %hasData.4;
+        symbol [ hasData %tmp.150 478 47 54 ];
+        %tmp.145 = newc %tmp.148 (%tmp.149, %tmp.150);
+        symbol [ DateResultDelegate %tmp.154 479 20 38 ];
+        %tmp.154 = getv ? :DateResultDelegate;
+        %tmp.151 = newc %tmp.154 ();
+        symbol [ WatchUi %tmp.155 480 16 23 ];
+        %tmp.155 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_LEFT %tmp.156 480 24 34 ];
+        %tmp.156 = getv %tmp.155 :SLIDE_LEFT;
+        invoke %tmp.143 %tmp.144(%tmp.145, %tmp.151, %tmp.156);
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 482 12 ]
+        %tmp.157 = true;
+        ret %tmp.157;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_38_483_8_stop:
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_8_483_8_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_433_8_483_8_if_end:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 485 8 ]
+        %tmp.158 = false;
+        ret %tmp.158;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_430_52_486_4_stop:
     }
-    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc"; @line = 449; @symbol_functiondef = [onBack,449,13,19]; @symbol_return<0> = [Boolean,449,25,32]; ]
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc"; @line = 488; @symbol_functiondef = [onBack,488,13,19]; @symbol_return<0> = [Boolean,488,25,32]; ]
     function onBack() as Boolean {
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_449_33_452_4_start:
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 450 8 ]
-        symbol [ WatchUi %tmp.1 450 8 15 ];
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_488_33_491_4_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 489 8 ]
+        symbol [ WatchUi %tmp.1 489 8 15 ];
         %tmp.1 = getm $.Toybox.WatchUi;
-        symbol [ popView %tmp.2 450 16 23 ];
+        symbol [ popView %tmp.2 489 16 23 ];
         %tmp.2 = getv function %tmp.1 :popView;
-        symbol [ WatchUi %tmp.3 450 24 31 ];
+        symbol [ WatchUi %tmp.3 489 24 31 ];
         %tmp.3 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_RIGHT %tmp.4 450 32 43 ];
+        symbol [ SLIDE_RIGHT %tmp.4 489 32 43 ];
         %tmp.4 = getv %tmp.3 :SLIDE_RIGHT;
         invoke %tmp.1 %tmp.2(%tmp.4);
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 451 8 ]
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc" 490 8 ]
         %tmp.5 = true;
         ret %tmp.5;
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_449_33_452_4_stop:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_calendar_pageView_mc_488_33_491_4_stop:
     }
 }
 [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/calendar_pageView.mc"; @line = 1; ]
