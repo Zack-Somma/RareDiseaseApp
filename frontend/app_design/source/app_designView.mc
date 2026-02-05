@@ -31,7 +31,7 @@ class app_designView extends WatchUi.View {
     }
     
     // --- 3. User name ---
-    var userName = "Claire!";
+    var userName = "there!";
     var greetingText = Lang.format("$1$, \n$2$", [greeting, userName]);
     var timeText = Lang.format(
         "$1$:$2$",

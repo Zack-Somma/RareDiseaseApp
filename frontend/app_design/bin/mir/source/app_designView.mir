@@ -114,7 +114,7 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designView
         [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designView_mc_19_26_107_0_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designView_mc_19_26_107_0_stop" ]
         %userName.3 = local;
         symbol [ userName %userName.3 34 8 16 ];
-        %tmp.15 = "Claire!";
+        %tmp.15 = "there!";
         lputv %userName.3 %tmp.15;
         symbol [ userName %userName.3 34 8 16 ];
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" 35 4 ]
