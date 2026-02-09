@@ -196,23 +196,12 @@ class SpiderDiagramDelegate extends WatchUi.BehaviorDelegate {
     function onSwipe(evt as SwipeEvent) as Lang.Boolean {
         var direction = evt.getDirection();
         
-        // Swipe up to show chart view
+        // Swipe up: score page (Today's Score) → then swipe up again for trends
         if (direction == WatchUi.SWIPE_UP) {
-            // Get data from spider diagram
-            var symptomValues = view.getSymptomValues();
-            var symptomLabels = view.getSymptomLabels();
-            
-            // Convert values from 0-100 scale back to 0-4 scale for the chart
-            var chartData = new [symptomValues.size()];
-            for (var i = 0; i < symptomValues.size(); i++) {
-                chartData[i] = symptomValues[i] > 0 ? 4 : 0; // Simplified: checked = 4, unchecked = 0
-            }
-            
-            var chartView = new ChartView(chartData, symptomLabels);
-            WatchUi.pushView(chartView, new ChartDelegate(), WatchUi.SLIDE_UP);
+            var scoreView = new scorePageView();
+            WatchUi.pushView(scoreView, new ScorePageDelegate(scoreView), WatchUi.SLIDE_UP);
             return true;
         }
-        
         return false;
     }
 }

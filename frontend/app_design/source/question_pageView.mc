@@ -607,26 +607,47 @@ class CompletionDelegate extends WatchUi.BehaviorDelegate {
             var activeCategories = view.getActiveCategories();
             var questionCategories = view.getQuestionCategories();
             
-            // Calculate average for each active category
-            var symptomLabels = activeCategories;
-            var percentageValues = new [activeCategories.size()];
+            // Spider diagram always shows all 8 categories in this order (per spider scoring).
+            var symptomLabels = [
+                "NMSK",
+                "Pain",
+                "Fatigue",
+                "Gastrointestinal",
+                "Cardiac dysautonomia",
+                "Urogential",
+                "Anxiety",
+                "Depression"
+            ];
+            var percentageValues = new [8];
             
-            for (var c = 0; c < activeCategories.size(); c++) {
-                var categoryName = activeCategories[c] as String;
+            for (var c = 0; c < 8; c++) {
+                var categoryName = symptomLabels[c] as String;
+                
+                // Check if this category was selected on the checklist
+                var isActive = false;
+                for (var j = 0; j < activeCategories.size(); j++) {
+                    if (categoryName.equals(activeCategories[j])) {
+                        isActive = true;
+                        break;
+                    }
+                }
+                
+                if (!isActive) {
+                    // Not selected: show as zero on the spider diagram
+                    percentageValues[c] = 0;
+                    continue;
+                }
+                
+                // Selected: average the responses for this category
                 var sum = 0.0;
                 var count = 0;
-                
-                // Find all responses that belong to this category
                 for (var i = 0; i < responses.size(); i++) {
                     if (questionCategories[i].equals(categoryName)) {
                         sum += (responses[i].toFloat() / 4.0 * 100.0);
                         count++;
                     }
                 }
-                
                 percentageValues[c] = (count > 0) ? (sum / count).toNumber() : 0;
-                
-                System.println("Category: " + categoryName + " = " + percentageValues[c] + "% (from " + count + " questions)");
             }
             
             var dateRecorded = Time.now();
