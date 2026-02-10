@@ -101,11 +101,12 @@ class SpiderDiagramDelegate extends WatchUi.BehaviorDelegate {
     function initialize(v as SpiderDiagramView) { BehaviorDelegate.initialize(); view = v; }
     function onBack() as Lang.Boolean { WatchUi.popView(WatchUi.SLIDE_DOWN); return true; }
     function onSwipe(evt as SwipeEvent) as Lang.Boolean {
-        if (evt.getDirection() == WatchUi.SWIPE_UP) {
-            var cv = new ChartView(null);
-            var cd = new ChartDelegate();
-            cd.setView(cv);
-            WatchUi.pushView(cv, cd, WatchUi.SLIDE_UP);
+        var direction = evt.getDirection();
+        
+        // Swipe up: score page (Today's Score) → then swipe up again for trends
+        if (direction == WatchUi.SWIPE_UP) {
+            var scoreView = new scorePageView();
+            WatchUi.pushView(scoreView, new ScorePageDelegate(scoreView), WatchUi.SLIDE_UP);
             return true;
         }
         return false;

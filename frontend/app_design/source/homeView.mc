@@ -71,14 +71,37 @@ class HomeDelegate extends WatchUi.BehaviorDelegate {
         
         if (surveyData != null) {
             var responses = surveyData["responses"] as Array<Number>;
-            var categories = surveyData["categories"] as Array<String>;
+            var activeCategories = surveyData["categories"] as Array<String>;
             var questionCategories = surveyData["questionCategories"] as Array<String>;
             
-            var percentageValues = calculateCategoryAverages(responses, categories, questionCategories);
+            var symptomLabels = ["NMSK", "Pain", "Fatigue", "Gastrointestinal", "Cardiac dysautonomia", "Urogential", "Anxiety", "Depression"];
+            var percentageValues = new [8];
+            for (var c = 0; c < 8; c++) {
+                var categoryName = symptomLabels[c] as String;
+                var isActive = false;
+                for (var j = 0; j < activeCategories.size(); j++) {
+                    if (categoryName.equals(activeCategories[j])) {
+                        isActive = true;
+                        break;
+                    }
+                }
+                if (!isActive) {
+                    percentageValues[c] = 0;
+                } else {
+                    var sum = 0.0;
+                    var count = 0;
+                    for (var i = 0; i < responses.size(); i++) {
+                        if (questionCategories[i].equals(categoryName)) {
+                            sum += (responses[i].toFloat() / 4.0 * 100.0);
+                            count++;
+                        }
+                    }
+                    percentageValues[c] = (count > 0) ? (sum / count).toNumber() : 0;
+                }
+            }
             var timestamp = surveyData["timestamp"] as Number;
             var moment = new Time.Moment(timestamp);
-            
-            var spiderView = new SpiderDiagramView(categories, percentageValues, moment);
+            var spiderView = new SpiderDiagramView(symptomLabels, percentageValues, moment);
             WatchUi.pushView(spiderView, new SpiderDiagramDelegate(spiderView), WatchUi.SLIDE_LEFT);
             return true;
         }
