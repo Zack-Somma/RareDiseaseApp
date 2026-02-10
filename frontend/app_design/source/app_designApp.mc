@@ -30,10 +30,10 @@ class app_designApp extends Application.AppBase {
         /*
         HOME PAGE / DASHBOARD if the survey has been completed already
         */
-        if (SurveyStorage.hasCompletedToday()) {
-        var homeView = new HomeView();
-        return [homeView, new HomeDelegate()];
-     }
+         if (SurveyStorage.hasCompletedToday()) {
+            var homeView = new HomeView();
+            return [homeView, new HomeDelegate(homeView)];
+        }
         return [view, delegate];
     }
 }

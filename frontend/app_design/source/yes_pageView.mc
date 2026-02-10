@@ -102,8 +102,11 @@ class YesPageDelegate extends WatchUi.BehaviorDelegate {
             }
             // Right side - NO
             else {
-                var chartView = new ChartView([0, 3, 4, 1, 2], ["Placeholder values"]);
-                WatchUi.pushView(chartView, new ChartDelegate(), WatchUi.SLIDE_DOWN);
+                // var chartView = new ChartView(null);
+                // var chartDelegate = new ChartDelegate();
+                // //chartDelegate.setView(chartView);
+                // WatchUi.pushView(chartView, chartDelegate, WatchUi.SLIDE_DOWN);
+                return true;
             }
         }
         

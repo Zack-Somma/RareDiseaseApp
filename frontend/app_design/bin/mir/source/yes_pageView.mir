@@ -378,9 +378,9 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_m
     }
     [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc"; @line = 89; @symbol_functiondef = [onTap,89,13,18]; @symbol_param<0> = [clickEvent,89,19,29]; @symbol_param<0>_type<0> = [ClickEvent,89,33,43]; @symbol_return<0> = [Lang,89,48,52]; @symbol_return<1> = [Boolean,89,53,60]; ]
     function onTap(clickEvent as ClickEvent) as Lang.Boolean {
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_111_4_start:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_114_4_start:
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 90 8 ]
-        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_111_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_111_4_stop" ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_114_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_114_4_stop" ]
         %coords.1 = local;
         symbol [ coords %coords.1 90 12 18 ];
         %tmp.1 = lgetv %clickEvent;
@@ -391,7 +391,7 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_m
         lputv %coords.1 %tmp.3;
         symbol [ coords %coords.1 90 12 18 ];
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 91 8 ]
-        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_111_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_111_4_stop" ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_114_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_114_4_stop" ]
         %x.2 = local;
         symbol [ x %x.2 91 12 13 ];
         %tmp.4 = lgetv %coords.1;
@@ -401,7 +401,7 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_m
         lputv %x.2 %tmp.6;
         symbol [ x %x.2 91 12 13 ];
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 92 8 ]
-        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_111_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_111_4_stop" ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_114_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_114_4_stop" ]
         %y.3 = local;
         symbol [ y %y.3 92 12 13 ];
         %tmp.7 = lgetv %coords.1;
@@ -411,22 +411,22 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_m
         lputv %y.3 %tmp.9;
         symbol [ y %y.3 92 12 13 ];
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 95 8 ]
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_108_8_if_stmt:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_111_8_if_stmt:
         %tmp.10 = lgetv %y.3;
         symbol [ y %tmp.10 95 12 13 ];
         %tmp.11 = 180;
         %tmp.12 = gt %tmp.10 %tmp.11;
-        bf %tmp.12 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_108_8_if_end;
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_108_8_if_true:
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_21_108_8_start:
+        bf %tmp.12 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_111_8_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_111_8_if_true:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_21_111_8_start:
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 97 12 ]
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_107_12_if_stmt:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_110_12_if_stmt:
         %tmp.13 = lgetv %x.2;
         symbol [ x %tmp.13 97 16 17 ];
         %tmp.14 = 180;
         %tmp.15 = lt %tmp.13 %tmp.14;
-        bf %tmp.15 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_107_12_if_else_false;
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_107_12_if_true:
+        bf %tmp.15 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_110_12_if_else_false;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_110_12_if_true:
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_25_102_12_start:
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 98 16 ]
         [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_25_102_12_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_25_102_12_stop" ]
@@ -466,62 +466,21 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_m
         %tmp.31 = true;
         ret %tmp.31;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_25_102_12_stop:
-        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_107_12_if_end;
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_107_12_if_else_false:
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_107_12_start:
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 105 16 ]
-        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_107_12_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_107_12_stop" ]
-        %chartView.6 = local;
-        symbol [ chartView %chartView.6 105 20 29 ];
-        symbol [ ChartView %tmp.35 105 36 45 ];
-        %tmp.35 = getv ? :ChartView;
-        %tmp.36 = newa 5;
-        %tmp.37 = 0;
-        %tmp.38 = dup %tmp.36;
-        %tmp.39 = aputv %tmp.38 0 %tmp.37;
-        %tmp.40 = 3;
-        %tmp.41 = dup %tmp.39;
-        %tmp.42 = aputv %tmp.41 1 %tmp.40;
-        %tmp.43 = 4;
-        %tmp.44 = dup %tmp.42;
-        %tmp.45 = aputv %tmp.44 2 %tmp.43;
-        %tmp.46 = 1;
-        %tmp.47 = dup %tmp.45;
-        %tmp.48 = aputv %tmp.47 3 %tmp.46;
-        %tmp.49 = 2;
-        %tmp.50 = dup %tmp.48;
-        %tmp.51 = aputv %tmp.50 4 %tmp.49;
-        %tmp.52 = newa 1;
-        %tmp.53 = "Placeholder values";
-        %tmp.54 = dup %tmp.52;
-        %tmp.55 = aputv %tmp.54 0 %tmp.53;
-        %tmp.32 = newc %tmp.35 (%tmp.51, %tmp.55);
-        lputv %chartView.6 %tmp.32;
-        symbol [ chartView %chartView.6 105 20 29 ];
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 106 16 ]
-        symbol [ WatchUi %tmp.56 106 16 23 ];
-        %tmp.56 = getm $.Toybox.WatchUi;
-        symbol [ pushView %tmp.57 106 24 32 ];
-        %tmp.57 = getv function %tmp.56 :pushView;
-        %tmp.58 = lgetv %chartView.6;
-        symbol [ chartView %tmp.58 106 33 42 ];
-        symbol [ ChartDelegate %tmp.62 106 48 61 ];
-        %tmp.62 = getv ? :ChartDelegate;
-        %tmp.59 = newc %tmp.62 ();
-        symbol [ WatchUi %tmp.63 106 65 72 ];
-        %tmp.63 = getm $.Toybox.WatchUi;
-        symbol [ SLIDE_DOWN %tmp.64 106 73 83 ];
-        %tmp.64 = getv %tmp.63 :SLIDE_DOWN;
-        invoke %tmp.56 %tmp.57(%tmp.58, %tmp.59, %tmp.64);
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_107_12_stop:
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_107_12_if_end:
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_21_108_8_stop:
-        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_108_8_if_end;
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_108_8_if_end:
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 110 8 ]
-        %tmp.65 = false;
-        ret %tmp.65;
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_111_4_stop:
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_110_12_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_110_12_if_else_false:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_110_12_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 109 16 ]
+        %tmp.32 = true;
+        ret %tmp.32;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_110_12_stop:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_110_12_if_end:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_21_111_8_stop:
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_111_8_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_111_8_if_end:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 113 8 ]
+        %tmp.33 = false;
+        ret %tmp.33;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_114_4_stop:
     }
 }
 [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc"; @line = 2; ]
