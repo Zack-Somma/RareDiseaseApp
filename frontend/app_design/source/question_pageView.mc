@@ -442,48 +442,43 @@ class CompletionDelegate extends WatchUi.BehaviorDelegate {
     }
     
     function onSwipe(evt as SwipeEvent) as Lang.Boolean {
-        var direction = evt.getDirection();
-        if (direction == WatchUi.SWIPE_UP) {
-            var responses = view.getResponses();
-            var activeCategories = view.getActiveCategories();
-            var questionCategories = view.getQuestionCategories();
+    var direction = evt.getDirection();
+    if (direction == WatchUi.SWIPE_UP) {
+        var responses = view.getResponses();
+        var activeCategories = view.getActiveCategories();
+        var questionCategories = view.getQuestionCategories();
+        var symptomLabels = [
+            "NMSK",
+            "Pain",
+            "Fatigue",
+            "Gastrointestinal",
+            "Cardiac dysautonomia",
+            "Urogential",
+            "Anxiety",
+            "Depression"
+        ];
+        
+        // Initialize all to 0 first
+        var percentageValues = new [8];
+        for (var i = 0; i < 8; i++) {
+            percentageValues[i] = 0;
+        }
+        
+        // Now calculate only for active categories
+        for (var c = 0; c < symptomLabels.size(); c++) {
+            var categoryName = symptomLabels[c] as String;
             
-            // Spider diagram always shows all 8 categories in this order (per spider scoring).
-            var symptomLabels = [
-                "NMSK",
-                "Pain",
-                "Fatigue",
-                "Gastrointestinal",
-                "Cardiac dysautonomia",
-                "Urogential",
-                "Anxiety",
-                "Depression"
-            ];
-            var percentageValues = new [8];
+            // Check if this category is active
+            var isActive = false;
+            for (var j = 0; j < activeCategories.size(); j++) {
+                if (categoryName.equals(activeCategories[j])) {
+                    isActive = true;
+                    break;
+                }
+            }
             
-            for (var c = 0; c < 8; c++) {
-                var categoryName = symptomLabels[c] as String;
-                
-                // Check if this category was selected on the checklist
-                var isActive = false;
-                for (var j = 0; j < activeCategories.size(); j++) {
-                    if (categoryName.equals(activeCategories[j])) {
-                        isActive = true;
-                        break;
-                    }
-                }
-                
-                if (!isActive) {
-                    // Not selected: show as zero on the spider diagram
-                    percentageValues[c] = 0;
-                    continue;
-                }
-                
-                // Selected: average the responses for this category
-            var symptomLabels = activeCategories;
-            var percentageValues = new [activeCategories.size()];
-            for (var c = 0; c < activeCategories.size(); c++) {
-                var categoryName = activeCategories[c] as String;
+            if (isActive) {
+                // Calculate average for this category
                 var sum = 0.0;
                 var count = 0;
                 for (var i = 0; i < responses.size(); i++) {
@@ -494,13 +489,15 @@ class CompletionDelegate extends WatchUi.BehaviorDelegate {
                 }
                 percentageValues[c] = (count > 0) ? (sum / count).toNumber() : 0;
             }
-            var dateRecorded = Time.now();
-            var spiderView = new SpiderDiagramView(symptomLabels, percentageValues, dateRecorded);
-            WatchUi.pushView(spiderView, new SpiderDiagramDelegate(spiderView), WatchUi.SLIDE_UP);
-            return true;
+            // If not active, it stays 0 (already initialized)
         }
-        return false;
+        
+        var dateRecorded = Time.now();
+        var spiderView = new SpiderDiagramView(symptomLabels, percentageValues, dateRecorded);
+        WatchUi.pushView(spiderView, new SpiderDiagramDelegate(spiderView), WatchUi.SLIDE_UP);
+        return true;
     }
-    
+    return false;
+}
     function onBack() as Lang.Boolean { WatchUi.popView(WatchUi.SLIDE_DOWN); return true; }
 }

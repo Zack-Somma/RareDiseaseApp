@@ -137,9 +137,10 @@ class ScorePageDelegate extends WatchUi.BehaviorDelegate {
     function onSwipe(evt as SwipeEvent) as Boolean {
         var direction = evt.getDirection();
         if (direction == WatchUi.SWIPE_UP) {
-            var chartView = new ChartView([0, 3, 4, 1, 2], ["Placeholder values"]);
-            WatchUi.pushView(chartView, new ChartDelegate(), WatchUi.SLIDE_UP);
-            return true;
+            var chartView = new ChartView(null);
+            var chartDelegate = new ChartDelegate();
+            chartDelegate.setView(chartView);
+            WatchUi.pushView(chartView, chartDelegate, WatchUi.SLIDE_UP);
         }
         return false;
     }
