@@ -5,64 +5,44 @@ import Toybox.Time;
 import Toybox.Time.Gregorian;
 
 class CalendarPageView extends WatchUi.View {
-    // Current displayed month/year
     var currentYear as Number = 2025;
     var currentMonth as Number = 9;
     
-    // Selected date
     var selectedDay as Number = 1;
     var selectedRow as Number = 0;
     var selectedCol as Number = 0;
     
-    // Calendar grid (6 rows to handle all months)
     var calendarGrid as Array<Array<Number> >?;
-    
-    // Store which dates have survey data
-    var datesWithData as Array<Number> = [5, 12, 18, 25];
+    var datesWithData as Array<Number> = [];
     
     function initialize() {
-    View.initialize();
-    
-    var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
-    currentYear = today.year;
-    currentMonth = today.month;
-    selectedDay = today.day;
-    
-    // Load actual survey dates
-    var allDates = SurveyStorage.getAllSurveyDates();
-    datesWithData = [];
-    
-    for (var i = 0; i < allDates.size(); i++) {
-        var dateStr = allDates[i] as String;
-        // Parse date string (YYYY-MM-DD)
-        var parts = splitDateString(dateStr);
-        if (parts[0] == currentYear && parts[1] == currentMonth) {
-            datesWithData.add(parts[2]); // Add day number
-        }
+        View.initialize();
+        
+        var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
+        currentYear = today.year;
+        currentMonth = today.month;
+        selectedDay = today.day;
+        
+        updateDatesWithData();
+        buildCalendarGrid();
+        findSelectedPosition();
     }
-    
-    buildCalendarGrid();
-    findSelectedPosition();
-}
 
-function splitDateString(dateStr as String) as Array<Number> {
-    // Parse "YYYY-MM-DD" to [year, month, day]
-    var year = dateStr.substring(0, 4).toNumber();
-    var month = dateStr.substring(5, 7).toNumber();
-    var day = dateStr.substring(8, 10).toNumber();
-    return [year, month, day];
-}
+    function splitDateString(dateStr as String) as Array<Number> {
+        var year = dateStr.substring(0, 4).toNumber();
+        var month = dateStr.substring(5, 7).toNumber();
+        var day = dateStr.substring(8, 10).toNumber();
+        return [year, month, day];
+    }
     
     function onUpdate(dc as Dc) as Void {
         var width = dc.getWidth();
         var height = dc.getHeight();
         var centerX = width / 2;
         
-        // White background
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_WHITE);
         dc.clear();
         
-        // Draw all components
         drawTitle(dc, centerX);
         drawMonthYearHeader(dc, centerX);
         drawDayHeaders(dc, width);
@@ -87,7 +67,6 @@ function splitDateString(dateStr as String) as Array<Number> {
         dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(centerX - 100, headerY, Graphics.FONT_SMALL, "<", 
                     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-        
         dc.drawText(centerX + 100, headerY, Graphics.FONT_SMALL, ">", 
                     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
     }
@@ -118,26 +97,28 @@ function splitDateString(dateStr as String) as Array<Number> {
         var startY = 145;
         
         for (var row = 0; row < 5; row++) {
-            if (row >= 6) {
-                continue;
-            }
+            if (row >= 6) { continue; }
             
             for (var col = 0; col < 7; col++) {
                 var dayValue = calendarGrid[row][col];
                 var x = startX + (col * cellWidth) + (cellWidth / 2);
                 var y = startY + (row * cellHeight);
                 
-                if (dayValue <= 0 || dayValue > 100) {
-                    continue;
-                }
+                if (dayValue <= 0 || dayValue > 100) { continue; }
                 
                 var displayDay = dayValue;
                 var isSelected = (row == selectedRow && col == selectedCol);
+                var hasData = dateHasData(dayValue);
                 
                 if (isSelected) {
                     dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLACK);
                     dc.fillRoundedRectangle(x - 20, y - 14, 40, 30, 8);
                     dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+                } else if (hasData) {
+                    // Highlight dates that have survey data with a subtle indicator
+                    dc.setColor(0x336699, Graphics.COLOR_TRANSPARENT);
+                    dc.fillCircle(x, y + 12, 2);
+                    dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
                 } else {
                     dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
                 }
@@ -179,9 +160,7 @@ function splitDateString(dateStr as String) as Array<Number> {
     }
     
     function findSelectedPosition() as Void {
-        if (calendarGrid == null) {
-            return;
-        }
+        if (calendarGrid == null) { return; }
         for (var row = 0; row < 6; row++) {
             for (var col = 0; col < 7; col++) {
                 if (calendarGrid[row][col] == selectedDay) {
@@ -232,49 +211,43 @@ function splitDateString(dateStr as String) as Array<Number> {
     }
     
     function nextMonth() as Void {
-    currentMonth++;
-    if (currentMonth > 12) {
-        currentMonth = 1;
-        currentYear++;
+        currentMonth++;
+        if (currentMonth > 12) {
+            currentMonth = 1;
+            currentYear++;
+        }
+        updateDatesWithData();
+        buildCalendarGrid();
+        selectedDay = 1;
+        findSelectedPosition();
+        WatchUi.requestUpdate();
     }
-    
-    // Reload dates with data for this month
-    updateDatesWithData();
-    
-    buildCalendarGrid();
-    selectedDay = 1;
-    findSelectedPosition();
-    WatchUi.requestUpdate();
-}
 
-function previousMonth() as Void {
-    currentMonth--;
-    if (currentMonth < 1) {
-        currentMonth = 12;
-        currentYear--;
+    function previousMonth() as Void {
+        currentMonth--;
+        if (currentMonth < 1) {
+            currentMonth = 12;
+            currentYear--;
+        }
+        updateDatesWithData();
+        buildCalendarGrid();
+        selectedDay = 1;
+        findSelectedPosition();
+        WatchUi.requestUpdate();
     }
-    
-    // Reload dates with data for this month
-    updateDatesWithData();
-    
-    buildCalendarGrid();
-    selectedDay = 1;
-    findSelectedPosition();
-    WatchUi.requestUpdate();
-}
 
-function updateDatesWithData() as Void {
-    var allDates = SurveyStorage.getAllSurveyDates();
-    datesWithData = [];
-    
-    for (var i = 0; i < allDates.size(); i++) {
-        var dateStr = allDates[i] as String;
-        var parts = splitDateString(dateStr);
-        if (parts[0] == currentYear && parts[1] == currentMonth) {
-            datesWithData.add(parts[2]);
+    function updateDatesWithData() as Void {
+        var allDates = SurveyStorage.getAllSurveyDates();
+        datesWithData = [];
+        
+        for (var i = 0; i < allDates.size(); i++) {
+            var dateStr = allDates[i] as String;
+            var parts = splitDateString(dateStr);
+            if (parts[0] == currentYear && parts[1] == currentMonth) {
+                datesWithData.add(parts[2]);
+            }
         }
     }
-}
     
     function nextDay() as Void {
         var daysInMonth = getDaysInMonth(currentYear, currentMonth);
@@ -299,11 +272,13 @@ function updateDatesWithData() as Void {
         var monthName = getMonthName(currentMonth);
         return monthName + " " + selectedDay + ", " + currentYear;
     }
+
+    function getSelectedDateStringFormatted() as String {
+    return currentYear.format("%04d") + "-" + currentMonth.format("%02d") + "-" + selectedDay.format("%02d");
+}
     
     function getDayAtPosition(x as Number, y as Number) as Number {
-        if (calendarGrid == null) {
-            return -1;
-        }
+        if (calendarGrid == null) { return -1; }
         
         var width = 360;
         var cellWidth = (width - 40) / 7;
@@ -311,22 +286,16 @@ function updateDatesWithData() as Void {
         var startX = 25;
         var startY = 145;
         
-        if (y < startY || y > startY + (5 * cellHeight)) {
-            return -1;
-        }
+        if (y < startY || y > startY + (5 * cellHeight)) { return -1; }
         
         var col = (x - startX) / cellWidth;
         var row = (y - startY) / cellHeight;
         
-        if (col < 0 || col >= 7 || row < 0 || row >= 5) {
-            return -1;
-        }
+        if (col < 0 || col >= 7 || row < 0 || row >= 5) { return -1; }
         
         var dayValue = calendarGrid[row][col];
         
-        if (dayValue <= 0 || dayValue > 100) {
-            return -1;
-        }
+        if (dayValue <= 0 || dayValue > 100) { return -1; }
         
         return dayValue;
     }
@@ -364,12 +333,13 @@ class CalendarPageDelegate extends WatchUi.InputDelegate {
             calendarView.findSelectedPosition();
             
             var dateInfo = calendarView.getSelectedDate();
-            var dateString = calendarView.getSelectedDateString();
+            var dateString = calendarView.getSelectedDateStringFormatted();
+            var nodateString = calendarView.getSelectedDateString();
             var hasData = dateInfo["hasData"] as Boolean;
             
             if (hasData) {
-                var today = SurveyStorage.getTodayString();
-                var surveyData = SurveyStorage.getSurveyData(today);
+
+                var surveyData = SurveyStorage.getSurveyData(dateString);
                 
                 if (surveyData != null) {
                     
@@ -406,7 +376,7 @@ class CalendarPageDelegate extends WatchUi.InputDelegate {
             // No data - show the "no data" view
             System.println("Showing 'no data' view");
             WatchUi.pushView(
-                new DateResultView(dateString, hasData),
+                new DateResultView(nodateString, hasData),
                 new DateResultDelegate(),
                 WatchUi.SLIDE_LEFT
             );
@@ -433,12 +403,12 @@ class CalendarPageDelegate extends WatchUi.InputDelegate {
         if (key == WatchUi.KEY_ENTER) {
             
             var dateInfo = calendarView.getSelectedDate();
-            var dateString = calendarView.getSelectedDateString();
+            var dateString = calendarView.getSelectedDateStringFormatted();
+            var nodateString = calendarView.getSelectedDateString();
             var hasData = dateInfo["hasData"] as Boolean;
             
             if (hasData) {
-                var today = SurveyStorage.getTodayString();
-                var surveyData = SurveyStorage.getSurveyData(today);
+                var surveyData = SurveyStorage.getSurveyData(dateString);
                 
                 if (surveyData != null) {
                     
@@ -475,7 +445,7 @@ class CalendarPageDelegate extends WatchUi.InputDelegate {
             // No data - show the "no data" view
             System.println("Showing 'no data' view");
             WatchUi.pushView(
-                new DateResultView(dateString, hasData),
+                new DateResultView(nodateString, hasData),
                 new DateResultDelegate(),
                 WatchUi.SLIDE_LEFT
             );
