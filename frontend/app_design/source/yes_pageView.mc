@@ -18,7 +18,7 @@ class YesPageView extends WatchUi.View {
             dc.getHeight() / 2.2,
             Graphics.FONT_SMALL,
             "Are there any" +
-            "\nnew symptoms \nto report?",
+            "\n symptoms \nto report?",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
@@ -102,10 +102,10 @@ class YesPageDelegate extends WatchUi.BehaviorDelegate {
             }
             // Right side - NO
             else {
-                // var chartView = new ChartView(null);
-                // var chartDelegate = new ChartDelegate();
-                // //chartDelegate.setView(chartView);
-                // WatchUi.pushView(chartView, chartDelegate, WatchUi.SLIDE_DOWN);
+                var chartView = new ChartView(null);
+                var chartDelegate = new ChartDelegate();
+                chartDelegate.setView(chartView);
+                WatchUi.pushView(chartView, chartDelegate, WatchUi.SLIDE_DOWN);
                 return true;
             }
         }

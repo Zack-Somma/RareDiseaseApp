@@ -10,6 +10,8 @@ class checkPageView extends WatchUi.View {
     var itemsPerScreen as Number;
     var screenWidth as Number;
     var screenHeight as Number;
+    var errorMessage as String?; 
+    var errorTime as Number?; 
     
     function initialize() {
         View.initialize();
@@ -90,19 +92,19 @@ class checkPageView extends WatchUi.View {
             );
         }
 
-        var arrowX = screenWidth / 2;
-        var arrowY = (screenHeight * 70) / 100;
+        // var arrowX = screenWidth / 2;
+        // var arrowY = (screenHeight * 70) / 100;
 
-        if (scrollOffset < checklistItems.size() - itemsPerScreen) {
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(
-            arrowX,
-            arrowY,
-            Graphics.FONT_MEDIUM,
-            "v",
-            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
-        );
-    }
+        // if (scrollOffset < checklistItems.size() - itemsPerScreen) {
+        // dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        // dc.drawText(
+        //     arrowX,
+        //     arrowY,
+        //     Graphics.FONT_MEDIUM,
+        //     "v",
+        //     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+        // );
+   //}
         
         // DONE button
         var buttonWidth = 160;
@@ -127,6 +129,17 @@ class checkPageView extends WatchUi.View {
             "DONE",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
+
+        if (errorMessage != null) {
+            dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(
+                screenWidth / 2,
+                275,
+                Graphics.FONT_XTINY,
+                errorMessage,
+                Graphics.TEXT_JUSTIFY_CENTER
+            );
+        }
     }
     
     // Based y coordinate for what was tapped
@@ -194,6 +207,13 @@ class checkPageView extends WatchUi.View {
         }
         return checked;
     }
+
+    function showError(message as String) as Void {
+        errorMessage = message;
+        errorTime = Time.now().value();
+        WatchUi.requestUpdate();
+    }
+
     
 }
 
@@ -212,12 +232,21 @@ class checkPageDelegate extends WatchUi.BehaviorDelegate {
         
         // Check if tap is on DONE button
         if (view.isDoneTapped(x, y)) {
+
+            
             var checkedItems = view.getCheckedItems();
             System.println("Checked items: " + checkedItems);
             
+
+            if (checkedItems.size() == 0) {
+                view.showError("Select symptom(s)");
+                return true;
+            }
             // Pass the checked symptoms to questionPageView
-            var questionView = new questionPageView(checkedItems);
-            WatchUi.pushView(questionView, new QuestionPageDelegate(questionView), WatchUi.SLIDE_UP);
+            var instructionsView = new InstructionsView();
+            WatchUi.switchToView(instructionsView, new InstructionsDelegate(checkedItems), WatchUi.SLIDE_LEFT);
+            // var questionView = new questionPageView(checkedItems);
+            // WatchUi.pushView(questionView, new QuestionPageDelegate(questionView), WatchUi.SLIDE_UP);
             return true;
         }
         

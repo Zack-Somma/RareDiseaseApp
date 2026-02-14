@@ -90,13 +90,16 @@ class questionPageView extends WatchUi.View {
         
         filterQuestions();
 
+        // Always start fresh - initialize responses array
         responses = new [questions.size()];
         for (var i = 0; i < responses.size(); i++) {
             responses[i] = 0;
         }
-        
-        clearResponses();
+        value = 0;
+        currentQuestionIndex = 0;
+
     }
+    
     
     function filterQuestions() as Void {
         questions = [];
@@ -136,7 +139,7 @@ class questionPageView extends WatchUi.View {
     public function dec() as Void { value--; clamp(); WatchUi.requestUpdate(); }
     
     public function getLabelForValue(v as Number) as String {
-        if (v == 0) { return "Skip"; }
+        if (v == 0) { return "No symptom"; }
         if (v == 1) { return "Mild Impact"; }
         if (v == 2) { return "Moderate Impact"; }
         if (v == 3) { return "Marked Impact"; }
@@ -146,13 +149,6 @@ class questionPageView extends WatchUi.View {
     public function hit(box as Array<Number>, x as Number, y as Number) as Boolean {
         if (box == null || box.size() < 4) { return false; }
         return (x >= box[0] && x <= box[0] + box[2] && y >= box[1] && y <= box[1] + box[3]);
-    }
-    
-    public function saveResponses() as Void {
-        for (var i = 0; i < responses.size(); i++) {
-            Storage.setValue("response_" + i, responses[i]);
-        }
-        Storage.setValue("lastQuestionIndex", currentQuestionIndex);
     }
     
     public function loadResponses() as Void {
@@ -167,57 +163,35 @@ class questionPageView extends WatchUi.View {
         }
     }
     
-    public function clearResponses() as Void {
-        for (var i = 0; i < responses.size(); i++) {
-            Storage.deleteValue("response_" + i);
-            responses[i] = 0;
-        }
-        Storage.deleteValue("lastQuestionIndex");
-        currentQuestionIndex = 0;
-        value = 0;
-    }
-    
     public function previousQuestion() as Void {
-        responses[currentQuestionIndex] = value;
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--;
-            value = responses[currentQuestionIndex] as Number;
-            WatchUi.requestUpdate();
-        }
+    // Save current answer in memory (not storage)
+    responses[currentQuestionIndex] = value;
+    
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        // Load the previously answered value from memory
+        value = responses[currentQuestionIndex] as Number;
+        WatchUi.requestUpdate();
     }
+}
     
     public function nextQuestion() as Void {
-        responses[currentQuestionIndex] = value;
+    // Save current answer in memory (not storage)
+    responses[currentQuestionIndex] = value;
+    
+    if (currentQuestionIndex < questions.size() - 1) {
+        currentQuestionIndex++;
+        // Load the next question's value from memory (might be 0 or previously set)
+        value = responses[currentQuestionIndex] as Number;
+        WatchUi.requestUpdate();
+    } else {
+        // Survey complete - NOW save to storage
+        SurveyStorage.saveSurveyData(responses, activeCategories, filteredQuestionCategories);
         
-        if (currentQuestionIndex < questions.size() - 1) {
-            currentQuestionIndex++;
-            value = responses[currentQuestionIndex] as Number;
-            WatchUi.requestUpdate();
-        } else {
-            // Survey complete
-            SurveyStorage.saveSurveyData(responses, activeCategories, filteredQuestionCategories);
-            saveResponses();
-            var completionView = new CompletionView(responses, activeCategories, filteredQuestionCategories);
-            WatchUi.switchToView(completionView, new CompletionDelegate(completionView), WatchUi.SLIDE_LEFT);
-        }
+        var completionView = new CompletionView(responses, activeCategories, filteredQuestionCategories);
+        WatchUi.pushView(completionView, new CompletionDelegate(completionView), WatchUi.SLIDE_LEFT);
     }
-    
-    // Skip all remaining questions - save current answers and go to chart
-    // public function skipAllToChart() as Void {
-    //     // Save current question's value
-    //     responses[currentQuestionIndex] = value;
-        
-    //     // Save the survey data with whatever has been answered so far
-    //     SurveyStorage.saveSurveyData(responses, activeCategories, filteredQuestionCategories);
-    //     saveResponses();
-        
-    //     // Go directly to the weekly chart
-    //     var chartView = new ChartView(null);
-    //     var chartDelegate = new ChartDelegate();
-    //     chartDelegate.setView(chartView);
-    //     WatchUi.switchToView(chartView, chartDelegate, WatchUi.SLIDE_LEFT);
-    // }
-    
+}
     function onUpdate(dc as Dc) as Void {
         screenW = dc.getWidth();
         screenH = dc.getHeight();
@@ -244,7 +218,7 @@ class questionPageView extends WatchUi.View {
         var words = splitString(currentQuestion, " ");
         var currentLine = "";
         var lineY = questionY;
-        var lineHeight = 18;
+        var lineHeight = 25;
         var maxLineChars = currentQuestion.length() > 30 ? 18 : 22;
         
         for (var i = 0; i < words.size(); i++) {
@@ -377,8 +351,14 @@ class QuestionPageDelegate extends WatchUi.BehaviorDelegate {
     }
 
     function onBack() as Lang.Boolean {
-        view.saveResponses();
-        WatchUi.popView(WatchUi.SLIDE_DOWN);
+        // Only allow back on the first question
+        if (view.currentQuestionIndex == 0) {
+            WatchUi.popView(WatchUi.SLIDE_DOWN);
+            return true;
+        }
+        
+        // Otherwise, go to previous question instead
+        view.previousQuestion();
         return true;
     }
 }
@@ -436,10 +416,10 @@ class CompletionDelegate extends WatchUi.BehaviorDelegate {
     private var view as CompletionView;
     function initialize(v as CompletionView) { BehaviorDelegate.initialize(); view = v; }
     
-    function onTap(e as ClickEvent) as Lang.Boolean {
-        WatchUi.popView(WatchUi.SLIDE_DOWN);
-        return true;
-    }
+    // function onTap(e as ClickEvent) as Lang.Boolean {
+    //     WatchUi.popView(WatchUi.SLIDE_DOWN);
+    //     return true;
+    // }
     
     function onSwipe(evt as SwipeEvent) as Lang.Boolean {
     var direction = evt.getDirection();

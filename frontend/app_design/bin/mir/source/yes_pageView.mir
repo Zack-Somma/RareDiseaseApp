@@ -85,7 +85,7 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_m
         symbol [ FONT_SMALL %tmp.28 19 21 31 ];
         %tmp.28 = getv %tmp.27 :FONT_SMALL;
         %tmp.29 = "Are there any";
-        %tmp.30 = "\nnew symptoms \nto report?";
+        %tmp.30 = "\n symptoms \nto report?";
         %tmp.31 = add %tmp.29 %tmp.30;
         symbol [ Graphics %tmp.32 22 12 20 ];
         %tmp.32 = getm $.Toybox.Graphics;
@@ -469,17 +469,58 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_m
         goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_110_12_if_end;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_110_12_if_else_false:
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_110_12_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 105 16 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_110_12_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_110_12_stop" ]
+        %chartView.6 = local;
+        symbol [ chartView %chartView.6 105 20 29 ];
+        symbol [ ChartView %tmp.35 105 36 45 ];
+        %tmp.35 = getv ? :ChartView;
+        %tmp.36 = null;
+        %tmp.32 = newc %tmp.35 (%tmp.36);
+        lputv %chartView.6 %tmp.32;
+        symbol [ chartView %chartView.6 105 20 29 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 106 16 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_110_12_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_110_12_stop" ]
+        %chartDelegate.7 = local;
+        symbol [ chartDelegate %chartDelegate.7 106 20 33 ];
+        symbol [ ChartDelegate %tmp.40 106 40 53 ];
+        %tmp.40 = getv ? :ChartDelegate;
+        %tmp.37 = newc %tmp.40 ();
+        lputv %chartDelegate.7 %tmp.37;
+        symbol [ chartDelegate %chartDelegate.7 106 20 33 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 107 16 ]
+        %tmp.41 = lgetv %chartDelegate.7;
+        symbol [ chartDelegate %tmp.41 107 16 29 ];
+        symbol [ setView %tmp.42 107 30 37 ];
+        %tmp.42 = getv function %tmp.41 :setView;
+        %tmp.43 = lgetv %chartView.6;
+        symbol [ chartView %tmp.43 107 38 47 ];
+        invoke %tmp.41 %tmp.42(%tmp.43);
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 108 16 ]
+        symbol [ WatchUi %tmp.44 108 16 23 ];
+        %tmp.44 = getm $.Toybox.WatchUi;
+        symbol [ pushView %tmp.45 108 24 32 ];
+        %tmp.45 = getv function %tmp.44 :pushView;
+        %tmp.46 = lgetv %chartView.6;
+        symbol [ chartView %tmp.46 108 33 42 ];
+        %tmp.47 = lgetv %chartDelegate.7;
+        symbol [ chartDelegate %tmp.47 108 44 57 ];
+        symbol [ WatchUi %tmp.48 108 59 66 ];
+        %tmp.48 = getm $.Toybox.WatchUi;
+        symbol [ SLIDE_DOWN %tmp.49 108 67 77 ];
+        %tmp.49 = getv %tmp.48 :SLIDE_DOWN;
+        invoke %tmp.44 %tmp.45(%tmp.46, %tmp.47, %tmp.49);
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 109 16 ]
-        %tmp.32 = true;
-        ret %tmp.32;
+        %tmp.50 = true;
+        ret %tmp.50;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_104_17_110_12_stop:
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_97_12_110_12_if_end:
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_21_111_8_stop:
         goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_111_8_if_end;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_95_8_111_8_if_end:
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 113 8 ]
-        %tmp.33 = false;
-        ret %tmp.33;
+        %tmp.51 = false;
+        ret %tmp.51;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_mc_89_61_114_4_stop:
     }
 }

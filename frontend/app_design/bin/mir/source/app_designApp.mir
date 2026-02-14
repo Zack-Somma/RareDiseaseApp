@@ -788,6 +788,90 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_
         invoke %tmp.1 %tmp.2(%tmp.3);
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_164_51_166_4_stop:
     }
+    [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc"; @line = 169; @symbol_functiondef = [hasInProgressSurvey,169,20,39]; @symbol_return<0> = [Boolean,169,45,52]; ]
+    static
+    function hasInProgressSurvey() as Boolean {
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_169_53_182_4_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 170 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_169_53_182_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_169_53_182_4_stop" ]
+        %savedIndex.1 = local;
+        symbol [ savedIndex %savedIndex.1 170 12 22 ];
+        symbol [ Storage %tmp.1 170 25 32 ];
+        %tmp.1 = getm $.Toybox.Application.Storage;
+        symbol [ getValue %tmp.2 170 33 41 ];
+        %tmp.2 = getv function %tmp.1 :getValue;
+        %tmp.3 = "inProgress_questionIndex";
+        %tmp.4 = invoke %tmp.1 %tmp.2(%tmp.3);
+        lputv %savedIndex.1 %tmp.4;
+        symbol [ savedIndex %savedIndex.1 170 12 22 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 171 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_169_53_182_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_169_53_182_4_stop" ]
+        %savedDate.2 = local;
+        symbol [ savedDate %savedDate.2 171 12 21 ];
+        symbol [ Storage %tmp.5 171 24 31 ];
+        %tmp.5 = getm $.Toybox.Application.Storage;
+        symbol [ getValue %tmp.6 171 32 40 ];
+        %tmp.6 = getv function %tmp.5 :getValue;
+        %tmp.7 = "inProgress_startDate";
+        %tmp.8 = invoke %tmp.5 %tmp.6(%tmp.7);
+        lputv %savedDate.2 %tmp.8;
+        symbol [ savedDate %savedDate.2 171 12 21 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 173 8 ]
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_8_175_8_if_stmt:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_12_173_47_begin:
+        %tmp.9 = lgetv %savedIndex.1;
+        symbol [ savedIndex %tmp.9 173 12 22 ];
+        %tmp.10 = null;
+        %tmp.11 = eq %tmp.9 %tmp.10;
+        bt %tmp.11 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_8_175_8_if_true;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_34_173_47_false:
+        %tmp.12 = lgetv %savedDate.2;
+        symbol [ savedDate %tmp.12 173 34 43 ];
+        %tmp.13 = null;
+        %tmp.14 = eq %tmp.12 %tmp.13;
+        push %tmp.14;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_34_173_47_end:
+        %tmp.15 = phi [%tmp.11 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_12_173_47_begin] [%tmp.14 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_34_173_47_false] [%tmp.15 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_34_173_47_end];
+        bf %tmp.15 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_8_175_8_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_8_175_8_if_true:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_53_175_8_start:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 174 12 ]
+        %tmp.16 = false;
+        ret %tmp.16;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_53_175_8_stop:
+        goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_8_175_8_if_end;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_173_8_175_8_if_end:
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 178 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_169_53_182_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_169_53_182_4_stop" ]
+        %today.3 = local;
+        symbol [ today %today.3 178 12 17 ];
+        %tmp.17 = self;
+        symbol [ getTodayString %tmp.18 178 20 34 ];
+        %tmp.18 = getv function %tmp.17 :getTodayString;
+        %tmp.19 = invoke %tmp.17 %tmp.18();
+        lputv %today.3 %tmp.19;
+        symbol [ today %today.3 178 12 17 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 179 8 ]
+        [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_169_53_182_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_169_53_182_4_stop" ]
+        %savedDateStr.4 = local;
+        symbol [ savedDateStr %savedDateStr.4 179 12 24 ];
+        %tmp.20 = lgetv %savedDate.2;
+        symbol [ savedDate %tmp.20 179 27 36 ];
+        %tmp.21 = as %tmp.20 String;
+        symbol [ String %tmp.21 179 40 46 ];
+        lputv %savedDateStr.4 %tmp.21;
+        symbol [ savedDateStr %savedDateStr.4 179 12 24 ];
+[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 181 8 ]
+        %tmp.22 = lgetv %savedDateStr.4;
+        symbol [ savedDateStr %tmp.22 181 15 27 ];
+        symbol [ equals %tmp.23 181 28 34 ];
+        %tmp.23 = getv function %tmp.22 :equals;
+        %tmp.24 = lgetv %today.3;
+        symbol [ today %tmp.24 181 35 40 ];
+        %tmp.25 = invoke %tmp.22 %tmp.23(%tmp.24);
+        ret %tmp.25;
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_169_53_182_4_stop:
+    }
 }
 [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc"; @line = 1; ]
 <init> {

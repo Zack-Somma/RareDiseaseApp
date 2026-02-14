@@ -164,4 +164,21 @@ class SurveyStorage {
     static function resetDailyCompletion() as Void {
         Storage.deleteValue("lastSurveyDate");
     }
+
+    // Check if there's an in-progress survey
+    static function hasInProgressSurvey() as Boolean {
+        var savedIndex = Storage.getValue("inProgress_questionIndex");
+        var savedDate = Storage.getValue("inProgress_startDate");
+        
+        if (savedIndex == null || savedDate == null) {
+            return false;
+        }
+        
+        // Check if the in-progress survey is from today
+        var today = getTodayString();
+        var savedDateStr = savedDate as String;
+        
+        return savedDateStr.equals(today);
+    }
+
 }
