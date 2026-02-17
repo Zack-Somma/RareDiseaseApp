@@ -191,7 +191,7 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_question_pageV
         %tmp.83 = "Muscle spasms";
         %tmp.84 = dup %tmp.82;
         %tmp.85 = aputv %tmp.84 2 %tmp.83;
-        %tmp.86 = "Balance & proprioception problems";
+        %tmp.86 = "Balance & body position awareness problems";
         %tmp.87 = dup %tmp.85;
         %tmp.88 = aputv %tmp.87 3 %tmp.86;
         %tmp.89 = "Tingling or loss of sensation";
@@ -224,13 +224,13 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_question_pageV
         %tmp.116 = "Faint when standing upright";
         %tmp.117 = dup %tmp.115;
         %tmp.118 = aputv %tmp.117 13 %tmp.116;
-        %tmp.119 = "Autonomic impact severity";
+        %tmp.119 = "Nervous system severity";
         %tmp.120 = dup %tmp.118;
         %tmp.121 = aputv %tmp.120 14 %tmp.119;
         %tmp.122 = "Impact on daily life";
         %tmp.123 = dup %tmp.121;
         %tmp.124 = aputv %tmp.123 15 %tmp.122;
-        %tmp.125 = "Abdominal bloating/pain";
+        %tmp.125 = "Stomach bloating/pain";
         %tmp.126 = dup %tmp.124;
         %tmp.127 = aputv %tmp.126 16 %tmp.125;
         %tmp.128 = "Diarrhea or constipation";

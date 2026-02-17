@@ -998,12 +998,12 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_
         %tmp.43 = invoke %tmp.40 %tmp.41(%tmp.42);
         bf %tmp.43 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_pageView_mc_90_17_91_66_if_false;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_pageView_mc_90_17_91_66_if_true:
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_pageView_mc_90_55_90_71_start:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_pageView_mc_90_55_90_78_start:
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/spiderDiagram_pageView.mc" 90 57 ]
-        %tmp.44 = "GI";
+        %tmp.44 = "Digestive";
         lputv %label.5 %tmp.44;
         symbol [ label %label.5 90 57 62 ];
-_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_pageView_mc_90_55_90_71_stop:
+_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_pageView_mc_90_55_90_78_stop:
         goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_pageView_mc_90_17_91_66_if_end;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_pageView_mc_90_17_91_66_if_false:
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/spiderDiagram_pageView.mc" 91 17 ]

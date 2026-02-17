@@ -164,11 +164,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_m
         %tmp.56 = getv function %tmp.55 :setColor;
         symbol [ Graphics %tmp.57 34 20 28 ];
         %tmp.57 = getm $.Toybox.Graphics;
-        symbol [ COLOR_GREEN %tmp.58 34 29 40 ];
-        %tmp.58 = getv %tmp.57 :COLOR_GREEN;
-        symbol [ Graphics %tmp.59 34 42 50 ];
+        symbol [ COLOR_BLUE %tmp.58 34 29 39 ];
+        %tmp.58 = getv %tmp.57 :COLOR_BLUE;
+        symbol [ Graphics %tmp.59 34 41 49 ];
         %tmp.59 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.60 34 51 68 ];
+        symbol [ COLOR_TRANSPARENT %tmp.60 34 50 67 ];
         %tmp.60 = getv %tmp.59 :COLOR_TRANSPARENT;
         invoke %tmp.55 %tmp.56(%tmp.58, %tmp.60);
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 35 8 ]
@@ -265,11 +265,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_yes_pageView_m
         %tmp.105 = getv function %tmp.104 :setColor;
         symbol [ Graphics %tmp.106 56 20 28 ];
         %tmp.106 = getm $.Toybox.Graphics;
-        symbol [ COLOR_RED %tmp.107 56 29 38 ];
-        %tmp.107 = getv %tmp.106 :COLOR_RED;
-        symbol [ Graphics %tmp.108 56 40 48 ];
+        symbol [ COLOR_ORANGE %tmp.107 56 29 41 ];
+        %tmp.107 = getv %tmp.106 :COLOR_ORANGE;
+        symbol [ Graphics %tmp.108 56 43 51 ];
         %tmp.108 = getm $.Toybox.Graphics;
-        symbol [ COLOR_TRANSPARENT %tmp.109 56 49 66 ];
+        symbol [ COLOR_TRANSPARENT %tmp.109 56 52 69 ];
         %tmp.109 = getv %tmp.108 :COLOR_TRANSPARENT;
         invoke %tmp.104 %tmp.105(%tmp.107, %tmp.109);
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/yes_pageView.mc" 57 8 ]

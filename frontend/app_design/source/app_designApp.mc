@@ -23,7 +23,7 @@ class app_designApp extends Application.AppBase {
         UNCOMMENT SURVEYSTORAGE if you want to delete the previous
         stored information!! otherwise it will keep track of what you have put before
         */
-        //SurveyStorage.clearAllData();
+        SurveyStorage.clearAllData();
         var view = new app_designView();
         var delegate = new app_designDelegate();
 

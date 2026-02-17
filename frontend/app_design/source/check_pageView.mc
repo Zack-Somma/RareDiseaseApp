@@ -5,6 +5,7 @@ import Toybox.Time;
 
 class checkPageView extends WatchUi.View {
     var checklistItems as Array<String>;
+    var checklistSubtitles as Array<String>;
     var checkedStates as Array<Boolean>;
     var scrollOffset as Number;
     var itemsPerScreen as Number;
@@ -19,12 +20,23 @@ class checkPageView extends WatchUi.View {
         checklistItems = [
             "NMSK",
             "Pain",
-            "Urogential",
+            "Urinary",
             "Anxiety",
             "Depression",
-            "Cardiac dysautonomia",
-            "Gastrointestinal",
+            "Heart rate",
+            "Digestive",
             "Fatigue"
+        ];
+
+        checklistSubtitles = [
+        "muscle joints & nerves",
+        "",
+        "and reproductive",
+        "",
+        "",
+        "blood pressure regulation",
+        "stomach/bowel",
+        ""
         ];
         
         // Initialize all as unchecked
@@ -34,7 +46,7 @@ class checkPageView extends WatchUi.View {
         }
         
         scrollOffset = 0;
-        itemsPerScreen = 4;
+        itemsPerScreen = 3;
         screenWidth = 360;
         screenHeight = 360;
     }
@@ -56,7 +68,7 @@ class checkPageView extends WatchUi.View {
         );
         
         var startY = 80;
-        var itemHeight = 45;
+        var itemHeight = 65;
         var checkboxSize = 24;
         
         // Calculation
@@ -77,7 +89,7 @@ class checkPageView extends WatchUi.View {
             
             // Fill checkbox if checked
             if (checkedStates[i]) {
-                dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+                dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
                 dc.fillRectangle(checkboxX + 2, checkboxY + 2, checkboxSize - 4, checkboxSize - 4);
             }
             
@@ -90,21 +102,18 @@ class checkPageView extends WatchUi.View {
                 checklistItems[i],
                 Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER
             );
+
+            if (checklistSubtitles[i].length() > 0) {
+                dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(
+                checkboxX + checkboxSize + 15,
+                yPos + 42,
+                Graphics.FONT_XTINY,
+                checklistSubtitles[i],
+                Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER
+                );
+            }
         }
-
-        // var arrowX = screenWidth / 2;
-        // var arrowY = (screenHeight * 70) / 100;
-
-        // if (scrollOffset < checklistItems.size() - itemsPerScreen) {
-        // dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        // dc.drawText(
-        //     arrowX,
-        //     arrowY,
-        //     Graphics.FONT_MEDIUM,
-        //     "v",
-        //     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
-        // );
-   //}
         
         // DONE button
         var buttonWidth = 160;
@@ -112,7 +121,7 @@ class checkPageView extends WatchUi.View {
         var buttonX = screenWidth / 2;
         var buttonY = (screenHeight * 88) / 100;
         
-        dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         dc.fillRoundedRectangle(
             buttonX - buttonWidth/2,
             buttonY - buttonHeight/2,
@@ -131,7 +140,7 @@ class checkPageView extends WatchUi.View {
         );
 
         if (errorMessage != null) {
-            dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+            dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
             dc.drawText(
                 screenWidth / 2,
                 275,

@@ -87,7 +87,7 @@ class SpiderDiagramView extends WatchUi.View {
             var angle = (i * angleStep) - (Math.PI / 2);
             var label = symptomLabels[i];
             if (label.equals("Cardiac dysautonomia")) { label = "Cardiac"; }
-            else if (label.equals("Gastrointestinal")) { label = "GI"; }
+            else if (label.equals("Gastrointestinal")) { label = "Digestive"; }
             else if (label.equals("Urogential")) { label = "Uro"; }
             dc.drawText(centerX + (labelRadius * Math.cos(angle)), centerY + (labelRadius * Math.sin(angle)),
                         Graphics.FONT_XTINY, label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
