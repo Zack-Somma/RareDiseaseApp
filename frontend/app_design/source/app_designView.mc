@@ -55,8 +55,8 @@ class app_designView extends WatchUi.View {
         
         var screenWidth = dc.getWidth();
         var screenHeight = dc.getHeight();
-        var buttonWidth = 100;
-        var buttonHeight = 50;
+        var buttonWidth = 115;
+        var buttonHeight = 55;
         
         // YES button
         var yesX = (screenWidth * 28) / 100;
@@ -68,7 +68,7 @@ class app_designView extends WatchUi.View {
             yesY - buttonHeight/2,
             buttonWidth,
             buttonHeight,
-            8
+            10
         );
         
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
@@ -78,7 +78,7 @@ class app_designView extends WatchUi.View {
         );
         
         // SKIP button
-        var skipX = (screenWidth * 69) / 100;
+        var skipX = (screenWidth * 72) / 100;
         var skipY = (screenHeight * 76) / 100;
         
         dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
@@ -87,7 +87,7 @@ class app_designView extends WatchUi.View {
             skipY - buttonHeight/2,
             buttonWidth,
             buttonHeight,
-            8
+            10
         );
         
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);

@@ -10,26 +10,29 @@ class YesPageView extends WatchUi.View {
     }
 
     function onUpdate(dc as Dc) as Void {
+        var screenWidth = dc.getWidth();
+        var screenHeight = dc.getHeight();
+
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
+
+        // Move text up to better use space
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
-            dc.getWidth() / 2,
-            dc.getHeight() / 2.2,
+            screenWidth / 2,
+            screenHeight / 2.8,
             Graphics.FONT_SMALL,
             "Are there any" +
             "\n symptoms \nto report?",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
-        var screenWidth = dc.getWidth();
-        var screenHeight = dc.getHeight();
-        var buttonWidth = 100;
-        var buttonHeight = 50;
+        var buttonWidth = 115;
+        var buttonHeight = 55;
 
         // YES button
         var yesX = (screenWidth * 28) / 100;
-        var yesY = (screenHeight * 76) / 100;
+        var yesY = (screenHeight * 73) / 100;
 
         dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
         dc.fillRoundedRectangle(
@@ -37,7 +40,7 @@ class YesPageView extends WatchUi.View {
             yesY - buttonHeight/2,
             buttonWidth,
             buttonHeight,
-            8
+            10
         );
 
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
@@ -49,28 +52,28 @@ class YesPageView extends WatchUi.View {
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
-        // SKIP button
-        var skipX = (screenWidth * 69) / 100;
-        var skipY = (screenHeight * 76) / 100;
+        // NO button
+        var noX = (screenWidth * 72) / 100;
+        var noY = (screenHeight * 73) / 100;
 
         dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
         dc.fillRoundedRectangle(
-            skipX - buttonWidth/2,
-            skipY - buttonHeight/2,
+            noX - buttonWidth/2,
+            noY - buttonHeight/2,
             buttonWidth,
             buttonHeight,
-            8
+            10
         );
 
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
-            skipX,
-            skipY,
+            noX,
+            noY,
             Graphics.FONT_MEDIUM,
             "NO",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
-        }
+    }
 
     
 }
