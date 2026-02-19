@@ -195,59 +195,57 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             symbol [ locX %tmp.112 22 130 134 const ];
             %tmp.113 = lgetv %rez_cmp_local_var_dc_getWidth.2;
             symbol [ rez_cmp_local_var_dc_getWidth %tmp.113 22 137 166 ];
-            %tmp.114 = 30;
-            %tmp.115 = 100.0;
-            %tmp.116 = div %tmp.114 %tmp.115;
-            %tmp.117 = mul %tmp.113 %tmp.116;
-            %tmp.118 = dup %tmp.110;
-            %tmp.119 = aputv %tmp.118 %tmp.112 %tmp.117;
-            %tmp.121 = const :locY;
-            symbol [ locY %tmp.121 22 185 189 const ];
-            %tmp.122 = lgetv %rez_cmp_local_var_dc_getHeight.1;
-            symbol [ rez_cmp_local_var_dc_getHeight %tmp.122 22 192 222 ];
-            %tmp.123 = 58;
-            %tmp.124 = 100.0;
-            %tmp.125 = div %tmp.123 %tmp.124;
-            %tmp.126 = mul %tmp.122 %tmp.125;
-            %tmp.127 = dup %tmp.119;
-            %tmp.128 = aputv %tmp.127 %tmp.121 %tmp.126;
-            %tmp.130 = const :justification;
-            symbol [ justification %tmp.130 22 241 254 const ];
-            symbol [ Graphics %tmp.131 22 256 264 ];
-            %tmp.131 = getm $.Toybox.Graphics;
-            symbol [ TEXT_JUSTIFY_CENTER %tmp.132 22 265 284 ];
-            %tmp.132 = getv %tmp.131 :TEXT_JUSTIFY_CENTER;
-            %tmp.133 = dup %tmp.128;
-            %tmp.134 = aputv %tmp.133 %tmp.130 %tmp.132;
-            %tmp.136 = const :font;
-            symbol [ font %tmp.136 22 287 291 const ];
-            symbol [ Graphics %tmp.137 22 293 301 ];
-            %tmp.137 = getm $.Toybox.Graphics;
-            symbol [ FONT_XTINY %tmp.138 22 302 312 ];
-            %tmp.138 = getv %tmp.137 :FONT_XTINY;
-            %tmp.139 = dup %tmp.134;
-            %tmp.140 = aputv %tmp.139 %tmp.136 %tmp.138;
-            %tmp.95 = newc %tmp.98 (%tmp.140);
+            %tmp.114 = 0.5;
+            %tmp.115 = mul %tmp.113 %tmp.114;
+            %tmp.116 = dup %tmp.110;
+            %tmp.117 = aputv %tmp.116 %tmp.112 %tmp.115;
+            %tmp.119 = const :locY;
+            symbol [ locY %tmp.119 22 176 180 const ];
+            %tmp.120 = lgetv %rez_cmp_local_var_dc_getHeight.1;
+            symbol [ rez_cmp_local_var_dc_getHeight %tmp.120 22 183 213 ];
+            %tmp.121 = 58;
+            %tmp.122 = 100.0;
+            %tmp.123 = div %tmp.121 %tmp.122;
+            %tmp.124 = mul %tmp.120 %tmp.123;
+            %tmp.125 = dup %tmp.117;
+            %tmp.126 = aputv %tmp.125 %tmp.119 %tmp.124;
+            %tmp.128 = const :justification;
+            symbol [ justification %tmp.128 22 232 245 const ];
+            symbol [ Graphics %tmp.129 22 247 255 ];
+            %tmp.129 = getm $.Toybox.Graphics;
+            symbol [ TEXT_JUSTIFY_CENTER %tmp.130 22 256 275 ];
+            %tmp.130 = getv %tmp.129 :TEXT_JUSTIFY_CENTER;
+            %tmp.131 = dup %tmp.126;
+            %tmp.132 = aputv %tmp.131 %tmp.128 %tmp.130;
+            %tmp.134 = const :font;
+            symbol [ font %tmp.134 22 278 282 const ];
+            symbol [ Graphics %tmp.135 22 284 292 ];
+            %tmp.135 = getm $.Toybox.Graphics;
+            symbol [ FONT_XTINY %tmp.136 22 293 303 ];
+            %tmp.136 = getv %tmp.135 :FONT_XTINY;
+            %tmp.137 = dup %tmp.132;
+            %tmp.138 = aputv %tmp.137 %tmp.134 %tmp.136;
+            %tmp.95 = newc %tmp.98 (%tmp.138);
             lputv %rez_cmp_local_text_QuestionLabel.5 %tmp.95;
             symbol [ rez_cmp_local_text_QuestionLabel %rez_cmp_local_text_QuestionLabel.5 22 16 48 ];
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 24 12 ]
-            %tmp.141 = newa 3 Array<WatchUi.Drawable>;
-            symbol [ Array %tmp.141 24 121 126 ];
-            symbol [ WatchUi %tmp.141 24 127 134 ];
-            symbol [ Drawable %tmp.141 24 135 143 ];
-            %tmp.142 = lgetv %rez_cmp_local_text_GreetingLabel.3;
-            symbol [ rez_cmp_local_text_GreetingLabel %tmp.142 24 20 52 ];
-            %tmp.143 = dup %tmp.141;
-            %tmp.144 = aputv %tmp.143 0 %tmp.142;
-            %tmp.145 = lgetv %rez_cmp_local_text_TimeLabel.4;
-            symbol [ rez_cmp_local_text_TimeLabel %tmp.145 24 54 82 ];
-            %tmp.146 = dup %tmp.144;
-            %tmp.147 = aputv %tmp.146 1 %tmp.145;
-            %tmp.148 = lgetv %rez_cmp_local_text_QuestionLabel.5;
-            symbol [ rez_cmp_local_text_QuestionLabel %tmp.148 24 84 116 ];
-            %tmp.149 = dup %tmp.147;
-            %tmp.150 = aputv %tmp.149 2 %tmp.148;
-            ret %tmp.150;
+            %tmp.139 = newa 3 Array<WatchUi.Drawable>;
+            symbol [ Array %tmp.139 24 121 126 ];
+            symbol [ WatchUi %tmp.139 24 127 134 ];
+            symbol [ Drawable %tmp.139 24 135 143 ];
+            %tmp.140 = lgetv %rez_cmp_local_text_GreetingLabel.3;
+            symbol [ rez_cmp_local_text_GreetingLabel %tmp.140 24 20 52 ];
+            %tmp.141 = dup %tmp.139;
+            %tmp.142 = aputv %tmp.141 0 %tmp.140;
+            %tmp.143 = lgetv %rez_cmp_local_text_TimeLabel.4;
+            symbol [ rez_cmp_local_text_TimeLabel %tmp.143 24 54 82 ];
+            %tmp.144 = dup %tmp.142;
+            %tmp.145 = aputv %tmp.144 1 %tmp.143;
+            %tmp.146 = lgetv %rez_cmp_local_text_QuestionLabel.5;
+            symbol [ rez_cmp_local_text_QuestionLabel %tmp.146 24 84 116 ];
+            %tmp.147 = dup %tmp.145;
+            %tmp.148 = aputv %tmp.147 2 %tmp.146;
+            ret %tmp.148;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_source_Rez_mcgen_13_73_25_8_stop:
         }
     }
@@ -269,17 +267,17 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 33; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 34 18 ]
-                symbol [ Graphics %tmp.151 34 34 42 ];
-                %tmp.151 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_CENTER %tmp.152 34 43 62 ];
-                %tmp.152 = getv %tmp.151 :TEXT_JUSTIFY_CENTER;
-                putv self :justification %tmp.152;
+                symbol [ Graphics %tmp.149 34 34 42 ];
+                %tmp.149 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.150 34 43 62 ];
+                %tmp.150 = getv %tmp.149 :TEXT_JUSTIFY_CENTER;
+                putv self :justification %tmp.150;
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 35 18 ]
-                symbol [ Graphics %tmp.153 35 25 33 ];
-                %tmp.153 = getm $.Toybox.Graphics;
-                symbol [ FONT_SMALL %tmp.154 35 34 44 ];
-                %tmp.154 = getv %tmp.153 :FONT_SMALL;
-                putv self :font %tmp.154;
+                symbol [ Graphics %tmp.151 35 25 33 ];
+                %tmp.151 = getm $.Toybox.Graphics;
+                symbol [ FONT_SMALL %tmp.152 35 34 44 ];
+                %tmp.152 = getv %tmp.151 :FONT_SMALL;
+                putv self :font %tmp.152;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 34; @position = 18; @symbol_constdef = [justification,34,18,31]; ]
             const justification;
@@ -309,22 +307,22 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 47; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 48 18 ]
-                symbol [ Graphics %tmp.155 48 34 42 ];
+                symbol [ Graphics %tmp.153 48 34 42 ];
+                %tmp.153 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.154 48 43 62 ];
+                %tmp.154 = getv %tmp.153 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.155 48 63 71 ];
                 %tmp.155 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_CENTER %tmp.156 48 43 62 ];
-                %tmp.156 = getv %tmp.155 :TEXT_JUSTIFY_CENTER;
-                symbol [ Graphics %tmp.157 48 63 71 ];
-                %tmp.157 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_VCENTER %tmp.158 48 72 92 ];
-                %tmp.158 = getv %tmp.157 :TEXT_JUSTIFY_VCENTER;
-                %tmp.159 = bitor %tmp.156 %tmp.158;
-                putv self :justification %tmp.159;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.156 48 72 92 ];
+                %tmp.156 = getv %tmp.155 :TEXT_JUSTIFY_VCENTER;
+                %tmp.157 = bitor %tmp.154 %tmp.156;
+                putv self :justification %tmp.157;
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 49 18 ]
-                symbol [ Graphics %tmp.160 49 25 33 ];
-                %tmp.160 = getm $.Toybox.Graphics;
-                symbol [ FONT_SMALL %tmp.161 49 34 44 ];
-                %tmp.161 = getv %tmp.160 :FONT_SMALL;
-                putv self :font %tmp.161;
+                symbol [ Graphics %tmp.158 49 25 33 ];
+                %tmp.158 = getm $.Toybox.Graphics;
+                symbol [ FONT_SMALL %tmp.159 49 34 44 ];
+                %tmp.159 = getv %tmp.158 :FONT_SMALL;
+                putv self :font %tmp.159;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 48; @position = 18; @symbol_constdef = [justification,48,18,31]; ]
             const justification;
@@ -386,22 +384,22 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 77; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 78 18 ]
-                symbol [ Graphics %tmp.162 78 34 42 ];
+                symbol [ Graphics %tmp.160 78 34 42 ];
+                %tmp.160 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.161 78 43 62 ];
+                %tmp.161 = getv %tmp.160 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.162 78 63 71 ];
                 %tmp.162 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_CENTER %tmp.163 78 43 62 ];
-                %tmp.163 = getv %tmp.162 :TEXT_JUSTIFY_CENTER;
-                symbol [ Graphics %tmp.164 78 63 71 ];
-                %tmp.164 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_VCENTER %tmp.165 78 72 92 ];
-                %tmp.165 = getv %tmp.164 :TEXT_JUSTIFY_VCENTER;
-                %tmp.166 = bitor %tmp.163 %tmp.165;
-                putv self :justification %tmp.166;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.163 78 72 92 ];
+                %tmp.163 = getv %tmp.162 :TEXT_JUSTIFY_VCENTER;
+                %tmp.164 = bitor %tmp.161 %tmp.163;
+                putv self :justification %tmp.164;
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 79 18 ]
-                symbol [ Graphics %tmp.167 79 25 33 ];
-                %tmp.167 = getm $.Toybox.Graphics;
-                symbol [ FONT_XTINY %tmp.168 79 34 44 ];
-                %tmp.168 = getv %tmp.167 :FONT_XTINY;
-                putv self :font %tmp.168;
+                symbol [ Graphics %tmp.165 79 25 33 ];
+                %tmp.165 = getm $.Toybox.Graphics;
+                symbol [ FONT_XTINY %tmp.166 79 34 44 ];
+                %tmp.166 = getv %tmp.165 :FONT_XTINY;
+                putv self :font %tmp.166;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 78; @position = 18; @symbol_constdef = [justification,78,18,31]; ]
             const justification;
@@ -439,11 +437,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 95; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 97 18 ]
-                symbol [ Graphics %tmp.169 97 31 39 ];
-                %tmp.169 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.170 97 40 57 ];
-                %tmp.170 = getv %tmp.169 :COLOR_TRANSPARENT;
-                putv self :background %tmp.170;
+                symbol [ Graphics %tmp.167 97 31 39 ];
+                %tmp.167 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.168 97 40 57 ];
+                %tmp.168 = getv %tmp.167 :COLOR_TRANSPARENT;
+                putv self :background %tmp.168;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 96; @position = 18; @symbol_constdef = [color,96,18,23]; @symbol_type<0> = [Number,96,27,33]; ]
             const color as Number = 0xFFFFFF;
@@ -489,22 +487,22 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 117; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 118 18 ]
-                symbol [ Graphics %tmp.171 118 34 42 ];
+                symbol [ Graphics %tmp.169 118 34 42 ];
+                %tmp.169 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.170 118 43 62 ];
+                %tmp.170 = getv %tmp.169 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.171 118 63 71 ];
                 %tmp.171 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_CENTER %tmp.172 118 43 62 ];
-                %tmp.172 = getv %tmp.171 :TEXT_JUSTIFY_CENTER;
-                symbol [ Graphics %tmp.173 118 63 71 ];
-                %tmp.173 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_VCENTER %tmp.174 118 72 92 ];
-                %tmp.174 = getv %tmp.173 :TEXT_JUSTIFY_VCENTER;
-                %tmp.175 = bitor %tmp.172 %tmp.174;
-                putv self :justification %tmp.175;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.172 118 72 92 ];
+                %tmp.172 = getv %tmp.171 :TEXT_JUSTIFY_VCENTER;
+                %tmp.173 = bitor %tmp.170 %tmp.172;
+                putv self :justification %tmp.173;
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 119 18 ]
-                symbol [ Graphics %tmp.176 119 25 33 ];
-                %tmp.176 = getm $.Toybox.Graphics;
-                symbol [ FONT_TINY %tmp.177 119 34 43 ];
-                %tmp.177 = getv %tmp.176 :FONT_TINY;
-                putv self :font %tmp.177;
+                symbol [ Graphics %tmp.174 119 25 33 ];
+                %tmp.174 = getm $.Toybox.Graphics;
+                symbol [ FONT_TINY %tmp.175 119 34 43 ];
+                %tmp.175 = getv %tmp.174 :FONT_TINY;
+                putv self :font %tmp.175;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 118; @position = 18; @symbol_constdef = [justification,118,18,31]; ]
             const justification;
@@ -560,17 +558,17 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 144; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 145 18 ]
-                symbol [ Graphics %tmp.178 145 34 42 ];
-                %tmp.178 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_CENTER %tmp.179 145 43 62 ];
-                %tmp.179 = getv %tmp.178 :TEXT_JUSTIFY_CENTER;
-                putv self :justification %tmp.179;
+                symbol [ Graphics %tmp.176 145 34 42 ];
+                %tmp.176 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.177 145 43 62 ];
+                %tmp.177 = getv %tmp.176 :TEXT_JUSTIFY_CENTER;
+                putv self :justification %tmp.177;
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 146 18 ]
-                symbol [ Graphics %tmp.180 146 25 33 ];
-                %tmp.180 = getm $.Toybox.Graphics;
-                symbol [ FONT_TINY %tmp.181 146 34 43 ];
-                %tmp.181 = getv %tmp.180 :FONT_TINY;
-                putv self :font %tmp.181;
+                symbol [ Graphics %tmp.178 146 25 33 ];
+                %tmp.178 = getm $.Toybox.Graphics;
+                symbol [ FONT_TINY %tmp.179 146 34 43 ];
+                %tmp.179 = getv %tmp.178 :FONT_TINY;
+                putv self :font %tmp.179;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 145; @position = 18; @symbol_constdef = [justification,145,18,31]; ]
             const justification;
@@ -682,11 +680,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 199; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 200 18 ]
-                symbol [ WatchUi %tmp.182 200 27 34 ];
-                %tmp.182 = getm $.Toybox.WatchUi;
-                symbol [ KEY_ENTER %tmp.183 200 35 44 ];
-                %tmp.183 = getv %tmp.182 :KEY_ENTER;
-                putv self :button %tmp.183;
+                symbol [ WatchUi %tmp.180 200 27 34 ];
+                %tmp.180 = getm $.Toybox.WatchUi;
+                symbol [ KEY_ENTER %tmp.181 200 35 44 ];
+                %tmp.181 = getv %tmp.180 :KEY_ENTER;
+                putv self :button %tmp.181;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 200; @position = 18; @symbol_constdef = [button,200,18,24]; ]
             const button;
@@ -734,11 +732,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 222; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 224 18 ]
-                symbol [ Graphics %tmp.184 224 31 39 ];
-                %tmp.184 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.185 224 40 57 ];
-                %tmp.185 = getv %tmp.184 :COLOR_TRANSPARENT;
-                putv self :background %tmp.185;
+                symbol [ Graphics %tmp.182 224 31 39 ];
+                %tmp.182 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.183 224 40 57 ];
+                %tmp.183 = getv %tmp.182 :COLOR_TRANSPARENT;
+                putv self :background %tmp.183;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 223; @position = 18; @symbol_constdef = [color,223,18,23]; @symbol_type<0> = [Number,223,27,33]; ]
             const color as Number = 0xFFFFFF;
@@ -774,11 +772,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 239; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 241 18 ]
-                symbol [ Graphics %tmp.186 241 31 39 ];
-                %tmp.186 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.187 241 40 57 ];
-                %tmp.187 = getv %tmp.186 :COLOR_TRANSPARENT;
-                putv self :background %tmp.187;
+                symbol [ Graphics %tmp.184 241 31 39 ];
+                %tmp.184 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.185 241 40 57 ];
+                %tmp.185 = getv %tmp.184 :COLOR_TRANSPARENT;
+                putv self :background %tmp.185;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 240; @position = 18; @symbol_constdef = [color,240,18,23]; @symbol_type<0> = [Number,240,27,33]; ]
             const color as Number = 0xFFFFFF;
@@ -880,11 +878,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 289; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 291 18 ]
-                symbol [ Graphics %tmp.188 291 31 39 ];
-                %tmp.188 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.189 291 40 57 ];
-                %tmp.189 = getv %tmp.188 :COLOR_TRANSPARENT;
-                putv self :background %tmp.189;
+                symbol [ Graphics %tmp.186 291 31 39 ];
+                %tmp.186 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.187 291 40 57 ];
+                %tmp.187 = getv %tmp.186 :COLOR_TRANSPARENT;
+                putv self :background %tmp.187;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 290; @position = 18; @symbol_constdef = [color,290,18,23]; @symbol_type<0> = [Number,290,27,33]; ]
             const color as Number = 0xFFFFFF;
@@ -896,11 +894,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 294; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 295 18 ]
-                symbol [ WatchUi %tmp.190 295 27 34 ];
-                %tmp.190 = getm $.Toybox.WatchUi;
-                symbol [ KEY_ESC %tmp.191 295 35 42 ];
-                %tmp.191 = getv %tmp.190 :KEY_ESC;
-                putv self :button %tmp.191;
+                symbol [ WatchUi %tmp.188 295 27 34 ];
+                %tmp.188 = getm $.Toybox.WatchUi;
+                symbol [ KEY_ESC %tmp.189 295 35 42 ];
+                %tmp.189 = getv %tmp.188 :KEY_ESC;
+                putv self :button %tmp.189;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 295; @position = 18; @symbol_constdef = [button,295,18,24]; ]
             const button;
@@ -936,11 +934,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 311; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 313 18 ]
-                symbol [ Graphics %tmp.192 313 31 39 ];
-                %tmp.192 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.193 313 40 57 ];
-                %tmp.193 = getv %tmp.192 :COLOR_TRANSPARENT;
-                putv self :background %tmp.193;
+                symbol [ Graphics %tmp.190 313 31 39 ];
+                %tmp.190 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.191 313 40 57 ];
+                %tmp.191 = getv %tmp.190 :COLOR_TRANSPARENT;
+                putv self :background %tmp.191;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 312; @position = 18; @symbol_constdef = [color,312,18,23]; @symbol_type<0> = [Number,312,27,33]; ]
             const color as Number = 0xFFFFFF;
@@ -1042,11 +1040,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 361; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 363 18 ]
-                symbol [ Graphics %tmp.194 363 31 39 ];
-                %tmp.194 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.195 363 40 57 ];
-                %tmp.195 = getv %tmp.194 :COLOR_TRANSPARENT;
-                putv self :background %tmp.195;
+                symbol [ Graphics %tmp.192 363 31 39 ];
+                %tmp.192 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.193 363 40 57 ];
+                %tmp.193 = getv %tmp.192 :COLOR_TRANSPARENT;
+                putv self :background %tmp.193;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 362; @position = 18; @symbol_constdef = [color,362,18,23]; @symbol_type<0> = [Number,362,27,33]; ]
             const color as Number = 0xFFFFFF;
@@ -1070,11 +1068,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 372; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 374 18 ]
-                symbol [ Graphics %tmp.196 374 31 39 ];
-                %tmp.196 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.197 374 40 57 ];
-                %tmp.197 = getv %tmp.196 :COLOR_TRANSPARENT;
-                putv self :background %tmp.197;
+                symbol [ Graphics %tmp.194 374 31 39 ];
+                %tmp.194 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.195 374 40 57 ];
+                %tmp.195 = getv %tmp.194 :COLOR_TRANSPARENT;
+                putv self :background %tmp.195;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 373; @position = 18; @symbol_constdef = [color,373,18,23]; @symbol_type<0> = [Number,373,27,33]; ]
             const color as Number = 0xB3B3B3;
@@ -1120,22 +1118,22 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 394; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 395 18 ]
-                symbol [ Graphics %tmp.198 395 34 42 ];
+                symbol [ Graphics %tmp.196 395 34 42 ];
+                %tmp.196 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.197 395 43 62 ];
+                %tmp.197 = getv %tmp.196 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.198 395 63 71 ];
                 %tmp.198 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_CENTER %tmp.199 395 43 62 ];
-                %tmp.199 = getv %tmp.198 :TEXT_JUSTIFY_CENTER;
-                symbol [ Graphics %tmp.200 395 63 71 ];
-                %tmp.200 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_VCENTER %tmp.201 395 72 92 ];
-                %tmp.201 = getv %tmp.200 :TEXT_JUSTIFY_VCENTER;
-                %tmp.202 = bitor %tmp.199 %tmp.201;
-                putv self :justification %tmp.202;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.199 395 72 92 ];
+                %tmp.199 = getv %tmp.198 :TEXT_JUSTIFY_VCENTER;
+                %tmp.200 = bitor %tmp.197 %tmp.199;
+                putv self :justification %tmp.200;
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 396 18 ]
-                symbol [ Graphics %tmp.203 396 25 33 ];
-                %tmp.203 = getm $.Toybox.Graphics;
-                symbol [ FONT_SMALL %tmp.204 396 34 44 ];
-                %tmp.204 = getv %tmp.203 :FONT_SMALL;
-                putv self :font %tmp.204;
+                symbol [ Graphics %tmp.201 396 25 33 ];
+                %tmp.201 = getm $.Toybox.Graphics;
+                symbol [ FONT_SMALL %tmp.202 396 34 44 ];
+                %tmp.202 = getv %tmp.201 :FONT_SMALL;
+                putv self :font %tmp.202;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 395; @position = 18; @symbol_constdef = [justification,395,18,31]; ]
             const justification;
@@ -1147,11 +1145,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 399; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 401 18 ]
-                symbol [ Graphics %tmp.205 401 31 39 ];
-                %tmp.205 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.206 401 40 57 ];
-                %tmp.206 = getv %tmp.205 :COLOR_TRANSPARENT;
-                putv self :background %tmp.206;
+                symbol [ Graphics %tmp.203 401 31 39 ];
+                %tmp.203 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.204 401 40 57 ];
+                %tmp.204 = getv %tmp.203 :COLOR_TRANSPARENT;
+                putv self :background %tmp.204;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 400; @position = 18; @symbol_constdef = [color,400,18,23]; @symbol_type<0> = [Number,400,27,33]; ]
             const color as Number = 0xB3B3B3;
@@ -1417,11 +1415,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 531; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 533 18 ]
-                symbol [ Graphics %tmp.207 533 31 39 ];
-                %tmp.207 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.208 533 40 57 ];
-                %tmp.208 = getv %tmp.207 :COLOR_TRANSPARENT;
-                putv self :background %tmp.208;
+                symbol [ Graphics %tmp.205 533 31 39 ];
+                %tmp.205 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.206 533 40 57 ];
+                %tmp.206 = getv %tmp.205 :COLOR_TRANSPARENT;
+                putv self :background %tmp.206;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 532; @position = 18; @symbol_constdef = [color,532,18,23]; @symbol_type<0> = [Number,532,27,33]; ]
             const color as Number = 0xFFFFFF;
@@ -1643,13 +1641,13 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 641; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 643 18 ]
-                symbol [ Toybox %tmp.210 643 32 38 ];
-                %tmp.210 = getv ? :Toybox;
-                symbol [ System %tmp.211 643 39 45 ];
-                %tmp.211 = getv %tmp.210 :System;
-                symbol [ SCREEN_SHAPE_ROUND %tmp.212 643 46 64 ];
-                %tmp.212 = getv %tmp.211 :SCREEN_SHAPE_ROUND;
-                putv self :screenShape %tmp.212;
+                symbol [ Toybox %tmp.208 643 32 38 ];
+                %tmp.208 = getv ? :Toybox;
+                symbol [ System %tmp.209 643 39 45 ];
+                %tmp.209 = getv %tmp.208 :System;
+                symbol [ SCREEN_SHAPE_ROUND %tmp.210 643 46 64 ];
+                %tmp.210 = getv %tmp.209 :SCREEN_SHAPE_ROUND;
+                putv self :screenShape %tmp.210;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 642; @position = 18; @symbol_constdef = [screenWidth,642,18,29]; @symbol_type<0> = [Number,642,33,39]; ]
             const screenWidth as Number = 390;
@@ -1683,22 +1681,22 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 657; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 658 18 ]
-                symbol [ Graphics %tmp.213 658 34 42 ];
+                symbol [ Graphics %tmp.211 658 34 42 ];
+                %tmp.211 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.212 658 43 62 ];
+                %tmp.212 = getv %tmp.211 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.213 658 63 71 ];
                 %tmp.213 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_CENTER %tmp.214 658 43 62 ];
-                %tmp.214 = getv %tmp.213 :TEXT_JUSTIFY_CENTER;
-                symbol [ Graphics %tmp.215 658 63 71 ];
-                %tmp.215 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_VCENTER %tmp.216 658 72 92 ];
-                %tmp.216 = getv %tmp.215 :TEXT_JUSTIFY_VCENTER;
-                %tmp.217 = bitor %tmp.214 %tmp.216;
-                putv self :justification %tmp.217;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.214 658 72 92 ];
+                %tmp.214 = getv %tmp.213 :TEXT_JUSTIFY_VCENTER;
+                %tmp.215 = bitor %tmp.212 %tmp.214;
+                putv self :justification %tmp.215;
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 659 18 ]
-                symbol [ Graphics %tmp.218 659 25 33 ];
-                %tmp.218 = getm $.Toybox.Graphics;
-                symbol [ FONT_TINY %tmp.219 659 34 43 ];
-                %tmp.219 = getv %tmp.218 :FONT_TINY;
-                putv self :font %tmp.219;
+                symbol [ Graphics %tmp.216 659 25 33 ];
+                %tmp.216 = getm $.Toybox.Graphics;
+                symbol [ FONT_TINY %tmp.217 659 34 43 ];
+                %tmp.217 = getv %tmp.216 :FONT_TINY;
+                putv self :font %tmp.217;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 658; @position = 18; @symbol_constdef = [justification,658,18,31]; ]
             const justification;
@@ -1750,22 +1748,22 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 682; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 683 18 ]
-                symbol [ Graphics %tmp.220 683 34 42 ];
+                symbol [ Graphics %tmp.218 683 34 42 ];
+                %tmp.218 = getm $.Toybox.Graphics;
+                symbol [ TEXT_JUSTIFY_CENTER %tmp.219 683 43 62 ];
+                %tmp.219 = getv %tmp.218 :TEXT_JUSTIFY_CENTER;
+                symbol [ Graphics %tmp.220 683 63 71 ];
                 %tmp.220 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_CENTER %tmp.221 683 43 62 ];
-                %tmp.221 = getv %tmp.220 :TEXT_JUSTIFY_CENTER;
-                symbol [ Graphics %tmp.222 683 63 71 ];
-                %tmp.222 = getm $.Toybox.Graphics;
-                symbol [ TEXT_JUSTIFY_VCENTER %tmp.223 683 72 92 ];
-                %tmp.223 = getv %tmp.222 :TEXT_JUSTIFY_VCENTER;
-                %tmp.224 = bitor %tmp.221 %tmp.223;
-                putv self :justification %tmp.224;
+                symbol [ TEXT_JUSTIFY_VCENTER %tmp.221 683 72 92 ];
+                %tmp.221 = getv %tmp.220 :TEXT_JUSTIFY_VCENTER;
+                %tmp.222 = bitor %tmp.219 %tmp.221;
+                putv self :justification %tmp.222;
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 684 18 ]
-                symbol [ Graphics %tmp.225 684 25 33 ];
-                %tmp.225 = getm $.Toybox.Graphics;
-                symbol [ FONT_TINY %tmp.226 684 34 43 ];
-                %tmp.226 = getv %tmp.225 :FONT_TINY;
-                putv self :font %tmp.226;
+                symbol [ Graphics %tmp.223 684 25 33 ];
+                %tmp.223 = getm $.Toybox.Graphics;
+                symbol [ FONT_TINY %tmp.224 684 34 43 ];
+                %tmp.224 = getv %tmp.223 :FONT_TINY;
+                putv self :font %tmp.224;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 683; @position = 18; @symbol_constdef = [justification,683,18,31]; ]
             const justification;
@@ -1777,11 +1775,11 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_bin_gen_006_B4426_00_
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 687; ]
             <init> {
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen" 689 18 ]
-                symbol [ Graphics %tmp.227 689 31 39 ];
-                %tmp.227 = getm $.Toybox.Graphics;
-                symbol [ COLOR_TRANSPARENT %tmp.228 689 40 57 ];
-                %tmp.228 = getv %tmp.227 :COLOR_TRANSPARENT;
-                putv self :background %tmp.228;
+                symbol [ Graphics %tmp.225 689 31 39 ];
+                %tmp.225 = getm $.Toybox.Graphics;
+                symbol [ COLOR_TRANSPARENT %tmp.226 689 40 57 ];
+                %tmp.226 = getv %tmp.225 :COLOR_TRANSPARENT;
+                putv self :background %tmp.226;
             }
             [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/bin/gen/006-B4426-00/source/Rez.mcgen"; @line = 688; @position = 18; @symbol_constdef = [color,688,18,23]; @symbol_type<0> = [Number,688,27,33]; ]
             const color as Number = 0xFFFFFF;

@@ -81,8 +81,8 @@ class checkPageView extends WatchUi.View {
         );
         
         var startY = 82;
-        var itemHeight = 108;
-        var checkboxSize = 42;
+        var itemHeight = 104;
+        var checkboxSize = 38;
         
         // Calculation
         var startIdx = scrollOffset;

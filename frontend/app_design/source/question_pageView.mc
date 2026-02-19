@@ -254,12 +254,12 @@ class questionPageView extends WatchUi.View {
         
         // Current value
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, controlsY, Graphics.FONT_LARGE, value.toString(),
+        dc.drawText(cx, controlsY, Graphics.FONT_NUMBER_HOT, value.toString(),
                     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
         
         // Value label
         var labelText = getLabelForValue(value);
-        dc.drawText(cx, cy + r - 150, Graphics.FONT_XTINY, labelText, Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, cy + r - 140, Graphics.FONT_XTINY, labelText, Graphics.TEXT_JUSTIFY_CENTER);
         
         // BACK button
         var backBtnW = 100;

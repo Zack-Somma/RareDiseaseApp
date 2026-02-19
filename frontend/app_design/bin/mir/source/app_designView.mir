@@ -313,14 +313,14 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designView
         [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designView_mc_19_26_98_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designView_mc_19_26_98_4_stop" ]
         %buttonWidth.12 = local;
         symbol [ buttonWidth %buttonWidth.12 58 12 23 ];
-        %tmp.93 = 100;
+        %tmp.93 = 115;
         lputv %buttonWidth.12 %tmp.93;
         symbol [ buttonWidth %buttonWidth.12 58 12 23 ];
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" 59 8 ]
         [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designView_mc_19_26_98_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designView_mc_19_26_98_4_stop" ]
         %buttonHeight.13 = local;
         symbol [ buttonHeight %buttonHeight.13 59 12 24 ];
-        %tmp.94 = 50;
+        %tmp.94 = 55;
         lputv %buttonHeight.13 %tmp.94;
         symbol [ buttonHeight %buttonHeight.13 59 12 24 ];
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" 62 8 ]
@@ -384,7 +384,7 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designView
         symbol [ buttonWidth %tmp.123 69 12 23 ];
         %tmp.124 = lgetv %buttonHeight.13;
         symbol [ buttonHeight %tmp.124 70 12 24 ];
-        %tmp.125 = 8;
+        %tmp.125 = 10;
         invoke %tmp.111 %tmp.112(%tmp.117, %tmp.122, %tmp.123, %tmp.124, %tmp.125);
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" 74 8 ]
         %tmp.126 = lgetv %dc;
@@ -430,7 +430,7 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designView
         symbol [ skipX %skipX.16 81 12 17 ];
         %tmp.144 = lgetv %screenWidth.10;
         symbol [ screenWidth %tmp.144 81 21 32 ];
-        %tmp.145 = 69;
+        %tmp.145 = 72;
         %tmp.146 = mul %tmp.144 %tmp.145;
         %tmp.147 = 100;
         %tmp.148 = div %tmp.146 %tmp.147;
@@ -485,7 +485,7 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designView
         symbol [ buttonWidth %tmp.172 88 12 23 ];
         %tmp.173 = lgetv %buttonHeight.13;
         symbol [ buttonHeight %tmp.173 89 12 24 ];
-        %tmp.174 = 8;
+        %tmp.174 = 10;
         invoke %tmp.160 %tmp.161(%tmp.166, %tmp.171, %tmp.172, %tmp.173, %tmp.174);
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designView.mc" 93 8 ]
         %tmp.175 = lgetv %dc;
