@@ -6,6 +6,7 @@ import Toybox.Time;
 class checkPageView extends WatchUi.View {
     var checklistItems as Array<String>;
     var checklistSubtitles as Array<String>;
+    var categoryKeys as Array<String>;
     var checkedStates as Array<Boolean>;
     var scrollOffset as Number;
     var itemsPerScreen as Number;
@@ -29,14 +30,25 @@ class checkPageView extends WatchUi.View {
         ];
 
         checklistSubtitles = [
-        "muscle joints & nerves",
+        "muscle joints\n& nerves",
         "",
         "and reproductive",
         "",
         "",
-        "blood pressure regulation",
+        "blood pressure\nregulation",
         "stomach/bowel",
         ""
+        ];
+
+        categoryKeys = [
+            "NMSK",
+            "Pain",
+            "Urogential",
+            "Anxiety",
+            "Depression",
+            "Cardiac dysautonomia",
+            "Gastrointestinal",
+            "Fatigue"
         ];
         
         // Initialize all as unchecked
@@ -46,7 +58,7 @@ class checkPageView extends WatchUi.View {
         }
         
         scrollOffset = 0;
-        itemsPerScreen = 3;
+        itemsPerScreen = 2;
         screenWidth = 360;
         screenHeight = 360;
     }
@@ -58,18 +70,19 @@ class checkPageView extends WatchUi.View {
         screenWidth = dc.getWidth();
         screenHeight = dc.getHeight();
         
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        // Smaller title text
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
             screenWidth / 2,
-            30,
+            45,
             Graphics.FONT_XTINY,
-            "Check all that apply:",
+            "check all that apply:",
             Graphics.TEXT_JUSTIFY_CENTER
         );
         
-        var startY = 80;
-        var itemHeight = 65;
-        var checkboxSize = 24;
+        var startY = 82;
+        var itemHeight = 108;
+        var checkboxSize = 42;
         
         // Calculation
         var startIdx = scrollOffset;
@@ -78,10 +91,20 @@ class checkPageView extends WatchUi.View {
             endIdx = checklistItems.size();
         }
         
+        var topItemHasMultilineSubtitle = false;
+        if (startIdx < checklistSubtitles.size() && checklistSubtitles[startIdx].find("\n") != null) {
+            topItemHasMultilineSubtitle = true;
+        }
+        var secondRowExtraGap = topItemHasMultilineSubtitle ? 34 : 0;
+
         for (var i = startIdx; i < endIdx; i++) {
-            var yPos = startY + (i - startIdx) * itemHeight;
+            var visibleIdx = i - startIdx;
+            var yPos = startY + visibleIdx * itemHeight;
+            if (visibleIdx > 0) {
+                yPos += secondRowExtraGap;
+            }
             
-            var checkboxX = 37;
+            var checkboxX = 50;
             var checkboxY = yPos;
             
             dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
@@ -96,22 +119,44 @@ class checkPageView extends WatchUi.View {
             // Text labels
             dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
             dc.drawText(
-                checkboxX + checkboxSize + 15,
+                checkboxX + checkboxSize + 12,
                 yPos + checkboxSize/2,
-                Graphics.FONT_SMALL,
+                Graphics.FONT_LARGE,
                 checklistItems[i],
                 Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER
             );
 
             if (checklistSubtitles[i].length() > 0) {
                 dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+                var subtitleY = yPos + 72;
+                if (checklistSubtitles[i].find("\n") != null) {
+                    subtitleY = yPos + (visibleIdx == 0 ? 92 : 78);
+                }
                 dc.drawText(
                 checkboxX + checkboxSize + 15,
-                yPos + 42,
+                subtitleY,
                 Graphics.FONT_XTINY,
                 checklistSubtitles[i],
                 Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER
                 );
+            }
+        }
+        
+        // Scroll indicator - page dots on the right side
+        var totalPages = (checklistItems.size() + itemsPerScreen - 1) / itemsPerScreen;
+        var currentPage = scrollOffset / itemsPerScreen;
+        var dotX = screenWidth - 22;
+        var dotSpacing = 18;
+        var dotsStartY = screenHeight / 2 - ((totalPages - 1) * dotSpacing) / 2;
+        
+        for (var p = 0; p < totalPages; p++) {
+            var dotY = dotsStartY + p * dotSpacing;
+            if (p == currentPage) {
+                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+                dc.fillCircle(dotX, dotY, 5);
+            } else {
+                dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+                dc.fillCircle(dotX, dotY, 4);
             }
         }
         
@@ -153,30 +198,40 @@ class checkPageView extends WatchUi.View {
     
     // Based y coordinate for what was tapped
     function getItemAtPosition(y as Number) as Number {
-        var startY = 80;
-        var itemHeight = 45;
-        
-        // Calculate which visible item was tapped
-        var relativeY = y - startY;
-        if (relativeY < 0) {
-            return -1; // Above the list
+        var startY = 82;
+        var itemHeight = 108;
+
+        var startIdx = scrollOffset;
+        var endIdx = startIdx + itemsPerScreen;
+        if (endIdx > checklistItems.size()) {
+            endIdx = checklistItems.size();
         }
-        
-        var itemIndex = relativeY / itemHeight;
-        var actualIndex = scrollOffset + itemIndex;
-        
-        // check bounds
-        if (actualIndex >= 0 && actualIndex < checklistItems.size() && itemIndex < itemsPerScreen) {
-            return actualIndex;
+
+        var topItemHasMultilineSubtitle = false;
+        if (startIdx < checklistSubtitles.size() && checklistSubtitles[startIdx].find("\n") != null) {
+            topItemHasMultilineSubtitle = true;
         }
-        
-        return -1; 
+        var secondRowExtraGap = topItemHasMultilineSubtitle ? 34 : 0;
+
+        for (var i = startIdx; i < endIdx; i++) {
+            var visibleIdx = i - startIdx;
+            var yPos = startY + visibleIdx * itemHeight;
+            if (visibleIdx > 0) {
+                yPos += secondRowExtraGap;
+            }
+
+            if (y >= yPos && y <= yPos + itemHeight) {
+                return i;
+            }
+        }
+
+        return -1;
     }
     
     // Check if DONE button was tapped
     function isDoneTapped(x as Number, y as Number) as Boolean {
-        var buttonWidth = 140;
-        var buttonHeight = 50;
+        var buttonWidth = 160;
+        var buttonHeight = 70;
         var buttonX = screenWidth / 2;
         var buttonY = (screenHeight * 88) / 100;
         
@@ -188,14 +243,18 @@ class checkPageView extends WatchUi.View {
     
     function scrollUp() as Void {
         if (scrollOffset > 0) {
-            scrollOffset--;
+            scrollOffset -= itemsPerScreen;
+            if (scrollOffset < 0) { scrollOffset = 0; }
             WatchUi.requestUpdate();
         }
     }
     
     function scrollDown() as Void {
         if (scrollOffset < checklistItems.size() - itemsPerScreen) {
-            scrollOffset++;
+            scrollOffset += itemsPerScreen;
+            if (scrollOffset > checklistItems.size() - itemsPerScreen) {
+                scrollOffset = checklistItems.size() - itemsPerScreen;
+            }
             WatchUi.requestUpdate();
         }
     }
@@ -211,7 +270,7 @@ class checkPageView extends WatchUi.View {
         var checked = [];
         for (var i = 0; i < checklistItems.size(); i++) {
             if (checkedStates[i]) {
-                checked.add(checklistItems[i]);
+                checked.add(categoryKeys[i]);
             }
         }
         return checked;

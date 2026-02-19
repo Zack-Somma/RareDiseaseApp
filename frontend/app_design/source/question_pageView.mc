@@ -238,13 +238,13 @@ class questionPageView extends WatchUi.View {
             dc.drawText(cx, lineY, fontSize, currentLine, Graphics.TEXT_JUSTIFY_CENTER);
         }
         
-        // +/- controls
+        // +/- controls - bigger and more spaced out
         var controlsY = cy + 8;
-        var leftX = cx - 70;
-        var rightX = cx + 70;
-        var arrowSize = 14;
-        var boxW = 65;
-        var boxH = 65;
+        var leftX = cx - 85;
+        var rightX = cx + 85;
+        var arrowSize = 22;
+        var boxW = 80;
+        var boxH = 80;
         decBox = [leftX - boxW/2, controlsY - boxH/2, boxW, boxH];
         incBox = [rightX - boxW/2, controlsY - boxH/2, boxW, boxH];
         
@@ -262,35 +262,31 @@ class questionPageView extends WatchUi.View {
         dc.drawText(cx, cy + r - 150, Graphics.FONT_XTINY, labelText, Graphics.TEXT_JUSTIFY_CENTER);
         
         // BACK button
-        var backBtnW = 75;
-        var backBtnH = 40;
-        var backBtnX = cx - 50;
-        var backBtnY = cy + r - 80;
+        var backBtnW = 100;
+        var backBtnH = 50;
+        var backBtnX = cx - 60;
+        var backBtnY = cy + r - 75;
         backBox = [backBtnX - backBtnW/2, backBtnY - backBtnH/2, backBtnW, backBtnH];
         
-        if (currentQuestionIndex > 0) {
-            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        } else {
-            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        }
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.setPenWidth(2);
-        dc.drawRoundedRectangle(backBtnX - backBtnW/2, backBtnY - backBtnH/2, backBtnW, backBtnH, 6);
+        dc.drawRoundedRectangle(backBtnX - backBtnW/2, backBtnY - backBtnH/2, backBtnW, backBtnH, 8);
         dc.setPenWidth(1);
-        dc.drawText(backBtnX, backBtnY, Graphics.FONT_XTINY, "BACK",
+        dc.drawText(backBtnX, backBtnY, Graphics.FONT_SMALL, "BACK",
                     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
         
         // NEXT/DONE button
-        var btnW = 75;
-        var btnH = 40;
-        var btnX = cx + 50;
-        var btnY = cy + r - 80;
+        var btnW = 100;
+        var btnH = 50;
+        var btnX = cx + 60;
+        var btnY = cy + r - 75;
         continueBox = [btnX - btnW/2, btnY - btnH/2, btnW, btnH];
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.setPenWidth(2);
-        dc.drawRoundedRectangle(btnX - btnW/2, btnY - btnH/2, btnW, btnH, 6);
+        dc.drawRoundedRectangle(btnX - btnW/2, btnY - btnH/2, btnW, btnH, 8);
         dc.setPenWidth(1);
         var btnText = (currentQuestionIndex == questions.size() - 1) ? "DONE" : "NEXT";
-        dc.drawText(btnX, btnY, Graphics.FONT_XTINY, btnText,
+        dc.drawText(btnX, btnY, Graphics.FONT_SMALL, btnText,
                     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
     }
     
@@ -308,10 +304,10 @@ class questionPageView extends WatchUi.View {
     }
     
     function drawMinus(dc as Dc, x as Number, y as Number, size as Number) as Void {
-        dc.setPenWidth(3); dc.drawLine(x - size, y, x + size, y); dc.setPenWidth(1);
+        dc.setPenWidth(5); dc.drawLine(x - size, y, x + size, y); dc.setPenWidth(1);
     }
     function drawPlus(dc as Dc, x as Number, y as Number, size as Number) as Void {
-        dc.setPenWidth(3); dc.drawLine(x - size, y, x + size, y); dc.drawLine(x, y - size, x, y + size); dc.setPenWidth(1);
+        dc.setPenWidth(5); dc.drawLine(x - size, y, x + size, y); dc.drawLine(x, y - size, x, y + size); dc.setPenWidth(1);
     }
 }
 
