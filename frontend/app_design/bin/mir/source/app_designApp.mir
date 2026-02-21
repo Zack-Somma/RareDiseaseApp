@@ -39,77 +39,71 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_
     [ @file = "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc"; @line = 20; @symbol_functiondef = [getInitialView,20,13,27]; ]
     function getInitialView() {
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_20_30_38_4_start:
-[ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 26 8 ]
-        symbol [ SurveyStorage %tmp.2 26 8 21 ];
-        %tmp.2 = getv ? :SurveyStorage;
-        symbol [ clearAllData %tmp.3 26 22 34 ];
-        %tmp.3 = getv function %tmp.2 :clearAllData;
-        invoke %tmp.2 %tmp.3();
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 27 8 ]
         [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_20_30_38_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_20_30_38_4_stop" ]
         %view.1 = local;
         symbol [ view %view.1 27 12 16 ];
-        symbol [ app_designView %tmp.7 27 23 37 ];
-        %tmp.7 = getv ? :app_designView;
-        %tmp.4 = newc %tmp.7 ();
-        lputv %view.1 %tmp.4;
+        symbol [ app_designView %tmp.4 27 23 37 ];
+        %tmp.4 = getv ? :app_designView;
+        %tmp.1 = newc %tmp.4 ();
+        lputv %view.1 %tmp.1;
         symbol [ view %view.1 27 12 16 ];
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 28 8 ]
         [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_20_30_38_4_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_20_30_38_4_stop" ]
         %delegate.2 = local;
         symbol [ delegate %delegate.2 28 12 20 ];
-        symbol [ app_designDelegate %tmp.11 28 27 45 ];
-        %tmp.11 = getv ? :app_designDelegate;
-        %tmp.8 = newc %tmp.11 ();
-        lputv %delegate.2 %tmp.8;
+        symbol [ app_designDelegate %tmp.8 28 27 45 ];
+        %tmp.8 = getv ? :app_designDelegate;
+        %tmp.5 = newc %tmp.8 ();
+        lputv %delegate.2 %tmp.5;
         symbol [ delegate %delegate.2 28 12 20 ];
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 33 9 ]
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_33_9_36_8_if_stmt:
-        symbol [ SurveyStorage %tmp.13 33 13 26 ];
-        %tmp.13 = getv ? :SurveyStorage;
-        symbol [ hasCompletedToday %tmp.14 33 27 44 ];
-        %tmp.14 = getv function %tmp.13 :hasCompletedToday;
-        %tmp.15 = invoke %tmp.13 %tmp.14();
-        bf %tmp.15 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_33_9_36_8_if_end;
+        symbol [ SurveyStorage %tmp.10 33 13 26 ];
+        %tmp.10 = getv ? :SurveyStorage;
+        symbol [ hasCompletedToday %tmp.11 33 27 44 ];
+        %tmp.11 = getv function %tmp.10 :hasCompletedToday;
+        %tmp.12 = invoke %tmp.10 %tmp.11();
+        bf %tmp.12 @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_33_9_36_8_if_end;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_33_9_36_8_if_true:
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_33_48_36_8_start:
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 34 12 ]
         [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_33_48_36_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_33_48_36_8_stop" ]
         %homeView.3 = local;
         symbol [ homeView %homeView.3 34 16 24 ];
-        symbol [ HomeView %tmp.19 34 31 39 ];
-        %tmp.19 = getv ? :HomeView;
-        %tmp.16 = newc %tmp.19 ();
-        lputv %homeView.3 %tmp.16;
+        symbol [ HomeView %tmp.16 34 31 39 ];
+        %tmp.16 = getv ? :HomeView;
+        %tmp.13 = newc %tmp.16 ();
+        lputv %homeView.3 %tmp.13;
         symbol [ homeView %homeView.3 34 16 24 ];
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 35 12 ]
-        %tmp.20 = newa 2;
-        %tmp.21 = lgetv %homeView.3;
-        symbol [ homeView %tmp.21 35 20 28 ];
-        %tmp.22 = dup %tmp.20;
-        %tmp.23 = aputv %tmp.22 0 %tmp.21;
-        symbol [ HomeDelegate %tmp.27 35 34 46 ];
-        %tmp.27 = getv ? :HomeDelegate;
-        %tmp.28 = lgetv %homeView.3;
-        symbol [ homeView %tmp.28 35 47 55 ];
-        %tmp.24 = newc %tmp.27 (%tmp.28);
-        %tmp.29 = dup %tmp.23;
-        %tmp.30 = aputv %tmp.29 1 %tmp.24;
-        ret %tmp.30;
+        %tmp.17 = newa 2;
+        %tmp.18 = lgetv %homeView.3;
+        symbol [ homeView %tmp.18 35 20 28 ];
+        %tmp.19 = dup %tmp.17;
+        %tmp.20 = aputv %tmp.19 0 %tmp.18;
+        symbol [ HomeDelegate %tmp.24 35 34 46 ];
+        %tmp.24 = getv ? :HomeDelegate;
+        %tmp.25 = lgetv %homeView.3;
+        symbol [ homeView %tmp.25 35 47 55 ];
+        %tmp.21 = newc %tmp.24 (%tmp.25);
+        %tmp.26 = dup %tmp.20;
+        %tmp.27 = aputv %tmp.26 1 %tmp.21;
+        ret %tmp.27;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_33_48_36_8_stop:
         goto @_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_33_9_36_8_if_end;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_33_9_36_8_if_end:
 [ "/Users/claireyu/Desktop/RareDiseaseApp/frontend/app_design/source/app_designApp.mc" 37 8 ]
-        %tmp.31 = newa 2;
-        %tmp.32 = lgetv %view.1;
-        symbol [ view %tmp.32 37 16 20 ];
+        %tmp.28 = newa 2;
+        %tmp.29 = lgetv %view.1;
+        symbol [ view %tmp.29 37 16 20 ];
+        %tmp.30 = dup %tmp.28;
+        %tmp.31 = aputv %tmp.30 0 %tmp.29;
+        %tmp.32 = lgetv %delegate.2;
+        symbol [ delegate %tmp.32 37 22 30 ];
         %tmp.33 = dup %tmp.31;
-        %tmp.34 = aputv %tmp.33 0 %tmp.32;
-        %tmp.35 = lgetv %delegate.2;
-        symbol [ delegate %tmp.35 37 22 30 ];
-        %tmp.36 = dup %tmp.34;
-        %tmp.37 = aputv %tmp.36 1 %tmp.35;
-        ret %tmp.37;
+        %tmp.34 = aputv %tmp.33 1 %tmp.32;
+        ret %tmp.34;
 _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_app_designApp_mc_20_30_38_4_stop:
     }
 }
