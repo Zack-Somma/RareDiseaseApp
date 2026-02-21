@@ -197,7 +197,7 @@ class ChartView extends WatchUi.View {
         }
         categoryLabels = allCats;
         selectedCategories = [];
-        var mx = allCats.size() < 3 ? allCats.size() : 3;
+        var mx = allCats.size();
         for (var i = 0; i < mx; i++) { selectedCategories.add(i); }
         weeklyData = new [allCats.size()];
         for (var c = 0; c < allCats.size(); c++) {
@@ -254,16 +254,12 @@ class ChartView extends WatchUi.View {
         // Use percentage-based positioning for any screen size
         var titleY = (H * 10) / 100;       // ~47px on 390
         var weekY = (H * 17) / 100;        // ~66px on 390
-        var pillY = (H * 86) / 100;        // ~86px on 390
         var chartTop = (H * 28) / 100;     // ~109px on 390
         var chartBottom = (H * 72) / 100;  // ~281px on 390
         var dayLabelY = (H * 75) / 100;    // ~293px on 390
 
-        // For round screen: at titleY, how wide is the visible area?
-        // width at y = 2 * sqrt(r^2 - (y - cy)^2) where r = W/2, cy = H/2
-        // We'll use a safe chart margin that fits inside the circle
-        var chartLeft = (W * 20) / 100;    // ~78px
-        var chartRight = (W * 85) / 100;   // ~332px
+        var chartLeft = (W * 15) / 100;    // ~59px
+        var chartRight = (W * 55) / 100;   // ~215px (narrower to make room for legend)
         var chartWidth = chartRight - chartLeft;
         var chartHeight = chartBottom - chartTop;
 
@@ -282,8 +278,11 @@ class ChartView extends WatchUi.View {
         dc.drawText(W - arrowInset, weekY, Graphics.FONT_XTINY, ">", 
                     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 
-        // ROW 3: Category pills
-        drawCategoryPills(dc, cx, W, pillY);
+        // Detect if all selected categories have identical data
+        var tied = allCategoriesTied();
+
+        // Legend on right side of chart
+        drawLegend(dc, W, H, chartTop, chartBottom, tied);
 
         // Y-axis gridlines + labels
         for (var i = 0; i <= 4; i++) {
@@ -304,12 +303,16 @@ class ChartView extends WatchUi.View {
         }
 
         // Data lines
-        var lineColors = [Graphics.COLOR_BLUE, Graphics.COLOR_PURPLE, 0x00AAFF];
+        var lineColors = [Graphics.COLOR_BLUE, Graphics.COLOR_PURPLE, 0x00AAFF, Graphics.COLOR_GREEN, Graphics.COLOR_YELLOW, Graphics.COLOR_ORANGE, Graphics.COLOR_RED, 0xFF69B4];
         for (var s = 0; s < selectedCategories.size(); s++) {
             var catIdx = selectedCategories[s] as Number;
             if (catIdx >= weeklyData.size()) { continue; }
             var catData = weeklyData[catIdx] as Array<Number>;
-            dc.setColor(lineColors[s % lineColors.size()], Graphics.COLOR_TRANSPARENT);
+            if (tied) {
+                dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+            } else {
+                dc.setColor(lineColors[catIdx % lineColors.size()], Graphics.COLOR_TRANSPARENT);
+            }
             dc.setPenWidth(2);
             var pX = -1; var pY = -1;
             for (var d = 0; d < 7; d++) {
@@ -331,40 +334,78 @@ class ChartView extends WatchUi.View {
         drawPageIndicators(dc, dc.getHeight(), 2);
     }
 
-    function drawCategoryPills(dc as Dc, cx as Number, screenW as Number, pillY as Number) as Void {
-        var pillHeight = 16;
-        var spacing = 4;
-        var totalPills = categoryLabels.size() < 3 ? categoryLabels.size() : 3;
-        if (totalPills == 0) { return; }
-        // Calculate safe width at this y on round screen
-        var safeWidth = screenW - (screenW * 30 / 100); // 70% of screen width
-        var pillWidth = (safeWidth - (totalPills - 1) * spacing) / totalPills;
-        if (pillWidth > 75) { pillWidth = 75; }
-        var totalWidth = totalPills * pillWidth + (totalPills - 1) * spacing;
-        var startX = cx - totalWidth / 2;
-        var lineColors = [Graphics.COLOR_BLUE, Graphics.COLOR_PURPLE, 0x00AAFF];
-        for (var i = 0; i < totalPills; i++) {
-            var pX = startX + i * (pillWidth + spacing);
+    function drawLegend(dc as Dc, W as Number, H as Number, chartTop as Number, chartBottom as Number, tied as Boolean) as Void {
+        var numCats = categoryLabels.size();
+        if (numCats == 0) { return; }
+
+        var legendDotX = (W * 61) / 100;
+        var legendTextX = (W * 66) / 100;
+        var dotRadius = 5;
+
+        var legendHeight = chartBottom - chartTop;
+        var itemSpacing = legendHeight / (numCats > 1 ? numCats - 1 : 1);
+        if (itemSpacing > 28) { itemSpacing = 28; }
+        var totalItemsHeight = (numCats - 1) * itemSpacing;
+        var startY = (chartTop + chartBottom) / 2 - totalItemsHeight / 2;
+
+        var lineColors = [Graphics.COLOR_BLUE, Graphics.COLOR_PURPLE, 0x00AAFF, Graphics.COLOR_GREEN, Graphics.COLOR_YELLOW, Graphics.COLOR_ORANGE, Graphics.COLOR_RED, 0xFF69B4];
+
+        for (var i = 0; i < numCats; i++) {
+            var y = startY + i * itemSpacing;
             var isSel = false;
-            for (var s = 0; s < selectedCategories.size(); s++) { if (selectedCategories[s] == i) { isSel = true; break; } }
+            for (var s = 0; s < selectedCategories.size(); s++) {
+                if (selectedCategories[s] == i) { isSel = true; break; }
+            }
+
             if (isSel) {
-                dc.setColor(lineColors[i % lineColors.size()], Graphics.COLOR_TRANSPARENT);
-                dc.fillRoundedRectangle(pX, pillY, pillWidth, pillHeight, 8);
+                if (tied) {
+                    dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+                } else {
+                    dc.setColor(lineColors[i % lineColors.size()], Graphics.COLOR_TRANSPARENT);
+                }
+                dc.fillCircle(legendDotX, y, dotRadius);
                 dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
             } else {
                 dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-                dc.drawRoundedRectangle(pX, pillY, pillWidth, pillHeight, 8);
+                dc.fillCircle(legendDotX, y, dotRadius);
                 dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
             }
+
             var label = categoryLabels[i];
             if (label.equals("Cardiac dysautonomia")) { label = "Cardiac"; }
             else if (label.equals("Gastrointestinal")) { label = "GI"; }
-            else if (label.equals("Urogential")) { label = "Uro"; }
+            else if (label.equals("Urogential")) { label = "Urinary"; }
             else if (label.equals("Depression")) { label = "Depress"; }
             else if (label.length() > 7) { label = label.substring(0, 7); }
-            dc.drawText(pX + pillWidth / 2, pillY + pillHeight / 2, Graphics.FONT_XTINY,
-                        label, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(legendTextX, y, Graphics.FONT_XTINY, label,
+                        Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
         }
+    }
+
+    function handleLegendTap(tapX as Number, tapY as Number) as Boolean {
+        var W = 390;
+        var H = 390;
+        if (tapX < (W * 55) / 100) { return false; }
+
+        var chartTop = (H * 28) / 100;
+        var chartBottom = (H * 72) / 100;
+        var numCats = categoryLabels.size();
+        if (numCats == 0) { return false; }
+
+        var legendHeight = chartBottom - chartTop;
+        var itemSpacing = legendHeight / (numCats > 1 ? numCats - 1 : 1);
+        if (itemSpacing > 28) { itemSpacing = 28; }
+        var totalItemsHeight = (numCats - 1) * itemSpacing;
+        var startY = (chartTop + chartBottom) / 2 - totalItemsHeight / 2;
+
+        for (var i = 0; i < numCats; i++) {
+            var itemY = startY + i * itemSpacing;
+            if (tapY >= itemY - 14 && tapY <= itemY + 14) {
+                toggleCategory(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     function getWeekSundayInfo() as String {
@@ -388,7 +429,24 @@ class ChartView extends WatchUi.View {
                 return;
             }
         }
-        if (selectedCategories.size() < 3) { selectedCategories.add(index); WatchUi.requestUpdate(); }
+        selectedCategories.add(index);
+        WatchUi.requestUpdate();
+    }
+
+    function allCategoriesTied() as Boolean {
+        if (selectedCategories.size() <= 1) { return true; }
+        var firstIdx = selectedCategories[0] as Number;
+        if (firstIdx >= weeklyData.size()) { return true; }
+        var firstData = weeklyData[firstIdx] as Array<Number>;
+        for (var s = 1; s < selectedCategories.size(); s++) {
+            var catIdx = selectedCategories[s] as Number;
+            if (catIdx >= weeklyData.size()) { continue; }
+            var catData = weeklyData[catIdx] as Array<Number>;
+            for (var d = 0; d < 7; d++) {
+                if (firstData[d] != catData[d]) { return false; }
+            }
+        }
+        return true;
     }
 }
 
@@ -400,29 +458,13 @@ class ChartDelegate extends WatchUi.BehaviorDelegate {
         if (chartView == null) { return false; }
         var coords = clickEvent.getCoordinates();
         var x = coords[0]; var y = coords[1];
-        // Use percentages matching onUpdate layout
         // Week arrows zone: weekY area (17% of screen)
         if (y >= 50 && y <= 85) {
             if (x < 80) { chartView.previousWeek(); return true; }
             if (x > 310) { chartView.nextWeek(); return true; }
         }
-        // Category pills zone: pillY area (22% of screen)
-        if (y >= 80 && y <= 115) {
-            // Simplified: left third / middle third / right third of pill area
-            var screenW = 390;
-            var cx = screenW / 2;
-            var safeWidth = screenW - (screenW * 30 / 100);
-            var spacing = 4;
-            var totalPills = 3;
-            var pillWidth = (safeWidth - (totalPills - 1) * spacing) / totalPills;
-            if (pillWidth > 75) { pillWidth = 75; }
-            var totalWidth = totalPills * pillWidth + (totalPills - 1) * spacing;
-            var startX = cx - totalWidth / 2;
-            for (var i = 0; i < totalPills; i++) {
-                var pX = startX + i * (pillWidth + spacing);
-                if (x >= pX && x <= pX + pillWidth) { chartView.toggleCategory(i); return true; }
-            }
-        }
+        // Legend tap zone (right side of screen)
+        if (chartView.handleLegendTap(x, y)) { return true; }
         return false;
     }
     function onBack() as Lang.Boolean { WatchUi.popView(WatchUi.SLIDE_DOWN); return true; }
