@@ -33,10 +33,41 @@ class HomeView extends WatchUi.View {
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
         dc.drawText(cx, cy + 40, Graphics.FONT_XTINY, "Swipe up for trends", 
                     Graphics.TEXT_JUSTIFY_CENTER);
-    
+
+        drawButtons(dc, width, height);
+    }
+
+    function drawButtons(dc as Dc, width as Number, height as Number) as Void {
+        var buttonWidth = 120;
+        var buttonHeight = 40;
+        var buttonY = height - 100;
+        var spacing = 20;
+
+        // Reset button - left side - orange
+        var resetX = (width / 2) - (buttonWidth) - (spacing / 2);
+        dc.setColor(Graphics.COLOR_PURPLE, Graphics.COLOR_TRANSPARENT);
+        dc.fillRoundedRectangle(resetX, buttonY, buttonWidth, buttonHeight, 8);
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(
+            resetX + (buttonWidth / 2),
+            buttonY + (buttonHeight / 2),
+            Graphics.FONT_XTINY,
+            "Reset",
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+        );
+
+        // Exit button - right side - red
+        var exitX = (width / 2) + (spacing / 2);
         dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy + 95, Graphics.FONT_XTINY, "Tap to exit", 
-                    Graphics.TEXT_JUSTIFY_CENTER);
+        dc.fillRoundedRectangle(exitX, buttonY, buttonWidth, buttonHeight, 8);
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(
+            exitX + (buttonWidth / 2),
+            buttonY + (buttonHeight / 2),
+            Graphics.FONT_XTINY,
+            "Exit",
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+        );
     }
     
     function getResetButtonY() as Number {
@@ -56,15 +87,40 @@ class HomeDelegate extends WatchUi.BehaviorDelegate {
         _view = view;
     }
     
-   function onTap(clickEvent as ClickEvent) as Boolean {
-    // Change confirmation text to match exit action
-    var dialog = new WatchUi.Confirmation("Exit app?");
-    WatchUi.pushView(dialog, new ResetConfirmationDelegate(), WatchUi.SLIDE_IMMEDIATE);
-    return true;
+    function onTap(clickEvent as ClickEvent) as Boolean {
+        var coords = clickEvent.getCoordinates();
+        var x = coords[0];
+        var y = coords[1];
+
+        var screenW = 360;
+        var screenH = 360;
+        var buttonWidth = 120;
+        var buttonHeight = 40;
+        var buttonY = screenH - 100;  // = 290
+        var spacing = 20;
+
+        // Reset button tap area - left side
+        var resetX = (screenW / 2) - buttonWidth - (spacing / 2); // = 70
+        if (x >= resetX && x <= resetX + buttonWidth &&
+            y >= buttonY && y <= buttonY + buttonHeight) {
+            var dialog = new WatchUi.Confirmation("Reset today's survey?");
+            WatchUi.pushView(dialog, new ResetConfirmationDelegate(), WatchUi.SLIDE_IMMEDIATE);
+            return true;
+        }
+
+        // Exit button tap area - right side
+        var exitX = (screenW / 2) + (spacing / 2); // = 190
+        if (x >= exitX && x <= exitX + buttonWidth &&
+            y >= buttonY && y <= buttonY + buttonHeight) {
+            var dialog = new WatchUi.Confirmation("Exit app?");
+            WatchUi.pushView(dialog, new ExitConfirmationDelegate(), WatchUi.SLIDE_IMMEDIATE);
+            return true;
+        }
+
+        return false;
     }
     
     function onSwipe(evt as SwipeEvent) as Boolean {
-
         var today = SurveyStorage.getTodayString();
         var surveyData = SurveyStorage.getSurveyData(today);
         
@@ -106,9 +162,7 @@ class HomeDelegate extends WatchUi.BehaviorDelegate {
         }
 
         var direction = evt.getDirection();
-        
         if (direction == WatchUi.SWIPE_UP) {
-            // Go directly to weekly trends chart
             var chartView = new ChartView(null);
             var chartDelegate = new ChartDelegate();
             chartDelegate.setView(chartView);
@@ -151,18 +205,36 @@ class ResetConfirmationDelegate extends WatchUi.ConfirmationDelegate {
     }
     
     function onResponse(response) as Boolean {
+    if (response == WatchUi.CONFIRM_YES) {
+        SurveyStorage.resetDailyCompletion();
+
+        WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+        
+        // Go to the main survey view
+        var view = new app_designView();
+        var delegate = new app_designDelegate();
+        WatchUi.switchToView(view, delegate, WatchUi.SLIDE_IMMEDIATE);
+        return true;
+    } else {
+        var homeView = new HomeView();
+        WatchUi.switchToView(homeView, new HomeDelegate(homeView), WatchUi.SLIDE_IMMEDIATE);
+        return true;
+    }
+}
+}
+
+class ExitConfirmationDelegate extends WatchUi.ConfirmationDelegate {
+    function initialize() {
+        ConfirmationDelegate.initialize();
+    }
+    
+    function onResponse(response) as Boolean {
         if (response == WatchUi.CONFIRM_YES) {
-            // Exit the app entirely
             System.exit();
             return true;
         } else {
-            // Stay on HomeView
             var homeView = new HomeView();
-            WatchUi.switchToView(
-                homeView, 
-                new HomeDelegate(homeView), 
-                WatchUi.SLIDE_IMMEDIATE
-            );
+            WatchUi.switchToView(homeView, new HomeDelegate(homeView), WatchUi.SLIDE_IMMEDIATE);
             return true;
         }
     }
