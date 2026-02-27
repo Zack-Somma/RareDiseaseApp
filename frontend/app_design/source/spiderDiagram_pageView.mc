@@ -128,7 +128,7 @@ class SpiderDiagramDelegate extends WatchUi.BehaviorDelegate {
         
         // Swipe up: score page (Today's Score) → then swipe up again for trends
         if (direction == WatchUi.SWIPE_UP) {
-            var scoreView = new scorePageView();
+            var scoreView = new ScorePageView();
             WatchUi.pushView(scoreView, new ScorePageDelegate(scoreView), WatchUi.SLIDE_UP);
             return true;
         }

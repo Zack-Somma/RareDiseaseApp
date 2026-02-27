@@ -6,112 +6,105 @@ import Toybox.Time;
 import Toybox.System;
 
 class HomeView extends WatchUi.View {
-    private var _resetButtonY as Number = 0;
-    private var _resetButtonHeight as Number = 30;
-    
+    // Store rendered button bounds for accurate tap detection
+    var resetButtonX as Number = 0;
+    var resetButtonY as Number = 0;
+    var exitButtonX as Number = 0;
+    var exitButtonY as Number = 0;
+    var buttonWidth as Number = 120;
+    var buttonHeight as Number = 40;
+
     function initialize() {
         View.initialize();
     }
-    
+
     function onUpdate(dc) as Void {
         var width = dc.getWidth();
         var height = dc.getHeight();
         var cx = width / 2;
         var cy = height / 2;
-        
+
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear();
-        
+
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, 60, Graphics.FONT_MEDIUM, "Today's Survey", 
+        dc.drawText(cx, 60, Graphics.FONT_MEDIUM, "Today's Survey",
                     Graphics.TEXT_JUSTIFY_CENTER);
-        
+
         dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy - 20, Graphics.FONT_SMALL, "Complete!", 
+        dc.drawText(cx, cy - 20, Graphics.FONT_SMALL, "Complete!",
                     Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-        
+
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy + 40, Graphics.FONT_XTINY, "Swipe up for trends", 
+        dc.drawText(cx, cy + 40, Graphics.FONT_XTINY, "Swipe up for trends",
                     Graphics.TEXT_JUSTIFY_CENTER);
 
         drawButtons(dc, width, height);
     }
 
     function drawButtons(dc as Dc, width as Number, height as Number) as Void {
-        var buttonWidth = 120;
-        var buttonHeight = 40;
-        var buttonY = height - 100;
         var spacing = 20;
+        var buttonY = height - 100;
 
-        // Reset button - left side - orange
-        var resetX = (width / 2) - (buttonWidth) - (spacing / 2);
+        // Calculate and STORE button positions using actual width
+        resetButtonX = (width / 2) - buttonWidth - (spacing / 2);
+        exitButtonX = (width / 2) + (spacing / 2);
+        resetButtonY = buttonY;
+        exitButtonY = buttonY;
+
+        // Reset button - purple
         dc.setColor(Graphics.COLOR_PURPLE, Graphics.COLOR_TRANSPARENT);
-        dc.fillRoundedRectangle(resetX, buttonY, buttonWidth, buttonHeight, 8);
+        dc.fillRoundedRectangle(resetButtonX, resetButtonY, buttonWidth, buttonHeight, 8);
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
-            resetX + (buttonWidth / 2),
-            buttonY + (buttonHeight / 2),
+            resetButtonX + (buttonWidth / 2),
+            resetButtonY + (buttonHeight / 2),
             Graphics.FONT_XTINY,
             "Reset",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
-        // Exit button - right side - red
-        var exitX = (width / 2) + (spacing / 2);
+        // Exit button - orange
         dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
-        dc.fillRoundedRectangle(exitX, buttonY, buttonWidth, buttonHeight, 8);
+        dc.fillRoundedRectangle(exitButtonX, exitButtonY, buttonWidth, buttonHeight, 8);
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
         dc.drawText(
-            exitX + (buttonWidth / 2),
-            buttonY + (buttonHeight / 2),
+            exitButtonX + (buttonWidth / 2),
+            exitButtonY + (buttonHeight / 2),
             Graphics.FONT_XTINY,
             "Exit",
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
     }
-    
-    function getResetButtonY() as Number {
-        return _resetButtonY;
-    }
-    
-    function getResetButtonHeight() as Number {
-        return _resetButtonHeight;
-    }
 }
-
 class HomeDelegate extends WatchUi.BehaviorDelegate {
     private var _view as HomeView;
-    
+
     function initialize(view as HomeView) {
         BehaviorDelegate.initialize();
         _view = view;
     }
-    
+
     function onTap(clickEvent as ClickEvent) as Boolean {
         var coords = clickEvent.getCoordinates();
         var x = coords[0];
         var y = coords[1];
 
-        var screenW = 360;
-        var screenH = 360;
-        var buttonWidth = 120;
-        var buttonHeight = 40;
-        var buttonY = screenH - 100;  // = 290
-        var spacing = 20;
+        // Use bounds stored by the view during onUpdate — no hardcoding
+        var bw = _view.buttonWidth;
+        var bh = _view.buttonHeight;
 
-        // Reset button tap area - left side
-        var resetX = (screenW / 2) - buttonWidth - (spacing / 2); // = 70
-        if (x >= resetX && x <= resetX + buttonWidth &&
-            y >= buttonY && y <= buttonY + buttonHeight) {
+        // Reset button
+        if (x >= _view.resetButtonX && x <= _view.resetButtonX + bw &&
+            y >= _view.resetButtonY && y <= _view.resetButtonY + bh) {
             var dialog = new WatchUi.Confirmation("Reset today's survey?");
             WatchUi.pushView(dialog, new ResetConfirmationDelegate(), WatchUi.SLIDE_IMMEDIATE);
             return true;
         }
 
-        // Exit button tap area - right side
-        var exitX = (screenW / 2) + (spacing / 2); // = 190
-        if (x >= exitX && x <= exitX + buttonWidth &&
-            y >= buttonY && y <= buttonY + buttonHeight) {
+        // Exit button
+        if (x >= _view.exitButtonX && x <= _view.exitButtonX + bw &&
+            y >= _view.exitButtonY && y <= _view.exitButtonY + bh) {
             var dialog = new WatchUi.Confirmation("Exit app?");
             WatchUi.pushView(dialog, new ExitConfirmationDelegate(), WatchUi.SLIDE_IMMEDIATE);
             return true;

@@ -1330,8 +1330,8 @@ _Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_
         [ "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_pageView_mc_130_43_134_8_start" "_Users_claireyu_Desktop_RareDiseaseApp_frontend_app_design_source_spiderDiagram_pageView_mc_130_43_134_8_stop" ]
         %scoreView.2 = local;
         symbol [ scoreView %scoreView.2 131 16 25 ];
-        symbol [ scorePageView %tmp.11 131 32 45 ];
-        %tmp.11 = getv ? :scorePageView;
+        symbol [ ScorePageView %tmp.11 131 32 45 ];
+        %tmp.11 = getv ? :ScorePageView;
         %tmp.8 = newc %tmp.11 ();
         lputv %scoreView.2 %tmp.8;
         symbol [ scoreView %scoreView.2 131 16 25 ];

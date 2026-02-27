@@ -1,23 +1,17 @@
 import Toybox.WatchUi;
 import Toybox.Graphics;
 import Toybox.Lang;
-import Toybox.Communications;
+import Toybox.SensorHistory;
+import Toybox.Time;
+import Toybox.Time.Gregorian;
 import Toybox.System;
 
-// -------------------------
-// HRV ROLLING AVERAGE SCORE PAGE (Today's Score)
-// Appears after spider diagram; swipe up to go to trends screen.
-// -------------------------
-class scorePageView extends WatchUi.View {
-
+class ScorePageView extends WatchUi.View {
     private var hrvAverage as Float?;
     private var hrvPercentile10 as Float?;
     private var hrvPercentile90 as Float?;
     private var daysIncluded as Number;
-    private var isLoading as Boolean;
-    private var errorMessage as String?;
-
-    private const BACKEND_URL = "https://your-ngrok-url.ngrok-free.dev/hrv/rolling21";
+    private var hasData as Boolean;
 
     function initialize() {
         View.initialize();
@@ -25,115 +19,168 @@ class scorePageView extends WatchUi.View {
         hrvPercentile10 = null;
         hrvPercentile90 = null;
         daysIncluded = 0;
-        isLoading = true;
-        errorMessage = null;
+        hasData = false;
         loadHRVData();
     }
 
-    function loadHRVData() as Void {
-        isLoading = true;
-        errorMessage = null;
+    private var morningPeak as Float?;    // how recovered you were when you woke up
+private var currentLevel as Float?;   // right now
+private var todayLow as Float?;       // lowest point today
+private var trend as String?;         // "Recovering" / "Draining"
+
+function loadHRVData() as Void {
+    if (!(SensorHistory has :getBodyBatteryHistory)) {
+        hasData = false;
         WatchUi.requestUpdate();
-        var options = {
-            :method => Communications.HTTP_REQUEST_METHOD_GET,
-            :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON
-        };
-        Communications.makeWebRequest(
-            BACKEND_URL,
-            null,
-            options,
-            method(:onHRVDataReceived)
-        );
+        return;
     }
 
-    function onHRVDataReceived(responseCode as Number, data as Dictionary?) as Void {
-        isLoading = false;
-        if (responseCode == 200 && data != null) {
-            if (data.hasKey("average") && data.get("average") != null) {
-                hrvAverage = data.get("average") as Float;
-            }
-            if (data.hasKey("percentile10") && data.get("percentile10") != null) {
-                hrvPercentile10 = data.get("percentile10") as Float;
-            }
-            if (data.hasKey("percentile90") && data.get("percentile90") != null) {
-                hrvPercentile90 = data.get("percentile90") as Float;
-            }
-            if (data.hasKey("daysIncluded")) {
-                daysIncluded = data.get("daysIncluded") as Number;
-            }
-            errorMessage = null;
-        } else {
-            if (data != null && data.hasKey("error")) {
-                errorMessage = data.get("error") as String;
-            } else {
-                errorMessage = "Failed to load HRV data";
-            }
-            hrvAverage = null;
-            hrvPercentile10 = null;
-            hrvPercentile90 = null;
-        }
+    // Get just today's data
+    var bodyBattery = SensorHistory.getBodyBatteryHistory({
+        :period => 1,
+        :order => SensorHistory.ORDER_NEWEST_FIRST
+    });
+
+    if (bodyBattery == null) {
+        hasData = false;
         WatchUi.requestUpdate();
+        return;
+    }
+
+    var values = [] as Array<Float>;
+    var sample = bodyBattery.next();
+
+    while (sample != null) {
+        var val = sample.data;
+        if (val != null) {
+            values.add((val as Number).toFloat());
+        }
+        sample = bodyBattery.next();
+    }
+
+    if (values.size() == 0) {
+        hasData = false;
+        WatchUi.requestUpdate();
+        return;
+    }
+
+    // Most recent = first sample (newest first order)
+    currentLevel = values[0];
+
+    // Peak = highest value (usually morning)
+    var peak = values[0];
+    var low = values[0];
+    for (var i = 1; i < values.size(); i++) {
+        if (values[i] > peak) { peak = values[i]; }
+        if (values[i] < low) { low = values[i]; }
+    }
+    morningPeak = peak;
+    todayLow = low;
+
+    // Trend - compare last 3 samples
+    if (values.size() >= 3) {
+        if (values[0] > values[2]) {
+            trend = "Recovering";
+        } else if (values[0] < values[2]) {
+            trend = "Draining";
+        } else {
+            trend = "Stable";
+        }
+    }
+
+    hasData = true;
+    WatchUi.requestUpdate();
+}
+
+    // Bubble sort
+    function sortArray(arr as Array<Float>) as Array<Float> {
+        var n = arr.size();
+        for (var i = 0; i < n - 1; i++) {
+            for (var j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    var tmp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = tmp;
+                }
+            }
+        }
+        return arr;
+    }
+
+    function getPercentile(sorted as Array<Float>, pct as Float) as Float {
+        var idx = (pct / 100.0f) * (sorted.size() - 1);
+        var lo = idx.toNumber();
+        var hi = lo + 1;
+        if (hi >= sorted.size()) {
+            return sorted[sorted.size() - 1];
+        }
+        var frac = idx - lo.toFloat();
+        return sorted[lo] + frac * (sorted[hi] - sorted[lo]);
     }
 
     function onUpdate(dc as Dc) as Void {
-        var screenW = dc.getWidth();
-        var screenH = dc.getHeight();
-        var cx = screenW / 2;
-        var cy = screenH / 2;
-        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
-        dc.clear();
-        var r = (screenW < screenH ? screenW : screenH) / 2 - 12;
+    var screenW = dc.getWidth();
+    var screenH = dc.getHeight();
+    var cx = screenW / 2;
+    var cy = screenH / 2;
 
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy - r + 20, Graphics.FONT_XTINY, "Today's Score:", Graphics.TEXT_JUSTIFY_CENTER);
-        
+    dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
+    dc.clear();
 
-        if (isLoading) {
-            dc.drawText(cx, cy, Graphics.FONT_SMALL, "Loading...", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-        } else if (errorMessage != null) {
-            dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(cx, cy - 20, Graphics.FONT_XTINY, "Error", Graphics.TEXT_JUSTIFY_CENTER);
-            dc.drawText(cx, cy + 10, Graphics.FONT_XTINY, errorMessage, Graphics.TEXT_JUSTIFY_CENTER);
-        } else if (hrvAverage != null) {
-            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-            var avgText = hrvAverage.format("%.1f");
-            dc.drawText(cx, cy - 30, Graphics.FONT_NUMBER_HOT, avgText, Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-            dc.drawText(cx, cy + 10, Graphics.FONT_XTINY, "Average", Graphics.TEXT_JUSTIFY_CENTER);
-            if (hrvPercentile10 != null && hrvPercentile90 != null) {
-                var rangeY = cy + r - 80;
-                dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-                dc.drawText(cx, rangeY, Graphics.FONT_XTINY, "Range (10th-90th)", Graphics.TEXT_JUSTIFY_CENTER);
-                var rangeText = hrvPercentile10.format("%.1f") + " - " + hrvPercentile90.format("%.1f");
-                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-                dc.drawText(cx, rangeY + 18, Graphics.FONT_XTINY, rangeText, Graphics.TEXT_JUSTIFY_CENTER);
-            }
-            dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(cx, cy + r - 40, Graphics.FONT_XTINY, daysIncluded.toString() + " days", Graphics.TEXT_JUSTIFY_CENTER);
-        } else {
-            dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(cx, cy, Graphics.FONT_SMALL, "No HRV data", Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-        }
-
-        drawPageIndicators(dc, dc.getHeight(), 1);
-
-        
+    if (!hasData) {
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, cy, Graphics.FONT_SMALL, "No Data",
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+        dc.drawText(cx, cy + 30, Graphics.FONT_XTINY, "Wear watch longer",
+            Graphics.TEXT_JUSTIFY_CENTER);
+        return;
     }
 
-     function drawPageIndicators(dc as Dc, screenH as Number, currentPage as Number) as Void {
+    // Title
+    dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+    dc.drawText(cx, 40, Graphics.FONT_XTINY, "BODY BATTERY",
+        Graphics.TEXT_JUSTIFY_CENTER);
+
+    // Current value - big number
+    dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+    dc.drawText(cx, cy - 20, Graphics.FONT_NUMBER_HOT,
+        currentLevel.format("%.0f"),
+        Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+
+    // Trend
+    if (trend != null) {
+        var trendColor = Graphics.COLOR_GREEN;
+        if (trend.equals("Draining")) { trendColor = Graphics.COLOR_RED; }
+        if (trend.equals("Stable")) { trendColor = Graphics.COLOR_YELLOW; }
+        dc.setColor(trendColor, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, cy + 35, Graphics.FONT_XTINY, trend,
+            Graphics.TEXT_JUSTIFY_CENTER);
+    }
+
+    // Peak and Low
+    dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+    dc.drawText(cx, cy + 60, Graphics.FONT_XTINY, "Peak    Low",
+        Graphics.TEXT_JUSTIFY_CENTER);
+    dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+    var peakLowText = morningPeak.format("%.0f") + "       " + todayLow.format("%.0f");
+    dc.drawText(cx, cy + 85, Graphics.FONT_XTINY, peakLowText,
+        Graphics.TEXT_JUSTIFY_CENTER);
+
+    drawPageIndicators(dc, screenH, 1);
+}
+
+    function drawPageIndicators(dc as Dc, screenH as Number, currentPage as Number) as Void {
         var dotRadius = 4;
         var dotSpacing = 15;
-        var x = 20; // Left margin
-        var startY = (screenH / 2) - dotSpacing; // Center vertically
-        
+        var x = 20;
+        var startY = (screenH / 2) - dotSpacing;
+
         for (var i = 0; i < 4; i++) {
             var y = startY + (i * dotSpacing);
-            
             if (i == currentPage) {
-                // Current page - filled dot
                 dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
                 dc.fillCircle(x, y, dotRadius);
             } else {
-                // Other pages - outline dot
                 dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
                 dc.drawCircle(x, y, dotRadius);
             }
@@ -142,13 +189,14 @@ class scorePageView extends WatchUi.View {
 }
 
 class ScorePageDelegate extends WatchUi.BehaviorDelegate {
-    private var view as scorePageView;
+    private var view as ScorePageView;
 
-    function initialize(v as scorePageView) {
+    function initialize(v as ScorePageView) {
         BehaviorDelegate.initialize();
         view = v;
     }
 
+    // Press button to refresh
     function onSelect() as Boolean {
         view.loadHRVData();
         return true;
@@ -159,7 +207,7 @@ class ScorePageDelegate extends WatchUi.BehaviorDelegate {
         return true;
     }
 
-    function onSwipe(evt as SwipeEvent) as Boolean {
+   function onSwipe(evt as SwipeEvent) as Boolean {
         var direction = evt.getDirection();
         if (direction == WatchUi.SWIPE_UP) {
             var chartView = new ChartView(null);
