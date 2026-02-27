@@ -48,6 +48,7 @@ class CalendarPageView extends WatchUi.View {
         drawDayHeaders(dc, width);
         drawCalendarGrid(dc, width, height);
         drawPageIndicators(dc, dc.getHeight(), 3);
+        drawHomeButton(dc, width, height);
     }
     
     function drawPageIndicators(dc as Dc, screenH as Number, currentPage as Number) as Void {
@@ -338,6 +339,25 @@ class CalendarPageView extends WatchUi.View {
     findSelectedPosition();
     WatchUi.requestUpdate();
 }
+
+function drawHomeButton(dc as Dc, width as Number, height as Number) as Void {
+    var buttonWidth = 180;
+    var buttonHeight = 60;
+    var buttonX = (width / 2) - (buttonWidth / 2);
+    var buttonY = height - 90; // moved up from -35 to -70
+
+    dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+    dc.fillRoundedRectangle(buttonX, buttonY, buttonWidth, buttonHeight, 8);
+
+    dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+    dc.drawText(
+        width / 2,
+        buttonY + (buttonHeight / 2),
+        Graphics.FONT_SMALL, // bigger font than FONT_XTINY
+        "Home",
+        Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
+    );
+}
 }
 
 class CalendarPageDelegate extends WatchUi.InputDelegate {
@@ -364,6 +384,26 @@ class CalendarPageDelegate extends WatchUi.InputDelegate {
             calendarView.nextMonth();
             return true;
         }
+
+         // Home button - bottom center tap area
+        var screenW = 360;
+        var screenH = 360;
+        var buttonWidth = 200;
+        var buttonHeight = 50;
+        var buttonX = (screenW / 2) - (buttonWidth / 2); // = 80
+        var buttonY = screenH - 70;                       // = 290
+
+    if (x >= buttonX && x <= buttonX + buttonWidth &&
+        y >= buttonY && y <= buttonY + buttonHeight) {
+        var homeView = new HomeView();
+        WatchUi.switchToView(
+            homeView,
+            new HomeDelegate(homeView),
+            WatchUi.SLIDE_DOWN
+        );
+        return true;
+    }
+
         return false;
     }
     function onSwipe(swipeEvent as SwipeEvent) as Boolean {
