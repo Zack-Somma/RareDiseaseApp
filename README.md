@@ -15,4 +15,10 @@ To use app:
 This is located at the top of your window bar (next to Go and Terminal)
 
 
+How to download this repo:
+1) Click the drop-down arrow on the green button that says "Code," and copy the SSH link
+2) Open your terminal on your computer (can be done through using the search feature and searching up "terminal")
+3) `cd` to the location you want to go (e.g if I want the file to be in my desktop, I will do cd Desktop and then hit Enter)
+4) When you have the location you want, type `git clone <ssh link>` to your terminal and hit Enter
+
 Feel free to reach out to claire.yu.th@dartmouth.edu for any questions!
