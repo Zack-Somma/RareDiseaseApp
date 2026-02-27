@@ -3,6 +3,7 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 import Toybox.Graphics;
 import Toybox.Time;
+import Toybox.System;
 
 class HomeView extends WatchUi.View {
     private var _resetButtonY as Number = 0;
@@ -34,7 +35,7 @@ class HomeView extends WatchUi.View {
                     Graphics.TEXT_JUSTIFY_CENTER);
     
         dc.setColor(Graphics.COLOR_ORANGE, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy + 95, Graphics.FONT_XTINY, "Tap to Reset", 
+        dc.drawText(cx, cy + 95, Graphics.FONT_XTINY, "Tap to exit", 
                     Graphics.TEXT_JUSTIFY_CENTER);
     }
     
@@ -55,13 +56,11 @@ class HomeDelegate extends WatchUi.BehaviorDelegate {
         _view = view;
     }
     
-    function onTap(clickEvent as ClickEvent) as Boolean {
-    
-        // Show confirmation dialog
-        var dialog = new WatchUi.Confirmation("Reset today's survey?");
-        WatchUi.pushView(dialog, new ResetConfirmationDelegate(), WatchUi.SLIDE_IMMEDIATE);
-        return true;
-        
+   function onTap(clickEvent as ClickEvent) as Boolean {
+    // Change confirmation text to match exit action
+    var dialog = new WatchUi.Confirmation("Exit app?");
+    WatchUi.pushView(dialog, new ResetConfirmationDelegate(), WatchUi.SLIDE_IMMEDIATE);
+    return true;
     }
     
     function onSwipe(evt as SwipeEvent) as Boolean {
@@ -152,20 +151,19 @@ class ResetConfirmationDelegate extends WatchUi.ConfirmationDelegate {
     }
     
     function onResponse(response) as Boolean {
-    if (response == WatchUi.CONFIRM_YES) {
-        SurveyStorage.resetDailyCompletion();
-
-        WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-        
-        // Go to the main survey view
-        var view = new app_designView();
-        var delegate = new app_designDelegate();
-        WatchUi.switchToView(view, delegate, WatchUi.SLIDE_IMMEDIATE);
-        return true;
-    } else {
-        var homeView = new HomeView();
-        WatchUi.switchToView(homeView, new HomeDelegate(homeView), WatchUi.SLIDE_IMMEDIATE);
-        return true;
+        if (response == WatchUi.CONFIRM_YES) {
+            // Exit the app entirely
+            System.exit();
+            return true;
+        } else {
+            // Stay on HomeView
+            var homeView = new HomeView();
+            WatchUi.switchToView(
+                homeView, 
+                new HomeDelegate(homeView), 
+                WatchUi.SLIDE_IMMEDIATE
+            );
+            return true;
+        }
     }
-}
 }
