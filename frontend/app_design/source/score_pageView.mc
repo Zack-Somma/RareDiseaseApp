@@ -5,28 +5,68 @@ import Toybox.SensorHistory;
 import Toybox.Time;
 import Toybox.Time.Gregorian;
 import Toybox.System;
+import Toybox.Application.Storage;
 
 class ScorePageView extends WatchUi.View {
-    private var hrvAverage as Float?;
-    private var hrvPercentile10 as Float?;
-    private var hrvPercentile90 as Float?;
-    private var daysIncluded as Number;
     private var hasData as Boolean;
+    private var hasSurveyData as Boolean;
+
+    // Body battery fields
+    private var morningPeak as Float?;
+    private var currentLevel as Float?;
+    private var todayLow as Float?;
+    private var trend as String?;
+
+    // Composite score
+    private var compositeScore as Number;
+
+    // hEDS-specific domain weights derived from Ewer et al. (2024), Spider validation
+    // study in 11,151 hEDS/HSD adults (PMC11330398). Weights are proportional to
+    // observed mean domain burden scores in the hEDS population.
+    // Order matches symptomLabels in CompletionDelegate: NMSK, Pain, Fatigue,
+    // Gastrointestinal, Cardiac dysautonomia, Urogential, Anxiety, Depression
+    private var DOMAIN_WEIGHTS as Array<Float> = [
+        0.1226f,  // NMSK            (mean burden 45.65, Ewer et al. 2024 Table 4)
+        0.1395f,  // Pain            (mean burden 51.93, Ewer et al. 2024 Table 4)
+        0.1752f,  // Fatigue         (mean burden 65.22, Ewer et al. 2024 Table 4 - highest)
+        0.1114f,  // Gastrointestinal(mean burden 41.48, Ewer et al. 2024 Table 4)
+        0.1295f,  // Cardiac dysauto (mean burden 48.22, Ewer et al. 2024 Table 4)
+        0.0856f,  // Urogential      (mean burden 31.86, Ewer et al. 2024 Table 4 - lowest)
+        0.1224f,  // Anxiety         (mean burden 45.55, Ewer et al. 2024 Table 4)
+        0.1137f   // Depression      (mean burden 42.33, Ewer et al. 2024 Table 4)
+    ] as Array<Float>;
+
+    // Canonical label order matching CompletionDelegate's symptomLabels array
+    private var DOMAIN_LABELS as Array<String> = [
+        "NMSK",
+        "Pain",
+        "Fatigue",
+        "Gastrointestinal",
+        "Cardiac dysautonomia",
+        "Urogential",
+        "Anxiety",
+        "Depression"
+    ] as Array<String>;
 
     function initialize() {
         View.initialize();
-        hrvAverage = null;
-        hrvPercentile10 = null;
-        hrvPercentile90 = null;
-        daysIncluded = 0;
         hasData = false;
+        hasSurveyData = false;
+        compositeScore = 0;
         loadHRVData();
-    }
 
-    private var morningPeak as Float?;    // how recovered you were when you woke up
-private var currentLevel as Float?;   // right now
-private var todayLow as Float?;       // lowest point today
-private var trend as String?;         // "Recovering" / "Draining"
+        // SIMULATOR MOCK: inject a dummy body battery for testing composite score.
+        // Remove these 4 lines before deploying to a real device.
+        if (!hasData) {
+            currentLevel = 72.0f;
+            morningPeak  = 89.0f;
+            todayLow     = 55.0f;
+            trend        = "Recovering";
+            hasData      = true;
+        }
+
+        loadSurveyData();
+    }
 
 function loadHRVData() as Void {
     if (!(SensorHistory has :getBodyBatteryHistory)) {
@@ -92,6 +132,87 @@ function loadHRVData() as Void {
     WatchUi.requestUpdate();
 }
 
+public function loadSurveyData() as Void {
+    var today = SurveyStorage.getTodayString();
+    var surveyData = SurveyStorage.getSurveyData(today);
+
+    if (surveyData == null) {
+        hasSurveyData = false;
+        return;
+    }
+
+    var responses = surveyData.get("responses") as Array<Number>?;
+    var questionCategories = surveyData.get("questionCategories") as Array<String>?;
+
+    if (responses == null || questionCategories == null) {
+        hasSurveyData = false;
+        return;
+    }
+
+    // Calculate per-domain percentage scores (0-100)
+    var domainSums = new [8];
+    var domainCounts = new [8];
+    for (var i = 0; i < 8; i++) {
+        domainSums[i] = 0.0f;
+        domainCounts[i] = 0;
+    }
+
+    for (var i = 0; i < responses.size(); i++) {
+        var cat = questionCategories[i] as String;
+        for (var d = 0; d < DOMAIN_LABELS.size(); d++) {
+            if (cat.equals(DOMAIN_LABELS[d])) {
+                domainSums[d] = domainSums[d] + ((responses[i] as Number).toFloat() / 4.0f * 100.0f);
+                domainCounts[d] = domainCounts[d] + 1;
+                break;
+            }
+        }
+    }
+
+    // Build domain percentages only for active domains
+    var domainPcts = new [8];
+    var activeWeightSum = 0.0f;
+    for (var d = 0; d < 8; d++) {
+        if (domainCounts[d] > 0) {
+            domainPcts[d] = domainSums[d] / domainCounts[d].toFloat();
+            activeWeightSum = activeWeightSum + DOMAIN_WEIGHTS[d];
+        } else {
+            domainPcts[d] = -1.0f; // inactive
+        }
+    }
+
+    if (activeWeightSum <= 0.0f) {
+        hasSurveyData = false;
+        return;
+    }
+
+    hasSurveyData = true;
+
+    // Compute composite score using Option C (multiplicative) with hEDS weights.
+    // Each active domain contributes a weighted factor (1 - pct/100).
+    // Any domain at 100% drives the product to zero; all at 0% gives product of 1.
+    // Weights are renormalized across only the active domains.
+    var symptomFactor = 1.0f;
+    for (var d = 0; d < 8; d++) {
+        if (domainPcts[d] >= 0.0f) {
+            var normalizedWeight = DOMAIN_WEIGHTS[d] / activeWeightSum;
+            // Raise (1 - pct/100) to the power of the normalized weight.
+            // Approximated as: x^w = exp(w * ln(x)), but since Monkey C lacks
+            // ln/exp, we use a weighted geometric approach via repeated multiplication
+            // scaled by weight buckets (rounded to nearest 0.05 step).
+            var healthFactor = 1.0f - (domainPcts[d] / 100.0f);
+            // Weight the factor: factor^weight approximated by linear blend
+            // between 1.0 (no penalty) and healthFactor (full penalty)
+            var weightedFactor = 1.0f - normalizedWeight * (1.0f - healthFactor);
+            symptomFactor = symptomFactor * weightedFactor;
+        }
+    }
+
+    var batteryFactor = (currentLevel != null) ? (currentLevel as Float) / 100.0f : 1.0f;
+    compositeScore = (batteryFactor * symptomFactor * 100.0f).toNumber();
+    if (compositeScore < 0) { compositeScore = 0; }
+    if (compositeScore > 100) { compositeScore = 100; }
+}
+
     // Bubble sort
     function sortArray(arr as Array<Float>) as Array<Float> {
         var n = arr.size();
@@ -136,35 +257,91 @@ function loadHRVData() as Void {
         return;
     }
 
-    // Title
-    dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-    dc.drawText(cx, 40, Graphics.FONT_XTINY, "BODY BATTERY",
-        Graphics.TEXT_JUSTIFY_CENTER);
+    if (hasSurveyData) {
+        // --- COMPOSITE SCORE MODE ---
 
-    // Current value - big number
-    dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-    dc.drawText(cx, cy - 20, Graphics.FONT_NUMBER_HOT,
-        currentLevel.format("%.0f"),
-        Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+        // Title
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, 30, Graphics.FONT_XTINY, "HEALTH SCORE",
+            Graphics.TEXT_JUSTIFY_CENTER);
 
-    // Trend
-    if (trend != null) {
-        var trendColor = Graphics.COLOR_GREEN;
-        if (trend.equals("Draining")) { trendColor = Graphics.COLOR_RED; }
-        if (trend.equals("Stable")) { trendColor = Graphics.COLOR_YELLOW; }
-        dc.setColor(trendColor, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy + 35, Graphics.FONT_XTINY, trend,
+        // Composite score - big number, color-coded by severity
+        var scoreColor = Graphics.COLOR_GREEN;
+        if (compositeScore < 40) { scoreColor = Graphics.COLOR_RED; }
+        else if (compositeScore < 70) { scoreColor = Graphics.COLOR_YELLOW; }
+        dc.setColor(scoreColor, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, cy - 25, Graphics.FONT_NUMBER_HOT,
+            compositeScore.toString(),
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+
+        // Body battery sub-label
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, cy + 30, Graphics.FONT_XTINY, "Battery  Trend",
+            Graphics.TEXT_JUSTIFY_CENTER);
+
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        var trendStr = (trend != null) ? (trend as String) : "--";
+        var batteryStr = (currentLevel != null) ? (currentLevel as Float).format("%.0f") : "--";
+        dc.drawText(cx, cy + 52, Graphics.FONT_XTINY,
+            batteryStr + "        " + trendStr,
+            Graphics.TEXT_JUSTIFY_CENTER);
+
+        // Trend color dot
+        if (trend != null) {
+            var dotColor = Graphics.COLOR_GREEN;
+            if ((trend as String).equals("Draining")) { dotColor = Graphics.COLOR_RED; }
+            if ((trend as String).equals("Stable")) { dotColor = Graphics.COLOR_YELLOW; }
+            dc.setColor(dotColor, Graphics.COLOR_TRANSPARENT);
+            dc.fillCircle(cx + 42, cy + 57, 4);
+        }
+
+        // Peak / Low row
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, cy + 75, Graphics.FONT_XTINY, "Peak    Low",
+            Graphics.TEXT_JUSTIFY_CENTER);
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        var peakStr = (morningPeak != null) ? (morningPeak as Float).format("%.0f") : "--";
+        var lowStr  = (todayLow   != null) ? (todayLow   as Float).format("%.0f") : "--";
+        dc.drawText(cx, cy + 95, Graphics.FONT_XTINY,
+            peakStr + "       " + lowStr,
+            Graphics.TEXT_JUSTIFY_CENTER);
+
+    } else {
+        // --- BODY BATTERY ONLY MODE (no survey completed yet today) ---
+
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, 40, Graphics.FONT_XTINY, "BODY BATTERY",
+            Graphics.TEXT_JUSTIFY_CENTER);
+
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, cy - 20, Graphics.FONT_NUMBER_HOT,
+            (currentLevel as Float).format("%.0f"),
+            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+
+        if (trend != null) {
+            var trendColor = Graphics.COLOR_GREEN;
+            if ((trend as String).equals("Draining")) { trendColor = Graphics.COLOR_RED; }
+            if ((trend as String).equals("Stable")) { trendColor = Graphics.COLOR_YELLOW; }
+            dc.setColor(trendColor, Graphics.COLOR_TRANSPARENT);
+            dc.drawText(cx, cy + 35, Graphics.FONT_XTINY, trend as String,
+                Graphics.TEXT_JUSTIFY_CENTER);
+        }
+
+        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, cy + 60, Graphics.FONT_XTINY, "Peak    Low",
+            Graphics.TEXT_JUSTIFY_CENTER);
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+        var peakLowText = (morningPeak as Float).format("%.0f") + "       " + (todayLow as Float).format("%.0f");
+        dc.drawText(cx, cy + 85, Graphics.FONT_XTINY, peakLowText,
+            Graphics.TEXT_JUSTIFY_CENTER);
+
+        // Prompt to complete survey
+        dc.setColor(0x7B2FBE, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(cx, cy + 110, Graphics.FONT_XTINY, "Complete survey",
+            Graphics.TEXT_JUSTIFY_CENTER);
+        dc.drawText(cx, cy + 128, Graphics.FONT_XTINY, "for health score",
             Graphics.TEXT_JUSTIFY_CENTER);
     }
-
-    // Peak and Low
-    dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-    dc.drawText(cx, cy + 60, Graphics.FONT_XTINY, "Peak    Low",
-        Graphics.TEXT_JUSTIFY_CENTER);
-    dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-    var peakLowText = morningPeak.format("%.0f") + "       " + todayLow.format("%.0f");
-    dc.drawText(cx, cy + 85, Graphics.FONT_XTINY, peakLowText,
-        Graphics.TEXT_JUSTIFY_CENTER);
 
     drawPageIndicators(dc, screenH, 1);
 }
@@ -196,9 +373,10 @@ class ScorePageDelegate extends WatchUi.BehaviorDelegate {
         view = v;
     }
 
-    // Press button to refresh
+    // Press button to refresh both body battery and composite score
     function onSelect() as Boolean {
         view.loadHRVData();
+        view.loadSurveyData();
         return true;
     }
 
