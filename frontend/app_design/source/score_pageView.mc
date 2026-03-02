@@ -254,45 +254,21 @@ public function loadSurveyData() as Void {
         dc.drawText(cx, 30, Graphics.FONT_XTINY, "HEALTH SCORE",
             Graphics.TEXT_JUSTIFY_CENTER);
 
-        // Composite score - big number, color-coded by severity
-        var scoreColor = Graphics.COLOR_GREEN;
-        if (compositeScore < 40) { scoreColor = Graphics.COLOR_RED; }
-        else if (compositeScore < 70) { scoreColor = Graphics.COLOR_YELLOW; }
-        dc.setColor(scoreColor, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
         dc.drawText(cx, cy - 25, Graphics.FONT_NUMBER_HOT,
             compositeScore.toString(),
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 
-        // Body battery sub-label
+        // Battery / Peak labels
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy + 30, Graphics.FONT_XTINY, "Battery  Trend",
+        dc.drawText(cx, cy + 30, Graphics.FONT_XTINY, "Battery  Peak",
             Graphics.TEXT_JUSTIFY_CENTER);
 
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        var trendStr = (trend != null) ? (trend as String) : "--";
         var batteryStr = (currentLevel != null) ? (currentLevel as Float).format("%.0f") : "--";
+        var peakStr    = (morningPeak  != null) ? (morningPeak  as Float).format("%.0f") : "--";
         dc.drawText(cx, cy + 52, Graphics.FONT_XTINY,
-            batteryStr + "        " + trendStr,
-            Graphics.TEXT_JUSTIFY_CENTER);
-
-        // Trend color dot
-        if (trend != null) {
-            var dotColor = Graphics.COLOR_GREEN;
-            if ((trend as String).equals("Draining")) { dotColor = Graphics.COLOR_RED; }
-            if ((trend as String).equals("Stable")) { dotColor = Graphics.COLOR_YELLOW; }
-            dc.setColor(dotColor, Graphics.COLOR_TRANSPARENT);
-            dc.fillCircle(cx + 42, cy + 57, 4);
-        }
-
-        // Peak / Low row
-        dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy + 75, Graphics.FONT_XTINY, "Peak    Low",
-            Graphics.TEXT_JUSTIFY_CENTER);
-        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        var peakStr = (morningPeak != null) ? (morningPeak as Float).format("%.0f") : "--";
-        var lowStr  = (todayLow   != null) ? (todayLow   as Float).format("%.0f") : "--";
-        dc.drawText(cx, cy + 95, Graphics.FONT_XTINY,
-            peakStr + "       " + lowStr,
+            batteryStr + "        " + peakStr,
             Graphics.TEXT_JUSTIFY_CENTER);
 
     } else {
@@ -307,21 +283,11 @@ public function loadSurveyData() as Void {
             (currentLevel as Float).format("%.0f"),
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 
-        if (trend != null) {
-            var trendColor = Graphics.COLOR_GREEN;
-            if ((trend as String).equals("Draining")) { trendColor = Graphics.COLOR_RED; }
-            if ((trend as String).equals("Stable")) { trendColor = Graphics.COLOR_YELLOW; }
-            dc.setColor(trendColor, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(cx, cy + 35, Graphics.FONT_XTINY, trend as String,
-                Graphics.TEXT_JUSTIFY_CENTER);
-        }
-
         dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(cx, cy + 60, Graphics.FONT_XTINY, "Peak    Low",
+        dc.drawText(cx, cy + 45, Graphics.FONT_XTINY, "Peak",
             Graphics.TEXT_JUSTIFY_CENTER);
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
-        var peakLowText = (morningPeak as Float).format("%.0f") + "       " + (todayLow as Float).format("%.0f");
-        dc.drawText(cx, cy + 85, Graphics.FONT_XTINY, peakLowText,
+        dc.drawText(cx, cy + 65, Graphics.FONT_XTINY, (morningPeak as Float).format("%.0f"),
             Graphics.TEXT_JUSTIFY_CENTER);
 
         // Prompt to complete survey
