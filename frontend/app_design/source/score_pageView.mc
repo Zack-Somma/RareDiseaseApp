@@ -54,17 +54,6 @@ class ScorePageView extends WatchUi.View {
         hasSurveyData = false;
         compositeScore = 0;
         loadHRVData();
-
-        // SIMULATOR MOCK: inject a dummy body battery for testing composite score.
-        // Remove these 4 lines before deploying to a real device.
-        if (!hasData) {
-            currentLevel = 72.0f;
-            morningPeak  = 89.0f;
-            todayLow     = 55.0f;
-            trend        = "Recovering";
-            hasData      = true;
-        }
-
         loadSurveyData();
     }
 
